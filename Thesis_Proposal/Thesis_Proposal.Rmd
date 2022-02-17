@@ -1,0 +1,282 @@
+---
+####################
+## Metadata       ##
+####################
+course: Thesis Proposal
+title: |
+  International cooperation and technological change
+code: ThesisOutline # Course code for filename.
+date: "`r paste(Sys.Date())`" # Inserts today's date
+authors: Bernhard Bieri
+# This is the YAML (YAML Ain't Markup Language) header that includes 
+# metadata used to produce the document. 
+# Be careful with spacing in this header!
+# Two spaces at the start of the line create indentation,
+# which embeds the parameter in a hierarchy.
+
+#####################
+## Bibliography    ##
+#####################
+bibliography: [references.bib, packages.bib]
+csl: chicago-author-date.csl
+nocite: '@*' # Adds all elements in bib file to bibliography
+
+##########################
+## Define Knit function ##
+##########################
+knit: iheiddown::problemset_pdf
+
+#####################
+## Output Options  ##
+#####################
+output: iheiddown::problemset_pdf
+link-citations: true
+documentclass: article
+---
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Set initial knitr options
+knitr::opts_chunk$set(eval = TRUE, echo = FALSE,
+                      fig.align = "center",
+                      fig.asp = 0.7,
+                      dpi = 300,
+                      out.width = "80%",
+                      fig.pos = "!H",
+                      out.extra = "")
+# Load packages
+library(tidyverse)
+```
+
+# Introduction and Motivation:
+Climate change occupies a central place in the contemporary social discourse as
+becomes apparent by opening any major daily newspaper. The 16th of
+February 2022 was no different, the front page of the Financial Times titled
+"Biden’s petrol problem: president eyes gas tax cut as pump prices soar"
+[@browerBidenPetrolProblem2022] reporting on potential gas tax cuts in
+contradiction with Biden's electoral promises. This example highlights the
+fact that climate change is at the center the political debate at the national
+and the international level.
+The motivation for this thesis originated from the Stern Review which
+dedicates two chapters on technological innovation and international cooperation
+for technological innovation [@sternEconomicsClimateChange2007] as well as
+the work I am undertaking on international treaty networks for Prof. Hollway.
+While the Stern review provides readers with a good introduction into the
+complementary nature of national and international technological policy with
+respect to other measures such as carbon pricing, I am interested in
+investigating empirically the impact of the structure of the international 
+environmental
+governance complex on innovation outcomes such as patent applications and patent
+citations.
+
+# Litterature review, research question and methodology:
+
+My tentative research question can be stated as follows:
+
+Does international environmental regulation serve as a credible
+commitment tool for governments to set policy expectations of firms when making
+eco-innovation decisions?
+
+To the best of my knowledge, there are no similar empirical analyses of the
+impact of the structure of the international environmental governance complex
+on technological innovation. However, there exist two complementary strains of
+literature in political science and innovation economics that could be
+bridged by this thesis. The political science part of the literature
+uses network analysis techniques to understand the structure of multimodal
+networks of international agreements and is interested in how political actors
+make choices in such a network (see @knokeMultimodalPoliticalNetworks2021).
+An example of this could be the determinants
+of the choice of a country to join a multilateral environmental agreement for
+instance. While these networks are multimodal in nature (e.g. countries are
+not directly connected with each other but are signatories to a given treaty),
+I plan on using a one-mode country projection of the network of international
+environmental agreements thereby reducing its complexity and extracting 
+centrality
+measures from this one-mode projection for each country in yearly averages.
+Naturally, depending on the scope of the analysis, the breath of the network
+will need to be adjusted since firms active in the energy sector will not see
+fisheries regulation as relevant to their R&D decisions.
+
+The second strand of literature I considered relevant is the literature on the
+economics of climate change and the economics of innovation, with a particular
+focus on eco-innovation. The central issue facing policy-makers trying to
+mitigate the effects of emissions is one that is characterized by the dual
+environmental and knowledge externality. This leads 
+Starting with a macro-perspective, one can find
+substantial simulation exercises that highlight the complementary role R&D plays
+with marked based approaches such as carbon pricing
+[@acemogluEnvironmentDirectedTechnical2012; @bosettiRoleTechnologyDiffusion2009].
+Acemoglu et al. argue for instance that a combination between carbon prices and
+subsidies to mitigate both externalities respectively is less costly than
+isolated policy strategies. Furthermore, when taking a more micro-economic
+point of view, one can find extensive evidence on the impact of environmental
+policy on incentivizing innovation [@veugelersWhichPolicyInstruments2012].
+The main body of this subset of the environmental innovation literature focused
+on the relationship between a proxy for environmental policy stringency and the
+an innovation proxy (patent applications and citations or R&D expenditures). 
+The evidence from these studies suggests a positive link between environmental 
+policy stringency and rates/quality of innovation e.g. Porter's hypothesis (see @veugelersWhichPolicyInstruments2012 and @martinez-zarzosoDoesEnvironmentalPolicy2019 for more recent evidence on OECD
+countries)
+However, none of the readings I was able to cover analyse the effect of the
+changing structure of the international environmental policy complex (i.e. the
+countries within this complex) on these innovation measures. The main idea here
+being to test whether more embedded countries generate a greater innovative
+output than less embedded ones due to their increased "international
+credibility" making their policy commitment more credible and increasing the
+expected stringency of environmental policy.
+
+As hinted in the litterature review above, the methodology will take the form
+of a panel model in which the main variable of interest will be a node/country 
+level measure of
+"embeddedness" in the international environmental governance network. The
+main dependent variable will be a set of proxies for innovative activity in a
+given country such as patent counts or R&D expenditures. For validation,
+I will also try to include the Community Innovation Survey data or any
+similar but more aggregate data into the regressions to validate the results.
+
+# Data:
+
+This subsection will strive to give a preliminary overview of the data I plan
+on using to answer the research question stated above and provide the reader
+with a descriptive `{skimr}` snapshot.
+
+## Policy network data:
+
+Below, are descriptive snapshots of the International Environmental 
+Agreements Database and the [Ecolex](https://www.ecolex.org/) databases for
+1980.
+Each observation in this dataset links a country to a treaty and gives
+additional information about the latter such as the nature of the treaty
+(bilateral or multilateral), its ratification status, the date of 
+signature/ratification/exit, etc.
+
+The main challenge I foresee with this data is to correctly map the scope
+of the network to take into account when constructing the relevant network
+measures as my variable of interest. Since I will focus primarily
+on the energy sector, I will need to detect whether the main focus area of
+a given treaty is indeed the energy sector. This will likely go beyond the metadata presented here and involve some level of text analysis on the actual agreements.
+
+```{r, skimrs, warning=FALSE, message=FALSE, }
+# IEADB
+membership_1980IEADB <- manyenviron::memberships$IEADB_MEM %>%
+  dplyr::mutate(year = stringr::str_extract(many_ID, "[:digit:]{4}")) %>%
+  dplyr::filter(year == "1980")
+skimr::skim(membership_1980IEADB)
+
+# ECOLEX
+membership_1980ECOLEX <- manyenviron::memberships$ECOLEX_MEM %>%
+  dplyr::mutate(year = stringr::str_extract(many_ID, "[:digit:]{4}")) %>%
+  dplyr::filter(year == "1980")
+skimr::skim(membership_1980ECOLEX)
+```
+
+Here is a quick illustration of how one can conceptualize the international 
+governance complex as a bimodal network where countries are members of
+agreements.
+
+```{r, warning=FALSE, message=FALSE}
+# Subset dataset
+membership_1980IEADB <- membership_1980IEADB %>%
+  dplyr::select(treaty_ID, CountryID, Title) %>%
+  tidyr::drop_na() %>%
+  migraph::as_tidygraph()
+
+# Plot with migraph
+migraph::autographr(membership_1980IEADB) +
+  ggplot2::labs(title = "Membership in Environmental Treaties\nSigned in 1980",
+       caption = "Source: manyenviron") +
+  ggplot2::theme(plot.title = ggplot2::element_text(family = "sans",
+                                  size = 18,
+                                  hjust = 0.5))
+```
+
+## Innovation data:
+
+Innovation, being an indirectly measurable economic phenomenon, will be
+measured with a range of proxies. I plan on using country level patent
+indicators from the OECD and R&D expenditure as well as their MSTI database.
+Alternative data could be sourced from PATSTAT directly if needed.
+
+# Format:
+
+I will most certainly use R as the primary data analysis programming
+language to execute my analysis since I am most familiar with it and
+since there is a very wide ecosystem of packages for network analysis.
+This also implies that I will be writing the thesis in R-Markdown using
+the `{iheiddown}` dissertation template which will neatly integrate the
+code with the analysis. Furthermore, I will be able to use version control 
+(GitHub) to track changes throughout the thesis writing and data analysis 
+processes which will improve the transparency of the results and ensure
+academic honesty. To that effect, the repository will be made public before
+the 15th of June.
+Note that since my thesis is still in its early stages, the repository
+is still private but I can grant you or my potential second reader access
+if you would like to.
+
+# Schedule:
+
+The following Gantt chart outlines the projected timeline of the thesis by
+breaking down key tasks into smaller goals. This will allow me to track progress over the course of the coming months and will be updated once a month to reflect eventual changes.
+
+```{r, GanttChart, warning=FALSE, message=FALSE}
+# Create events data
+events <- tibble(wp = c("Litterature Review",
+                        "Litterature Review",
+                        "Modelling",
+                        "Data Analysis",
+                        "Data Analysis",
+                        "Writing",
+                        "Writing",
+                        "Deadlines",
+                        "Deadlines",
+                        "Deadlines"),
+                 activity = c("1.1.Thesis Outline",
+                              "1.2.Writing Literature Review",
+                              "2.1.Creating Theoretical Model(s)",
+                              "3.1.Data Cleaning",
+                              "3.1.Data Analysis",
+                              "4.1.Writing Analysis",
+                              "4.2.Integrating Feedback",
+                              "5.1 Thesis Outline",
+                              "5.2 Intermediate Presentation",
+                              "5.3 Final Deadline"),
+                 start_date = c(1,
+                                1,
+                                3,
+                                3,
+                                3,
+                                3,
+                                5,
+                                2,
+                                4,
+                                6),
+                 end_date = c(2,
+                              3,
+                              4,
+                              4,
+                              5,
+                              5,
+                              6,
+                              2,
+                              4,
+                              6))
+
+# Create gantt chart
+ganttrify::ganttrify(project = events,
+          # spots = meetings,
+          project_start_date = "2022-01",
+          # size_text_relative = 1.2,
+          mark_quarters = FALSE) +
+  ggplot2::labs(title = "Master's thesis timeline")
+```
+
+# Conclusion and feedback:
+
+Thank you in advance for taking the time to read this thesis outline. I 
+would be extremely grateful for any feedback regarding the overall idea, 
+tentative methodology, and the format of the thesis.
+
+# References:
+<!-- The bibliography is automatically generated here. -->
+
+The references below include the majority of the relevant literature I
+read to write this outline.

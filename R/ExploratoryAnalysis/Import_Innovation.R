@@ -25,6 +25,11 @@ BERD_PPP <- GERD %>%
   dplyr::mutate(Value = Value * 10^PowerCode.Code)
 # B_PPP is already in constant 2015 USD PPP
 # TFP: EU KLEMS ----
+tfp0 <- readRDS("data_raw/TFP_EU_KLEMS/wiiw-KLEMS_TFP0.rds")
+tfp1 <- readRDS("data_raw/TFP_EU_KLEMS/wiiw-KLEMS_TFP1.rds")
+tfp2 <- readRDS("data_raw/TFP_EU_KLEMS/wiiw-KLEMS_TFP2.rds")
+tfpshares <- readRDS("data_raw/TFP_EU_KLEMS/wiiw-KLEMS_shares.rds")
+
 
 # MFP: OECD aggregate level Multifactor productivity:
 # See: https://www.oecd.org/sdd/productivity-stats/

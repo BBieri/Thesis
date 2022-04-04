@@ -5,9 +5,9 @@
 library(tidyverse)
 library(WDI) # World Bank data
 library(fixest) # Panel tools package
-library(OECD) # OECD data
-OECD_dataset_list <- OECD::get_datasets() # Import available datasets for browsing
-
+# library(OECD) # OECD data
+# OECD_dataset_list <- OECD::get_datasets() # Import available datasets for browsing
+save_path <- "data/ExploratoryAnalysis/"
 
 # Note: Everything is normalized to USD 2015 PPP
 # Retrieved on:
@@ -52,7 +52,10 @@ WB <- dplyr::inner_join(GDP, imports, by = c("iso2c" = "iso2c",
   dplyr::mutate(ExportIntensity = TotalExports/GDP,
                 ImportIntensity = TotalImports/GDP)
 
-joined <- inner_join(WB, ieadb_eigen_OECD, c("iso2c"= "iso2c", "year" = "Year"))
+saveRDS(WB, file = paste0(save_path, "WB_controls.rds"))
+
+# joined <- dplyr::inner_join(WB, ieadb_eigen_OECD, c("iso2c"= "iso2c",
+#                                                     "year" = "Year"))
 
 
 # Labour variation: OECD ----
@@ -79,7 +82,13 @@ labour <- labour %>%
     ),
     lnValue = log(Value)
   ) %>%
-  dplyr::filter(Sector != "INDUCONS")
+  dplyr::filter(Sector != "INDUCONS") %>%
+  dplyr::rename(iso3c = COU) %>%
+  dplyr::mutate(COU = countrycode::countrycode(iso3c, "iso3c", "iso2c",
+                                               custom_match = c("EA19" = "EA19",
+                                                                "EU27_2020" = "EU27_2020",
+                                                                "G-7" = "G7",
+                                                                "OECD" = "OECD")))
 
 labour <- labour %>%
   dplyr::group_by(COU, Sector) %>%
@@ -88,6 +97,7 @@ labour <- labour %>%
   dplyr::filter(Time != 1989) %>%
   dplyr::mutate(DifflnValue = lnValue - laggedlnValue)
 
+saveRDS(labour, file = paste0(save_path, "labour_controls.rds"))
 
 # Value added: OECD ----
 # Source: https://stats.oecd.org/Index.aspx?DataSetCode=SNA_TABLE6A#
@@ -104,11 +114,16 @@ GVA_BY_ACTVITY <- VA %>%
                                                  "iso3c",
                                                  "iso2c",
                                                  custom_match =
-                                                   c("EU27_2020" = "EU")))
+                                                   c("EU27_2020" = "EU27_2020"))) %>%
+  dplyr::mutate(Value_PPP = )
 # TODO: this needs to be transformed into USD from 2015 constant LCU
 # paper did it with WB correction factor
+
+
 activities_VA <- dplyr::tibble(Code = unique(VA$ACTIVITY),
                                Name = unique(VA$Activity))
+
+
 
 # R&D Capital stock and Patent Stock: OECD ----
 # Not sure if this is available straight up: the authors seem to compute it
@@ -129,8 +144,15 @@ vars_GERD <- dplyr::tibble(Code = unique(GERD$MSTI_VAR),
 # Reference period is 2015 PPP USD
 GOVERD_PPP <- GERD %>%
   dplyr::filter(MSTI_VAR == "GV_PPPCT") %>% # 2015 USD
+  dplyr::select(-YEAR) %>%
   dplyr::mutate(iso2c = countrycode::countrycode(COU,
                                                  "iso3c",
-                                                 "iso2c"))
+                                                 "iso2c",
+                                                 custom_match = (
+                                                   c("EU27_2020" = "EU27_2020",
+                                                     "OECD" = "OECD")
+                                                 ))) %>%
+  dplyr::rename(iso3c = COU,
+                COU = iso2c)
 
-
+saveRDS(GOVERD_PPP, file = paste0(save_path, "GOVERD_controls.rds"))

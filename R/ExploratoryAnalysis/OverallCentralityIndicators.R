@@ -5,6 +5,7 @@
 library(manyenviron)
 library(tidyverse)
 library(migraph)
+save_path <- "data/ExploratoryAnalysis/"
 
 # Import IEADB and put into a list ----
 
@@ -100,6 +101,8 @@ ieadb_eigen_OECD$Year <- as.integer(ieadb_eigen_OECD$Year)
 ieadb_eigen_OECD$iso2c <- countrycode::countrycode(ieadb_eigen_OECD$Country,
                                                    "iso3c",
                                                    "iso2c")
+
+saveRDS(ieadb_eigen_OECD, paste0(save_path, "ieadb_eigen_OECD.rds"))
 
 # Plot Eigenvector centrality:
 

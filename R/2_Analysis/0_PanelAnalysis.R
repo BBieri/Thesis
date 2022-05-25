@@ -37,6 +37,34 @@ frow_joined <- dplyr::inner_join(Strength_frow, Eigenvector_frow,
   dplyr::mutate(COU = countrycode::countrycode(Country, "iso3c", "iso2c"),
                 Year = as.numeric(Year))
 
+# Strength FDSM:
+load(paste0(data_path, "OECD_Panel_Strength_frow.rds"))
+Strength_frow <- saved
+rm(saved)
+# Eigenvector FDSM:
+load(paste0(data_path, "OECD_Panel_Eigenvector_frow.rds"))
+Eigenvector_frow <- saved
+rm(saved)
+
+frow_joined <- dplyr::inner_join(Strength_frow, Eigenvector_frow,
+                                 by = c("Country" = "Country", "Year" = "Year")) %>%
+  dplyr::mutate(COU = countrycode::countrycode(Country, "iso3c", "iso2c"),
+                Year = as.numeric(Year))
+
+# Strength SDSM:
+load(paste0(data_path, "OECD_Panel_Strength_frow.rds"))
+Strength_frow <- saved
+rm(saved)
+# Eigenvector SDSM:
+load(paste0(data_path, "OECD_Panel_Eigenvector_frow.rds"))
+Eigenvector_frow <- saved
+rm(saved)
+
+frow_joined <- dplyr::inner_join(Strength_frow, Eigenvector_frow,
+                                 by = c("Country" = "Country", "Year" = "Year")) %>%
+  dplyr::mutate(COU = countrycode::countrycode(Country, "iso3c", "iso2c"),
+                Year = as.numeric(Year))
+
 ##############################
 # Innovation Measures
 ##############################
@@ -63,8 +91,13 @@ EPS <- readRDS(paste0(eps_path, "eps.rds"))
 panel1 <- dplyr::inner_join(EPS, tpf, by = c("Year" = "Year", "COU" = "COU"))
 panel1 <- dplyr::inner_join(panel1, frow_joined, by = c("Year" = "Year", "COU" = "COU"))
 
+
+#################### Subset Datasets to Considered Period ######################
+
+
 ############################ Panel Analysis ####################################
 
+pols_tfp0 <- fixest::feols(fml = Value ~ value.x + value.y, data = panel1)
 
 
 ############################ Generate tables ###################################

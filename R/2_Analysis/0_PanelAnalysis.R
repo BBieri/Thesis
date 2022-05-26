@@ -6,6 +6,7 @@
 # - https://rpubs.com/phle/r_tutorial_panel_data_analysis
 
 library(tidyverse) # 1.3.1
+library(countrycode) # 1.3.1
 library(fixest) # Great package for multiple fixed effects estimations
 library(plm) # 2.6-1
 library(lme4) # 1.1-29
@@ -37,19 +38,19 @@ frow_joined <- dplyr::inner_join(Strength_frow, Eigenvector_frow,
   dplyr::mutate(COU = countrycode::countrycode(Country, "iso3c", "iso2c"),
                 Year = as.numeric(Year))
 
-# Strength FDSM:
-load(paste0(data_path, "OECD_Panel_Strength_frow.rds"))
-Strength_frow <- saved
-rm(saved)
-# Eigenvector FDSM:
-load(paste0(data_path, "OECD_Panel_Eigenvector_frow.rds"))
-Eigenvector_frow <- saved
-rm(saved)
-
-frow_joined <- dplyr::inner_join(Strength_frow, Eigenvector_frow,
-                                 by = c("Country" = "Country", "Year" = "Year")) %>%
-  dplyr::mutate(COU = countrycode::countrycode(Country, "iso3c", "iso2c"),
-                Year = as.numeric(Year))
+# # Strength FDSM:
+# load(paste0(data_path, "OECD_Panel_Strength_fdsm.rds"))
+# Strength_frow <- saved
+# rm(saved)
+# # Eigenvector FDSM:
+# load(paste0(data_path, "OECD_Panel_Eigenvector_fdsm.rds"))
+# Eigenvector_frow <- saved
+# rm(saved)
+#
+# frow_joined <- dplyr::inner_join(Strength_frow, Eigenvector_frow,
+#                                  by = c("Country" = "Country", "Year" = "Year")) %>%
+#   dplyr::mutate(COU = countrycode::countrycode(Country, "iso3c", "iso2c"),
+#                 Year = as.numeric(Year))
 
 # Strength SDSM:
 load(paste0(data_path, "OECD_Panel_Strength_frow.rds"))
@@ -69,16 +70,48 @@ frow_joined <- dplyr::inner_join(Strength_frow, Eigenvector_frow,
 # Innovation Measures
 ##############################
 
-tpf <- readRDS(paste0(innovation_path, "tfp012_join.rds"))
+# Business expenditures on aggregate R&D 2015 PPP USD
+berd <- readRDS(paste0(innovation_path, "BERD_PPP.rds")) %>%
+  dplyr::rename(berd = Value) %>%
+  dplyr::select(Year, COU, Country, berd)
+
+# Government expenditures on aggregate R&D 2015 PPP USD
+goverd <- readRDS(paste0(innovation_path, "GOVERD_controls.rds")) %>%
+  dplyr::select(-COU) %>%
+  dplyr::rename(goverd = Value,
+                COU = iso3c) %>%
+  dplyr::select(Year, COU, Country, goverd)
+
+# Total Factor Productivity dataset 2015 PPP USD
+tfp <- readRDS(paste0(innovation_path, "tfp012_join.rds")) %>%
+  dplyr::select(-COU) %>%
+  dplyr::rename(goverd = Value,
+                COU = iso3c) %>%
+  dplyr::select(Year, COU, Country, goverd)
+
+# Environmental patents OECD dataset
+environmental_patents <- readRDS(paste0(innovation_path, "EnvPat.rds")) %>%
+  dplyr::rename(EnvPat = Value,
+                Country = Inventor.country) %>%
+  dplyr::select(Year, COU, Country, EnvPat)
+
+# Triadic patent counts
+triadic_patent <- readRDS(paste0(innovation_path, "tpf_inventor_country.rds")) %>%
+  dplyr::mutate(COU = countrycode::countrycode(COU, "iso2c", "iso3c")) %>%
+  dplyr::rename(Year = First_Prio_Year,
+                triadic_patent = n) %>%
+  dplyr::select(Year, COU, Country, triadic_patent)
 
 ##############################
 # Control Measures
 ##############################
 
-##############################
-# Cooperation Network Measures
-##############################
-
+# World Bank Controls
+WB <- readRDS(paste0(controls_path, "WB_controls.rds")) %>%
+  dplyr::mutate(iso2c = countrycode::countrycode(iso2c, "iso2c", "iso3c")) %>%
+  dplyr::rename(Year = year,
+                COU = iso2c,
+                Country = country)
 
 #############
 # EPS Measure
@@ -88,8 +121,7 @@ EPS <- readRDS(paste0(eps_path, "eps.rds"))
 
 ############################ Join Different datasets ###########################
 
-panel1 <- dplyr::inner_join(EPS, tpf, by = c("Year" = "Year", "COU" = "COU"))
-panel1 <- dplyr::inner_join(panel1, frow_joined, by = c("Year" = "Year", "COU" = "COU"))
+
 
 
 #################### Subset Datasets to Considered Period ######################

@@ -1,0 +1,164 @@
+---
+title: Litterature Review
+# author: Author
+chapter: 2
+in_context: False
+knit: iheiddown::chapter_pdf
+output: iheiddown::chapter_pdf
+---
+
+\setcounter{chapter}{1}
+# Litterature Review {#litreview}
+
+The present paper draws from three distinct but complementary strands of
+the literature on environmental policy. First and foremost, we ought to
+characterize what is known in the literature as the *Porter Hypothesis* and
+distinguish the different versions that have been devised over the years.
+We will thus strive to understand the impact of increased environmental regulations
+on both innovative activity of firms and on overall firm performance before
+completing the analysis by highlighting works that looked at the impact of the
+nature of environmental policy on firm-level innovation.
+The next strand of the literature relates to the concept of *policy certainty*
+which highlights the importance of designing policies that 
+Finally, and most central to our contribution, lies the
+literature on *International Environmental Governance* and the related methodological
+advances to understand it within a network framework.
+
+## The Porter Hypothesis
+
+Over three decades ago, the Porter Hypothesis (PH) challenged the conventional
+Panglossian economic thinking that enhanced environmental regulation would
+lead to a decrease in economic performance of firms due to the increased
+constraints imposed on the firm [@michael1991america]. The main intuition behind the
+Panglossian doxa is that if it were profitable for firms to follow a more
+sustainable production path, they would do so in the absence of regulations.
+On the basis of case studies, Porter however argues that well designed,
+market-based, pollution preventing policies would lead firms to create products
+that are more resource efficient and thus competitive on the international
+market. An example of the latter could be the implementation of more stringent
+fuel consumption standards for cars. Porter thus advances that this
+increase in environmental stringency, would force domestic automobile
+companies to make more fuel efficient cars which in turn would increase
+the competitiveness of domestic cars in the world market. 
+
+Porter and Von der Linde later formalize his initial criticism in 
+@porterNewConceptionEnvironmentCompetitiveness1995 where they outline six main
+causal links between increased environmental regulations and innovation or
+firm performance. First, they contend that "regulation signals companies about
+likely resource inefficiencies and potential technological improvements.
+Second, they argue that "regulation focused on information gathering
+can achieve major benefits [in terms of environmental performance and
+economic performance] by raising corporate awareness". Third, they
+mention that "environmental regulation reduces the "uncertainty that
+investments to address the environment will be valuable". Fourth,
+they advance that outside pressure, which includes the regulatory framework
+firms have to comply with, is able to overcome organizational inertia and
+motivate innovation. The fifth reason put forward by the authors is that
+"regulation levels the transitional playing field" in the sense that regulation
+ensures that companies do not gain an unfair advantage until new and improved
+technologies are proven. The sixth and final argument pertains to an important
+nuance between the effect of regulation on innovation and competitiveness of
+firms in that compliance costs arising from environmental regulations might not
+always be offset by benefits brought by product innovations. Crucially, Porter
+and Van der Linde contend that most benefits occurring from increased innovation
+will arise in the medium to the long term due to the required time span for the
+innovation to bear fruits. Hence the existence of a lag between the implementation
+of an environmental regulation and a signal on innovation or economic performance
+metrics of firms is likely.
+
+Due to its unorthodox nature, the Porter Hypothesis generated a strong debate 
+among economists during the late 1990's and the early 2000's
+[@jaffeEnvironmentalRegulationCompetitiveness1995].
+@ambecPorterHypothesis202013 provide a clear overview of the various arguments
+proponents used to defend the *PH*. They define a first set of studies which
+underlines the fact that firms are driven by individuals who might not
+satisfy the assumptions of rationality required for firms to be deemed
+profit-maximizers. Indeed, managerial risk-aversion, resistance to change
+[@aghionCorporateGovernanceCompetition1997], and
+a combination of lacking information and the cognitive capabilities to
+process the latter [@gabel2001firm] may cause a mismatch between the utility
+maximizing behaviors of the management and the firm as a whole. Akin to this
+principal agent issue, @ambecTheoreticalFoundationPorter2002 argue that managers
+may exhibit rent-seeking behavior by retaining private information on
+the true costs of technological innovations that would improve productivity
+and the environmental performance of the firm. This essentially
+follows the organizational inertia and learning effects put forward by
+@porterNewConceptionEnvironmentCompetitiveness1995 and outlined above.
+
+A second strand of the theoretical literature explore the role of market
+failures beyond the pure environmental externalities generated by pollution
+and how increased environmental regulations could overcome them.
+Examples of this strand include situations where firms are first movers
+within international markets characterized by imperfect competition where
+domestic production may increase as a result of more stringent environmental
+regulation [@simpsonTaxingVariableCost1996]. Another common market failure
+that could lead to the coexistence of the *PH* alongside profit-maximizing firms
+are information asymmetries between households and firms.
+The main idea here is that by setting industry standards or labels, firms
+are able to credibly communicate the environmental benefits of their products
+and overcome the asymmetry [@ambecSurvolFondementsTheoriques2007].
+Finally, the non-exclusive nature of R&D may lead to spillovers from the
+innovating firm to other firms in the industry. This may lead the economy
+to be in a bad equilibrium where firms invest too little in environmental
+technologies. If this is indeed the case, then regulations can level the playing
+field among firms and lead to a move to the higher, more R&D intensive
+equilibrium [@mohrTechnicalChangeExternal2002].
+
+On the empirical front, much has been written to reinforce the initially very
+theoretical debate surrounding the Porter Hypothesis.
+To facilitate its analysis, @jaffeEnvironmentalRegulationInnovation1997
+divided the original hypothesis into three distinct ones. What is known as
+the "Strong Porter Hypothesis" (*SPH*) links environmental regulation to firm
+competitiveness. The "Weak Porter Hypothesis" (*WPH*) links regulation to innovation,
+and the "Narrow Porter Hypothesis" argues that flexible market-based
+regulations are more effective in generating innovation than stricter
+command-and-control policies^[Since we will focus on the former two
+two hypotheses, we will not elaborate on the "narrow" hypothesis in this
+literature review.].
+
+The empirical literature analyzing the weak version of the Porter Hypothesis
+usually operationalizes innovation as R&D expenditures or through
+(aggregate or sector specific) patent counts. On the right hand side, the
+independent variable, environmental policy stringency, was initially proxied
+by pollution abatement costs before being more holistically estimated via the
+use of indicators such as the Environmental Policy Stringency (*EPS*) indicator
+developed by the OECD [@kruseMeasuringEnvironmentalPolicy2022] or national
+firm-level surveys
+
+
+
+## The Role of Policy Certainty on the Innovative Behavior of Firms
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## The Evolution of Global Environmental Governance

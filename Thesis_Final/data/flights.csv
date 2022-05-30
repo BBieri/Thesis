@@ -1,0 +1,399 @@
+month,day,dep_time,dep_delay,arr_time,arr_delay,carrier,tailnum,flight,dest,air_time,distance,hour,minute,carrier_name,dest_name
+1,1,1,96,235,70,AS,N508AS,145,ANC,194,1542,0,1,Alaska Airlines Inc.,Ted Stevens Anchorage Intl
+1,1,8,13,548,-4,UA,N37422,1609,IAH,201,1825,0,8,United Air Lines Inc.,George Bush Intercontinental
+1,1,28,-2,800,-23,US,N547UW,466,CLT,251,2282,0,28,US Airways Inc.,Charlotte Douglas Intl
+1,1,526,-4,1148,15,UA,N813UA,229,IAH,217,1825,5,26,United Air Lines Inc.,George Bush Intercontinental
+1,1,541,1,911,4,UA,N36476,1569,DEN,130,991,5,41,United Air Lines Inc.,Denver Intl
+1,1,549,24,907,12,US,N548UW,649,PHX,122,1009,5,49,US Airways Inc.,Phoenix Sky Harbor Intl
+1,1,559,-1,916,-9,F9,N210FR,796,DEN,125,991,5,59,Frontier Airlines Inc.,Denver Intl
+1,1,602,-3,1204,7,UA,N77295,1573,ORD,203,1739,6,2,United Air Lines Inc.,Chicago Ohare Intl
+1,1,606,6,746,3,AS,N796AS,406,SJC,87,569,6,6,Alaska Airlines Inc.,Norman Y Mineta San Jose Intl
+1,1,618,-2,1135,-30,AA,N4XMAA,1650,DFW,184,1616,6,18,American Airlines Inc.,Dallas Fort Worth Intl
+1,1,622,2,1412,-19,UA,N36472,1021,EWR,270,2434,6,22,United Air Lines Inc.,Newark Liberty Intl
+1,1,630,-10,834,-14,OO,N219AG,3456,BUR,105,817,6,30,SkyWest Airlines Inc.,Bob Hope
+1,1,637,-8,858,-7,AS,N408AS,560,LAX,108,834,6,37,Alaska Airlines Inc.,Los Angeles Intl
+1,1,637,-3,854,-6,AS,N588AS,572,SAN,120,933,6,37,Alaska Airlines Inc.,San Diego Intl
+1,1,638,-2,1003,-5,AS,N508AS,646,PHX,125,1009,6,38,Alaska Airlines Inc.,Phoenix Sky Harbor Intl
+1,1,638,10,1408,-4,UA,N526UA,250,IAD,253,2327,6,38,United Air Lines Inc.,Washington Dulles Intl
+1,1,639,4,1219,-11,WN,N8308K,401,MDW,207,1751,6,39,Southwest Airlines Co.,Chicago Midway Intl
+1,1,648,-12,910,-11,AS,N611AS,582,SNA,122,859,6,48,Alaska Airlines Inc.,John Wayne Arpt Orange Co
+1,1,654,-6,1047,-33,AS,N586AS,833,HNL,327,2603,6,54,Alaska Airlines Inc.,Honolulu Intl
+1,1,655,-5,1210,-7,DL,N963DN,2090,MSP,168,1426,6,55,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,1,656,-4,1242,-28,AA,N3KMAA,2218,ORD,200,1739,6,56,American Airlines Inc.,Chicago Ohare Intl
+1,1,656,-4,853,8,VX,N523VA,805,SFO,82,550,6,56,Virgin America,San Francisco Intl
+1,1,700,0,844,-1,UA,N479UA,519,SFO,80,550,7,0,United Air Lines Inc.,San Francisco Intl
+1,1,704,-1,910,-9,OO,N223AG,3460,ONT,106,838,7,4,SkyWest Airlines Inc.,Ontario Intl
+1,1,705,0,931,9,B6,N627JB,1121,LGB,113,846,7,5,JetBlue Airways,Long Beach
+1,1,708,-2,1453,-20,DL,N3772H,2258,JFK,267,2454,7,8,Delta Air Lines Inc.,John F Kennedy Intl
+1,1,710,-5,906,-21,AS,N309AS,244,SFO,82,550,7,10,Alaska Airlines Inc.,San Francisco Intl
+1,1,715,-5,1055,-47,AS,N536AS,855,KOA,326,2607,7,15,Alaska Airlines Inc.,Kona Intl At Keahole
+1,1,722,-3,933,3,WN,N407WN,947,LAS,101,763,7,22,Southwest Airlines Co.,Mc Carran Intl
+1,1,754,-6,1011,-14,AS,N706AS,568,LAX,111,834,7,54,Alaska Airlines Inc.,Los Angeles Intl
+1,1,801,-4,932,-18,WN,N447WN,48,OAK,78,543,8,1,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,1,809,-6,1326,-5,DL,N951DN,1588,MSP,170,1426,8,9,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,1,819,14,1343,-7,AA,N4XPAA,1220,DFW,178,1616,8,19,American Airlines Inc.,Dallas Fort Worth Intl
+1,1,827,2,1414,-16,UA,N38446,1510,IAH,210,1825,8,27,United Air Lines Inc.,George Bush Intercontinental
+1,1,840,-5,1226,16,WN,N940WN,644,DEN,125,991,8,40,Southwest Airlines Co.,Denver Intl
+1,1,843,-2,1159,-14,US,N664AW,685,PHX,122,1009,8,43,US Airways Inc.,Phoenix Sky Harbor Intl
+1,1,846,-4,1114,-16,WN,N772SW,223,SLC,77,630,8,46,Southwest Airlines Co.,Salt Lake City Intl
+1,1,919,-6,1719,-16,AS,N535AS,30,BOS,276,2537,9,19,Alaska Airlines Inc.,General Edward Lawrence Logan Intl
+1,1,925,-2,1106,-17,OO,N918SW,6307,SFO,85,550,9,25,SkyWest Airlines Inc.,San Francisco Intl
+1,1,944,-6,1727,-8,AS,N548AS,752,ATL,252,2172,9,44,Alaska Airlines Inc.,Hartsfield Jackson Atlanta Intl
+1,1,946,-4,1220,-38,AS,N793AS,131,ANC,197,1542,9,46,Alaska Airlines Inc.,Ted Stevens Anchorage Intl
+1,1,949,-1,1108,-12,WN,N701GS,3572,SMF,65,479,9,49,Southwest Airlines Co.,Sacramento Intl
+1,1,951,-4,1716,-24,AS,N583AS,764,DCA,252,2350,9,51,Alaska Airlines Inc.,Ronald Reagan Washington Natl
+1,1,1005,-5,1608,2,AS,N619AS,686,ORD,222,1739,10,5,Alaska Airlines Inc.,Chicago Ohare Intl
+1,1,1011,-4,1535,-29,AS,N585AS,658,DFW,178,1616,10,11,Alaska Airlines Inc.,Dallas Fort Worth Intl
+1,1,1014,-1,1357,-23,HA,N386HA,25,HNL,324,2603,10,14,Hawaiian Airlines Inc.,Honolulu Intl
+1,1,1021,-9,1347,-10,AS,N318AS,640,PHX,126,1009,10,21,Alaska Airlines Inc.,Phoenix Sky Harbor Intl
+1,1,1023,-7,1407,-38,AS,N589AS,803,LIH,331,2631,10,23,Alaska Airlines Inc.,Lihue
+1,1,1027,-2,1242,-16,OO,N982SW,6518,LAX,115,834,10,27,SkyWest Airlines Inc.,Los Angeles Intl
+1,1,1036,81,1408,63,OO,N218AG,3466,TUS,134,1119,10,36,SkyWest Airlines Inc.,Tucson Intl
+1,1,1043,-8,1226,-13,OO,N937SW,5243,SFO,87,550,10,43,SkyWest Airlines Inc.,San Francisco Intl
+1,1,1045,40,1303,40,AS,N614AS,580,SNA,123,859,10,45,Alaska Airlines Inc.,John Wayne Arpt Orange Co
+1,1,1052,2,1603,-2,WN,N756SA,899,MCI,174,1482,10,52,Southwest Airlines Co.,Kansas City Intl
+1,1,1054,94,1807,84,DL,N377DA,1502,ATL,237,2172,10,54,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,1,1055,-5,1312,-1,AS,N796AS,564,LAX,115,834,10,55,Alaska Airlines Inc.,Los Angeles Intl
+1,1,1059,44,1325,32,DL,N335NB,2189,SLC,75,630,10,59,Delta Air Lines Inc.,Salt Lake City Intl
+1,1,1102,2,1425,-5,WN,N697SW,1537,PHX,127,1009,11,2,Southwest Airlines Co.,Phoenix Sky Harbor Intl
+1,1,1113,-2,1427,-8,WN,N293WN,3042,DEN,121,991,11,13,Southwest Airlines Co.,Denver Intl
+1,1,1117,37,1436,36,F9,N221FR,788,DEN,121,991,11,17,Frontier Airlines Inc.,Denver Intl
+1,1,1123,-2,1442,-12,US,N803AW,634,PHX,121,1009,11,23,US Airways Inc.,Phoenix Sky Harbor Intl
+1,1,1130,0,1324,-11,WN,N726SW,4444,LAS,103,763,11,30,Southwest Airlines Co.,Mc Carran Intl
+1,1,1132,-8,1839,0,DL,N374DA,2123,DTW,219,1953,11,32,Delta Air Lines Inc.,Detroit Metro Wayne Co
+1,1,1147,17,1415,24,AS,N565AS,578,SAN,119,933,11,47,Alaska Airlines Inc.,San Diego Intl
+1,1,1148,-2,1411,1,OO,N625CA,4469,LAX,116,834,11,48,SkyWest Airlines Inc.,Los Angeles Intl
+1,1,1150,4,1400,-1,B6,N789JB,1521,LGB,115,846,11,50,JetBlue Airways,Long Beach
+1,1,1156,1,1315,-5,WN,N774SW,361,SMF,67,479,11,56,Southwest Airlines Co.,Sacramento Intl
+1,1,1156,0,1235,-3,OO,N237SW,5325,RDM,27,116,11,56,SkyWest Airlines Inc.,Roberts Fld
+1,1,1158,16,1241,19,OO,N295SW,5438,EUG,27,106,11,58,SkyWest Airlines Inc.,Mahlon Sweet Fld
+1,1,1201,-4,1340,-10,VX,N523VA,817,SFO,85,550,12,1,Virgin America,San Francisco Intl
+1,1,1201,-1,1816,11,UA,N424UA,277,IAH,212,1825,12,1,United Air Lines Inc.,George Bush Intercontinental
+1,1,1209,-6,1417,-4,OO,N219AG,3454,BUR,109,817,12,9,SkyWest Airlines Inc.,Bob Hope
+1,1,1215,5,1353,-2,WN,N615SW,1049,SJC,86,569,12,15,Southwest Airlines Co.,Norman Y Mineta San Jose Intl
+1,1,1220,15,1544,9,WN,N613SW,3518,ABQ,132,1111,12,20,Southwest Airlines Co.,Albuquerque International Sunport
+1,1,1223,57,1814,54,UA,N470UA,646,ORD,201,1739,12,23,United Air Lines Inc.,Chicago Ohare Intl
+1,1,1231,21,1822,27,AA,N4YRAA,1568,DFW,194,1616,12,31,American Airlines Inc.,Dallas Fort Worth Intl
+1,1,1238,78,1614,39,AS,N560AS,809,OGG,322,2562,12,38,Alaska Airlines Inc.,Kahului
+1,1,1238,68,1606,62,OO,N947SW,5576,DEN,126,991,12,38,SkyWest Airlines Inc.,Denver Intl
+1,1,1243,-7,1440,0,AS,N607AS,388,SFO,86,550,12,43,Alaska Airlines Inc.,San Francisco Intl
+1,1,1245,-10,1454,-3,AS,N622AS,622,LAS,105,763,12,45,Alaska Airlines Inc.,Mc Carran Intl
+1,1,1245,98,1345,103,OO,N229SW,5397,SEA,40,129,12,45,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,1,1253,-7,1808,-8,DL,N964DN,2164,MSP,174,1426,12,53,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,1,1255,30,1434,24,WN,N383SW,806,OAK,81,543,12,55,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,1,1258,25,1438,12,UA,N464UA,353,SFO,81,550,12,58,United Air Lines Inc.,San Francisco Intl
+1,1,1310,-5,1523,-7,OO,N223AG,3478,LGB,117,846,13,10,SkyWest Airlines Inc.,Long Beach
+1,1,1314,-6,1547,-13,DL,N355NW,2093,SLC,77,630,13,14,Delta Air Lines Inc.,Salt Lake City Intl
+1,1,1323,-2,2038,-15,DL,N393DA,773,ATL,235,2172,13,23,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,1,1325,5,1518,-7,WN,N444WN,425,LAS,103,763,13,25,Southwest Airlines Co.,Mc Carran Intl
+1,1,1326,-6,1509,-16,UA,N832UA,367,SFO,86,550,13,26,United Air Lines Inc.,San Francisco Intl
+1,1,1340,-5,1452,-13,WN,N436WN,103,RNO,59,444,13,40,Southwest Airlines Co.,Reno Tahoe Intl
+1,1,1422,57,2047,72,AA,N3DPAA,115,ORD,200,1739,14,22,American Airlines Inc.,Chicago Ohare Intl
+1,1,1450,49,2101,66,UA,N69806,1584,ORD,198,1739,14,50,United Air Lines Inc.,Chicago Ohare Intl
+1,1,1453,-2,1702,-9,AS,N508AS,570,LAX,111,834,14,53,Alaska Airlines Inc.,Los Angeles Intl
+1,1,1500,50,1633,38,WN,N217JC,3255,SJC,84,569,15,0,Southwest Airlines Co.,Norman Y Mineta San Jose Intl
+1,1,1517,96,1612,98,OO,N229SW,5423,SEA,40,129,15,17,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,1,1520,1,1848,2,UA,N75429,1051,DEN,127,991,15,20,United Air Lines Inc.,Denver Intl
+1,1,1531,36,1906,46,WN,N761RR,786,DEN,127,991,15,31,Southwest Airlines Co.,Denver Intl
+1,1,1543,-7,1813,8,AS,N615AS,592,SNA,121,859,15,43,Alaska Airlines Inc.,John Wayne Arpt Orange Co
+1,1,1545,10,2114,4,AA,N565AA,157,DFW,180,1616,15,45,American Airlines Inc.,Dallas Fort Worth Intl
+1,1,1545,15,1621,9,OO,N295SW,5331,RDM,25,116,15,45,SkyWest Airlines Inc.,Roberts Fld
+1,1,1554,64,1905,55,F9,N202FR,792,DEN,118,991,15,54,Frontier Airlines Inc.,Denver Intl
+1,1,1554,39,1912,27,US,N631AW,500,PHX,123,1009,15,54,US Airways Inc.,Phoenix Sky Harbor Intl
+1,1,1627,17,1854,4,WN,N784SW,20,SLC,79,630,16,27,Southwest Airlines Co.,Salt Lake City Intl
+1,1,1629,4,1834,-1,OO,N215AG,3494,SBA,105,784,16,29,SkyWest Airlines Inc.,Santa Barbara Muni
+1,1,1633,43,1849,43,AS,N788AS,588,PSP,118,873,16,33,Alaska Airlines Inc.,Palm Springs Intl
+1,1,1637,2,1915,-5,OO,N823SK,4520,SLC,78,630,16,37,SkyWest Airlines Inc.,Salt Lake City Intl
+1,1,1638,8,1824,15,AS,N614AS,402,SJC,86,569,16,38,Alaska Airlines Inc.,Norman Y Mineta San Jose Intl
+1,1,1712,47,1913,38,OO,N218AG,3462,ONT,109,838,17,12,SkyWest Airlines Inc.,Ontario Intl
+1,1,1720,0,1932,-6,OO,N815SK,4684,LAX,112,834,17,20,SkyWest Airlines Inc.,Los Angeles Intl
+1,1,1728,78,1926,71,WN,N472WN,839,LAS,105,763,17,28,Southwest Airlines Co.,Mc Carran Intl
+1,1,1741,-4,1953,-8,AS,N318AS,562,LAX,109,834,17,41,Alaska Airlines Inc.,Los Angeles Intl
+1,1,1743,-2,1949,-2,OO,N219AG,3488,BUR,111,817,17,43,SkyWest Airlines Inc.,Bob Hope
+1,1,1744,8,1842,13,OO,N229SW,5417,SEA,36,129,17,44,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,1,1751,144,1928,135,UA,N802UA,212,SFO,81,550,17,51,United Air Lines Inc.,San Francisco Intl
+1,1,1756,-4,2118,-12,US,N655AW,577,PHX,127,1009,17,56,US Airways Inc.,Phoenix Sky Harbor Intl
+1,1,1759,-1,1934,-11,VX,N523VA,813,SFO,80,550,17,59,Virgin America,San Francisco Intl
+1,1,1807,19,1951,11,OO,N938SW,5553,SFO,82,550,18,7,SkyWest Airlines Inc.,San Francisco Intl
+1,1,1808,73,1930,70,WN,N367SW,747,SMF,69,479,18,8,Southwest Airlines Co.,Sacramento Intl
+1,1,1819,-5,2025,-14,B6,N662JB,1621,LGB,113,846,18,19,JetBlue Airways,Long Beach
+1,1,1821,15,2135,2,UA,N524UA,550,DEN,111,991,18,21,United Air Lines Inc.,Denver Intl
+1,1,1829,-11,2222,-33,AS,N565AS,863,OGG,329,2562,18,29,Alaska Airlines Inc.,Kahului
+1,1,1835,105,2015,105,WN,N389SW,568,OAK,87,543,18,35,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,1,1851,-4,2052,-2,AS,N622AS,620,LAS,103,763,18,51,Alaska Airlines Inc.,Mc Carran Intl
+1,1,1851,21,2029,19,WN,N380SW,348,SJC,87,569,18,51,Southwest Airlines Co.,Norman Y Mineta San Jose Intl
+1,1,1858,-2,2056,-4,AS,N529AS,379,SFO,84,550,18,58,Alaska Airlines Inc.,San Francisco Intl
+1,1,1859,-1,2117,-13,OO,N925SW,6250,LAX,115,834,18,59,SkyWest Airlines Inc.,Los Angeles Intl
+1,1,1921,56,2038,48,WN,N353SW,718,SMF,66,479,19,21,Southwest Airlines Co.,Sacramento Intl
+1,1,1925,90,2246,81,WN,N493WN,1115,PHX,129,1009,19,25,Southwest Airlines Co.,Phoenix Sky Harbor Intl
+1,1,1936,8,2119,-2,UA,N402UA,995,SFO,82,550,19,36,United Air Lines Inc.,San Francisco Intl
+1,1,1949,79,2117,67,WN,N961WN,3963,OAK,76,543,19,49,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,1,1954,-10,2134,-22,OO,N471CA,5659,SFO,84,550,19,54,SkyWest Airlines Inc.,San Francisco Intl
+1,1,2001,6,2144,10,AS,N585AS,404,SJC,84,569,20,1,Alaska Airlines Inc.,Norman Y Mineta San Jose Intl
+1,1,2012,-3,2219,-6,OO,N223AG,3464,ONT,110,838,20,12,SkyWest Airlines Inc.,Ontario Intl
+1,1,2014,-6,2328,-28,US,N662AW,581,PHX,120,1009,20,14,US Airways Inc.,Phoenix Sky Harbor Intl
+1,1,2020,30,2316,18,AS,N516AS,137,ANC,208,1542,20,20,Alaska Airlines Inc.,Ted Stevens Anchorage Intl
+1,1,2038,78,2348,68,F9,N934FR,794,DEN,114,991,20,38,Frontier Airlines Inc.,Denver Intl
+1,1,2043,-2,2307,1,AS,N786AS,574,SAN,126,933,20,43,Alaska Airlines Inc.,San Diego Intl
+1,1,2122,-8,2327,-4,AS,N619AS,624,LAS,101,763,21,22,Alaska Airlines Inc.,Mc Carran Intl
+1,1,2130,13,531,16,B6,N635JB,1206,JFK,274,2454,21,30,JetBlue Airways,John F Kennedy Intl
+1,1,2221,1,2308,11,OO,N229SW,5440,RDM,28,116,22,21,SkyWest Airlines Inc.,Roberts Fld
+1,1,2221,-4,550,-30,US,N571UW,467,CLT,250,2282,22,21,US Airways Inc.,Charlotte Douglas Intl
+1,1,2229,-1,2336,-5,OO,N295SW,5437,LMT,50,241,22,29,SkyWest Airlines Inc.,Klamath Falls Airport
+1,1,2237,-1,623,-4,UA,N573UA,583,EWR,261,2434,22,37,United Air Lines Inc.,Newark Liberty Intl
+1,1,2253,8,611,4,DL,N371DA,503,ATL,240,2172,22,53,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,1,2259,-5,442,-18,UA,N29717,1632,ORD,196,1739,22,59,United Air Lines Inc.,Chicago Ohare Intl
+1,2,44,49,641,51,UA,N423UA,758,IAH,215,1825,0,44,United Air Lines Inc.,George Bush Intercontinental
+1,2,45,-10,550,-18,DL,N924DN,1080,MSP,168,1426,0,45,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,2,57,113,628,88,UA,N21723,1632,ORD,196,1739,0,57,United Air Lines Inc.,Chicago Ohare Intl
+1,2,151,321,310,315,WN,N735SA,1546,SMF,67,479,1,51,Southwest Airlines Co.,Sacramento Intl
+1,2,516,-9,839,-16,US,N523UW,649,PHX,128,1009,5,16,US Airways Inc.,Phoenix Sky Harbor Intl
+1,2,528,-2,1119,-14,UA,N848UA,275,IAH,213,1825,5,28,United Air Lines Inc.,George Bush Intercontinental
+1,2,552,-8,830,-18,DL,N663DN,1831,SLC,80,630,5,52,Delta Air Lines Inc.,Salt Lake City Intl
+1,2,557,-3,914,-11,F9,N221FR,796,DEN,117,991,5,57,Frontier Airlines Inc.,Denver Intl
+1,2,558,-2,733,-12,WN,N498WN,1461,OAK,81,543,5,58,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,2,558,-2,922,-8,WN,N776WN,1927,PHX,129,1009,5,58,Southwest Airlines Co.,Phoenix Sky Harbor Intl
+1,2,606,1,1157,0,UA,N87531,1573,ORD,201,1739,6,6,United Air Lines Inc.,Chicago Ohare Intl
+1,2,611,11,752,9,AS,N760AS,406,SJC,86,569,6,11,Alaska Airlines Inc.,Norman Y Mineta San Jose Intl
+1,2,614,-6,1158,-7,AA,N4XJAA,1650,DFW,194,1616,6,14,American Airlines Inc.,Dallas Fort Worth Intl
+1,2,621,46,801,35,UA,N35260,1209,SFO,83,550,6,21,United Air Lines Inc.,San Francisco Intl
+1,2,625,5,939,-6,WN,N260WN,1111,DEN,118,991,6,25,Southwest Airlines Co.,Denver Intl
+1,2,627,-3,1350,-7,DL,N3746H,1156,ATL,244,2172,6,27,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,2,628,48,941,34,UA,N37462,1569,DEN,115,991,6,28,United Air Lines Inc.,Denver Intl
+1,2,635,-5,1009,1,AS,N536AS,646,PHX,128,1009,6,35,Alaska Airlines Inc.,Phoenix Sky Harbor Intl
+1,2,636,-4,854,-6,AS,N532AS,572,SAN,119,933,6,36,Alaska Airlines Inc.,San Diego Intl
+1,2,637,2,1231,1,WN,N8603F,401,MDW,216,1751,6,37,Southwest Airlines Co.,Chicago Midway Intl
+1,2,637,17,1442,11,UA,N37466,1021,EWR,286,2434,6,37,United Air Lines Inc.,Newark Liberty Intl
+1,2,638,-2,842,-6,OO,N218AG,3456,BUR,105,817,6,38,SkyWest Airlines Inc.,Bob Hope
+1,2,642,-3,857,-11,OO,N804SK,4692,LAX,112,834,6,42,SkyWest Airlines Inc.,Los Angeles Intl
+1,2,644,-1,912,7,AS,N703AS,560,LAX,111,834,6,44,Alaska Airlines Inc.,Los Angeles Intl
+1,2,647,17,824,8,UA,N76503,1621,SFO,83,550,6,47,United Air Lines Inc.,San Francisco Intl
+1,2,650,5,846,-4,WN,N943WN,247,LAS,103,763,6,50,Southwest Airlines Co.,Mc Carran Intl
+1,2,655,-5,1213,-7,DL,N934DN,2090,MSP,175,1426,6,55,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,2,656,-4,915,-6,AS,N622AS,582,SNA,118,859,6,56,Alaska Airlines Inc.,John Wayne Arpt Orange Co
+1,2,658,-2,1051,-29,AS,N514AS,833,HNL,326,2603,6,58,Alaska Airlines Inc.,Honolulu Intl
+1,2,659,-6,919,-3,B6,N524JB,1121,LGB,113,846,6,59,JetBlue Airways,Long Beach
+1,2,701,1,826,-4,WN,N904WN,2885,SMF,70,479,7,1,Southwest Airlines Co.,Sacramento Intl
+1,2,702,34,1447,35,UA,N538UA,250,IAD,257,2327,7,2,United Air Lines Inc.,Washington Dulles Intl
+1,2,703,-2,912,-7,OO,N219AG,3460,ONT,109,838,7,3,SkyWest Airlines Inc.,Ontario Intl
+1,2,704,-6,1535,21,DL,N3748Y,2258,JFK,285,2454,7,4,Delta Air Lines Inc.,John F Kennedy Intl
+1,2,709,-6,912,-15,AS,N315AS,244,SFO,81,550,7,9,Alaska Airlines Inc.,San Francisco Intl
+1,2,710,10,907,22,VX,N523VA,805,SFO,86,550,7,10,Virgin America,San Francisco Intl
+1,2,723,8,915,-3,AS,N614AS,626,LAS,100,763,7,23,Alaska Airlines Inc.,Mc Carran Intl
+1,2,726,6,1124,-18,AS,N579AS,855,KOA,340,2607,7,26,Alaska Airlines Inc.,Kona Intl At Keahole
+1,2,749,-1,929,-11,WN,N762SW,373,SJC,87,569,7,49,Southwest Airlines Co.,Norman Y Mineta San Jose Intl
+1,2,750,5,849,9,OO,N585SW,5379,SEA,40,129,7,50,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,2,802,-3,943,-7,WN,N437WN,48,OAK,86,543,8,2,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,2,808,8,1020,-5,AS,N309AS,568,LAX,109,834,8,8,Alaska Airlines Inc.,Los Angeles Intl
+1,2,810,-5,1328,-5,DL,N950DN,2154,MSP,173,1426,8,10,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,2,834,29,1400,10,AA,N568AA,1220,DFW,189,1616,8,34,American Airlines Inc.,Dallas Fort Worth Intl
+1,2,836,11,1429,-1,UA,N37413,1510,IAH,215,1825,8,36,United Air Lines Inc.,George Bush Intercontinental
+1,2,843,-2,1207,-6,US,N648AW,685,PHX,130,1009,8,43,US Airways Inc.,Phoenix Sky Harbor Intl
+1,2,846,1,1226,16,WN,N366SW,103,DEN,121,991,8,46,Southwest Airlines Co.,Denver Intl
+1,2,855,5,1130,0,WN,N614SW,223,SLC,84,630,8,55,Southwest Airlines Co.,Salt Lake City Intl
+1,2,911,-4,1246,-19,OO,N223AG,3466,TUS,139,1119,9,11,SkyWest Airlines Inc.,Tucson Intl
+1,2,917,-4,1012,-4,OO,N567SW,5428,SEA,41,129,9,17,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,2,918,-2,1643,-2,DL,N3756,1940,ATL,249,2172,9,18,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,2,922,-3,1811,36,AS,N526AS,30,BOS,290,2537,9,22,Alaska Airlines Inc.,General Edward Lawrence Logan Intl
+1,2,929,-1,1122,-1,OO,N764SK,5196,SFO,81,550,9,29,SkyWest Airlines Inc.,San Francisco Intl
+1,2,945,-5,1730,-5,AS,N552AS,752,ATL,255,2172,9,45,Alaska Airlines Inc.,Hartsfield Jackson Atlanta Intl
+1,2,946,-4,1234,-24,AS,N306AS,131,ANC,215,1542,9,46,Alaska Airlines Inc.,Ted Stevens Anchorage Intl
+1,2,949,-6,1732,-8,AS,N516AS,764,DCA,268,2350,9,49,Alaska Airlines Inc.,Ronald Reagan Washington Natl
+1,2,1001,-4,1222,-1,AS,N619AS,580,SNA,120,859,10,1,Alaska Airlines Inc.,John Wayne Arpt Orange Co
+1,2,1014,-1,1244,-12,DL,N327NB,2189,SLC,79,630,10,14,Delta Air Lines Inc.,Salt Lake City Intl
+1,2,1017,2,1545,-19,AS,N565AS,658,DFW,190,1616,10,17,Alaska Airlines Inc.,Dallas Fort Worth Intl
+1,2,1026,11,1426,6,HA,N383HA,25,HNL,335,2603,10,26,Hawaiian Airlines Inc.,Honolulu Intl
+1,2,1028,-2,1358,1,AS,N779AS,640,PHX,132,1009,10,28,Alaska Airlines Inc.,Phoenix Sky Harbor Intl
+1,2,1034,5,1304,6,OO,N929SW,6518,LAX,116,834,10,34,SkyWest Airlines Inc.,Los Angeles Intl
+1,2,1040,0,1357,-3,F9,N935FR,788,DEN,121,991,10,40,Frontier Airlines Inc.,Denver Intl
+1,2,1051,0,1234,-5,OO,N947SW,5243,SFO,86,550,10,51,SkyWest Airlines Inc.,San Francisco Intl
+1,2,1056,-4,1305,-8,AS,N760AS,564,LAX,113,834,10,56,Alaska Airlines Inc.,Los Angeles Intl
+1,2,1100,10,1613,8,WN,N904WN,899,MCI,179,1482,11,0,Southwest Airlines Co.,Kansas City Intl
+1,2,1101,1,1427,-3,WN,N358SW,1537,PHX,133,1009,11,1,Southwest Airlines Co.,Phoenix Sky Harbor Intl
+1,2,1105,-2,1151,-11,OO,N229SW,5397,SEA,37,129,11,5,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,2,1119,-6,1437,-17,US,N820AW,634,PHX,125,1009,11,19,US Airways Inc.,Phoenix Sky Harbor Intl
+1,2,1125,5,1508,-27,AS,N581AS,809,OGG,330,2562,11,25,Alaska Airlines Inc.,Kahului
+1,2,1126,-4,1340,-11,AS,N586AS,578,SAN,122,933,11,26,Alaska Airlines Inc.,San Diego Intl
+1,2,1138,8,1335,0,WN,N7744A,359,LAS,105,763,11,38,Southwest Airlines Co.,Mc Carran Intl
+1,2,1141,-1,1226,4,OO,N585SW,5438,EUG,29,106,11,41,SkyWest Airlines Inc.,Mahlon Sweet Fld
+1,2,1151,5,1356,-5,B6,N625JB,1521,LGB,113,846,11,51,JetBlue Airways,Long Beach
+1,2,1155,-1,1233,-5,OO,N567SW,5325,RDM,26,116,11,55,SkyWest Airlines Inc.,Roberts Fld
+1,2,1157,-8,1334,-16,VX,N528VA,817,SFO,88,550,11,57,Virgin America,San Francisco Intl
+1,2,1159,33,1758,38,UA,N821UA,646,ORD,200,1739,11,59,United Air Lines Inc.,Chicago Ohare Intl
+1,2,1203,48,1515,40,WN,N761RR,3042,DEN,120,991,12,3,Southwest Airlines Co.,Denver Intl
+1,2,1206,20,1921,34,DL,N807DN,1466,DTW,234,1953,12,6,Delta Air Lines Inc.,Detroit Metro Wayne Co
+1,2,1212,-3,1422,1,OO,N218AG,3454,BUR,108,817,12,12,SkyWest Airlines Inc.,Bob Hope
+1,2,1217,27,1441,31,OO,N617QX,4469,LAX,108,834,12,17,SkyWest Airlines Inc.,Los Angeles Intl
+1,2,1229,19,1806,11,AA,N4WJAA,1568,DFW,189,1616,12,29,American Airlines Inc.,Dallas Fort Worth Intl
+1,2,1231,61,1548,44,OO,N957SW,5576,DEN,115,991,12,31,SkyWest Airlines Inc.,Denver Intl
+1,2,1233,23,1415,20,WN,N908WN,3252,SJC,87,569,12,33,Southwest Airlines Co.,Norman Y Mineta San Jose Intl
+1,2,1236,3,1425,-1,UA,N488UA,353,SFO,84,550,12,36,United Air Lines Inc.,San Francisco Intl
+1,2,1239,14,1418,8,WN,N642WN,426,OAK,79,543,12,39,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,2,1246,51,1412,52,WN,N641SW,361,SMF,72,479,12,46,Southwest Airlines Co.,Sacramento Intl
+1,2,1252,-3,1452,-5,AS,N644AS,622,LAS,102,763,12,52,Alaska Airlines Inc.,Mc Carran Intl
+1,2,1254,164,1907,181,AS,N615AS,686,ORD,203,1739,12,54,Alaska Airlines Inc.,Chicago Ohare Intl
+1,2,1255,-5,1803,-16,DL,N901DA,2164,MSP,171,1426,12,55,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,2,1300,10,1448,8,AS,N614AS,388,SFO,86,550,13,0,Alaska Airlines Inc.,San Francisco Intl
+1,2,1311,-4,1523,-7,OO,N219AG,3478,LGB,119,846,13,11,SkyWest Airlines Inc.,Long Beach
+1,2,1314,-6,1550,-12,DL,N374DA,2093,SLC,81,630,13,14,Delta Air Lines Inc.,Salt Lake City Intl
+1,2,1320,78,1909,64,UA,N479UA,277,IAH,212,1825,13,20,United Air Lines Inc.,George Bush Intercontinental
+1,2,1321,76,1646,71,WN,N660SW,3518,ABQ,132,1111,13,21,Southwest Airlines Co.,Albuquerque International Sunport
+1,2,1332,7,2048,-5,DL,N804DN,773,ATL,239,2172,13,32,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,2,1336,-5,1420,-14,OO,N229SW,5423,SEA,37,129,13,36,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,2,1337,17,1529,4,WN,N219WN,425,LAS,101,763,13,37,Southwest Airlines Co.,Mc Carran Intl
+1,2,1339,4,1513,-2,WN,N939WN,578,OAK,82,543,13,39,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,2,1409,37,1544,19,UA,N492UA,367,SFO,79,550,14,9,United Air Lines Inc.,San Francisco Intl
+1,2,1434,33,2054,59,UA,N66803,1610,ORD,198,1739,14,34,United Air Lines Inc.,Chicago Ohare Intl
+1,2,1448,-4,1700,-10,OO,N608SK,4556,LAX,115,834,14,48,SkyWest Airlines Inc.,Los Angeles Intl
+1,2,1452,87,2039,64,AA,N3KSAA,115,ORD,203,1739,14,52,American Airlines Inc.,Chicago Ohare Intl
+1,2,1455,0,1706,-5,AS,N536AS,570,LAX,112,834,14,55,Alaska Airlines Inc.,Los Angeles Intl
+1,2,1505,55,1644,49,WN,N281WN,3255,SJC,86,569,15,5,Southwest Airlines Co.,Norman Y Mineta San Jose Intl
+1,2,1509,-6,2008,-23,DL,N946DN,2430,MSP,165,1426,15,9,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,2,1514,-1,1832,-13,US,N667AW,500,PHX,127,1009,15,14,US Airways Inc.,Phoenix Sky Harbor Intl
+1,2,1520,25,1835,15,WN,N480WN,735,DEN,122,991,15,20,Southwest Airlines Co.,Denver Intl
+1,2,1520,-10,1558,-14,OO,N585SW,5331,RDM,26,116,15,20,SkyWest Airlines Inc.,Roberts Fld
+1,2,1530,40,1845,35,F9,N216FR,792,DEN,120,991,15,30,Frontier Airlines Inc.,Denver Intl
+1,2,1533,-2,2126,16,AA,N4XMAA,157,DFW,193,1616,15,33,American Airlines Inc.,Dallas Fort Worth Intl
+1,2,1534,7,1711,-2,UA,N839UA,468,SFO,84,550,15,34,United Air Lines Inc.,San Francisco Intl
+1,2,1546,-4,1759,-6,AS,N611AS,592,SNA,119,859,15,46,Alaska Airlines Inc.,John Wayne Arpt Orange Co
+1,2,1557,7,1815,9,AS,N794AS,588,PSP,119,873,15,57,Alaska Airlines Inc.,Palm Springs Intl
+1,2,1609,0,1710,8,OO,N294SW,5404,SEA,43,129,16,9,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,2,1622,-8,1804,-5,AS,N619AS,402,SJC,89,569,16,22,Alaska Airlines Inc.,Norman Y Mineta San Jose Intl
+1,2,1622,-3,1825,-10,OO,N223AG,3462,ONT,108,838,16,22,SkyWest Airlines Inc.,Ontario Intl
+1,2,1633,23,1826,11,WN,N748SW,750,LAS,100,763,16,33,Southwest Airlines Co.,Mc Carran Intl
+1,2,1634,-4,1911,-9,DL,N323NB,1194,SLC,83,630,16,34,Delta Air Lines Inc.,Salt Lake City Intl
+1,2,1643,84,2003,77,UA,N18243,1051,DEN,118,991,16,43,United Air Lines Inc.,Denver Intl
+1,2,1645,20,1845,10,OO,N216AG,3494,SBA,101,784,16,45,SkyWest Airlines Inc.,Santa Barbara Muni
+1,2,1658,48,1931,41,WN,N294WN,20,SLC,81,630,16,58,Southwest Airlines Co.,Salt Lake City Intl
+1,2,1715,-5,1928,-10,OO,N692CA,4684,LAX,110,834,17,15,SkyWest Airlines Inc.,Los Angeles Intl
+1,2,1735,-1,1830,1,OO,N229SW,5417,SEA,39,129,17,35,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,2,1739,-6,1950,-11,AS,N779AS,562,LAX,112,834,17,39,Alaska Airlines Inc.,Los Angeles Intl
+1,2,1741,-4,1946,-5,OO,N218AG,3488,BUR,108,817,17,41,SkyWest Airlines Inc.,Bob Hope
+1,2,1742,-6,1920,-20,OO,N905SW,5553,SFO,84,550,17,42,SkyWest Airlines Inc.,San Francisco Intl
+1,2,1754,-6,2111,-19,US,N664AW,577,PHX,127,1009,17,54,US Airways Inc.,Phoenix Sky Harbor Intl
+1,2,1756,-4,1934,-11,VX,N528VA,813,SFO,83,550,17,56,Virgin America,San Francisco Intl
+1,2,1756,61,1916,56,WN,N659SW,747,SMF,69,479,17,56,Southwest Airlines Co.,Sacramento Intl
+1,2,1806,0,2123,-10,UA,N577UA,550,DEN,120,991,18,6,United Air Lines Inc.,Denver Intl
+1,2,1819,-5,2028,-11,B6,N554JB,1621,LGB,112,846,18,19,JetBlue Airways,Long Beach
+1,2,1821,-4,2057,-12,DL,N337NB,952,SLC,82,630,18,21,Delta Air Lines Inc.,Salt Lake City Intl
+1,2,1831,-9,2225,-30,AS,N586AS,863,OGG,339,2562,18,31,Alaska Airlines Inc.,Kahului
+1,2,1836,41,1943,28,WN,N963WN,102,RNO,58,444,18,36,Southwest Airlines Co.,Reno Tahoe Intl
+1,2,1842,-13,2038,-16,AS,N644AS,620,LAS,102,763,18,42,Alaska Airlines Inc.,Mc Carran Intl
+1,2,1849,19,2021,11,WN,N950WN,3963,OAK,78,543,18,49,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,2,1855,-5,2103,3,AS,N769AS,379,SFO,85,550,18,55,Alaska Airlines Inc.,San Francisco Intl
+1,2,1855,-5,2113,-17,OO,N932SW,6250,LAX,114,834,18,55,SkyWest Airlines Inc.,Los Angeles Intl
+1,2,1906,41,2046,56,WN,N724SW,718,SMF,65,479,19,6,Southwest Airlines Co.,Sacramento Intl
+1,2,1910,40,2047,37,WN,N647SW,2448,SJC,87,569,19,10,Southwest Airlines Co.,Norman Y Mineta San Jose Intl
+1,2,1920,-7,2015,-5,OO,N585SW,5305,SEA,40,129,19,20,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,2,1929,9,2246,6,F9,N904FR,794,DEN,119,991,19,29,Frontier Airlines Inc.,Denver Intl
+1,2,1939,169,2112,162,WN,N751SW,658,OAK,81,543,19,39,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,2,1940,-2,2027,5,OO,N294SW,5403,EUG,33,106,19,40,SkyWest Airlines Inc.,Mahlon Sweet Fld
+1,2,1949,-6,2128,-6,AS,N797AS,404,SJC,85,569,19,49,Alaska Airlines Inc.,Norman Y Mineta San Jose Intl
+1,2,2009,-11,2331,-25,US,N659AW,581,PHX,126,1009,20,9,US Airways Inc.,Phoenix Sky Harbor Intl
+1,2,2011,21,2320,22,AS,N594AS,137,ANC,230,1542,20,11,Alaska Airlines Inc.,Ted Stevens Anchorage Intl
+1,2,2013,-2,2216,-9,OO,N215AG,3464,ONT,107,838,20,13,SkyWest Airlines Inc.,Ontario Intl
+1,2,2015,11,2201,8,OO,N712SK,5210,SFO,85,550,20,15,SkyWest Airlines Inc.,San Francisco Intl
+1,2,2034,34,2354,24,WN,N253WN,183,PHX,126,1009,20,34,Southwest Airlines Co.,Phoenix Sky Harbor Intl
+1,2,2034,66,2213,52,UA,N438UA,369,SFO,83,550,20,34,United Air Lines Inc.,San Francisco Intl
+1,2,2217,-8,126,1,AS,N590AS,145,ANC,232,1542,22,17,Alaska Airlines Inc.,Ted Stevens Anchorage Intl
+1,2,2217,-3,2252,-5,OO,N229SW,5440,RDM,28,116,22,17,SkyWest Airlines Inc.,Roberts Fld
+1,2,2218,-7,553,-27,US,N570UW,467,CLT,257,2282,22,18,US Airways Inc.,Charlotte Douglas Intl
+1,2,2222,-3,2308,3,OO,N294SW,5353,EUG,32,106,22,22,SkyWest Airlines Inc.,Mahlon Sweet Fld
+1,2,2226,-4,2331,-10,OO,N585SW,5437,LMT,51,241,22,26,SkyWest Airlines Inc.,Klamath Falls Airport
+1,2,2319,34,634,27,DL,N807DN,503,ATL,243,2172,23,19,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,2,2339,129,140,129,AS,N611AS,624,LAS,102,763,23,39,Alaska Airlines Inc.,Mc Carran Intl
+1,3,51,56,626,36,UA,N498UA,758,IAH,199,1825,0,51,United Air Lines Inc.,George Bush Intercontinental
+1,3,55,0,554,-11,DL,N584NW,1679,MSP,161,1426,0,55,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,3,517,-8,840,-15,US,N828AW,649,PHX,123,1009,5,17,US Airways Inc.,Phoenix Sky Harbor Intl
+1,3,527,-3,1122,-11,UA,N844UA,275,IAH,216,1825,5,27,United Air Lines Inc.,George Bush Intercontinental
+1,3,533,-2,721,-5,UA,N36272,1209,SFO,83,550,5,33,United Air Lines Inc.,San Francisco Intl
+1,3,540,0,853,-14,UA,N38417,1569,DEN,115,991,5,40,United Air Lines Inc.,Denver Intl
+1,3,550,-10,904,-21,F9,N221FR,796,DEN,117,991,5,50,Frontier Airlines Inc.,Denver Intl
+1,3,551,-9,734,-9,AS,N703AS,406,SJC,81,569,5,51,Alaska Airlines Inc.,Norman Y Mineta San Jose Intl
+1,3,556,-4,855,7,DL,N652DL,1831,SLC,94,630,5,56,Delta Air Lines Inc.,Salt Lake City Intl
+1,3,559,-1,737,-8,WN,N764SW,1461,OAK,79,543,5,59,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,3,600,0,921,-9,WN,N268WN,1927,PHX,125,1009,6,0,Southwest Airlines Co.,Phoenix Sky Harbor Intl
+1,3,601,-4,1135,-22,UA,N87507,1573,ORD,193,1739,6,1,United Air Lines Inc.,Chicago Ohare Intl
+1,3,617,-3,1143,-22,AA,N4YLAA,1650,DFW,189,1616,6,17,American Airlines Inc.,Dallas Fort Worth Intl
+1,3,626,-4,1350,-7,DL,N3738B,1156,ATL,248,2172,6,26,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,3,629,-11,957,-11,AS,N754AS,646,PHX,127,1009,6,29,Alaska Airlines Inc.,Phoenix Sky Harbor Intl
+1,3,629,-1,811,-5,UA,N77258,1621,SFO,83,550,6,29,United Air Lines Inc.,San Francisco Intl
+1,3,630,-10,836,-12,OO,N218AG,3456,BUR,102,817,6,30,SkyWest Airlines Inc.,Bob Hope
+1,3,637,-3,853,-10,AS,N315AS,232,SAN,115,933,6,37,Alaska Airlines Inc.,San Diego Intl
+1,3,637,-8,931,23,OO,N814SK,4692,LAX,110,834,6,37,SkyWest Airlines Inc.,Los Angeles Intl
+1,3,637,9,1421,9,UA,N553UA,250,IAD,258,2327,6,37,United Air Lines Inc.,Washington Dulles Intl
+1,3,644,-1,842,-8,WN,N723SW,247,LAS,102,763,6,44,Southwest Airlines Co.,Mc Carran Intl
+1,3,650,-10,826,-19,VX,N528VA,805,SFO,82,550,6,50,Virgin America,San Francisco Intl
+1,3,653,-7,912,-9,AS,N644AS,582,SNA,114,859,6,53,Alaska Airlines Inc.,John Wayne Arpt Orange Co
+1,3,656,-4,1156,-24,DL,N940DN,2090,MSP,161,1426,6,56,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,3,659,-1,1232,-38,AA,N3JJAA,2218,ORD,194,1739,6,59,American Airlines Inc.,Chicago Ohare Intl
+1,3,659,-6,903,-16,OO,N223AG,3460,ONT,107,838,6,59,SkyWest Airlines Inc.,Ontario Intl
+1,3,706,6,1104,-16,AS,N514AS,833,HNL,343,2603,7,6,Alaska Airlines Inc.,Honolulu Intl
+1,3,707,-3,1508,-6,DL,N372DA,2258,JFK,263,2454,7,7,Delta Air Lines Inc.,John F Kennedy Intl
+1,3,712,-3,919,-8,AS,N791AS,244,SFO,83,550,7,12,Alaska Airlines Inc.,San Francisco Intl
+1,3,715,0,913,-5,AS,N619AS,626,LAS,99,763,7,15,Alaska Airlines Inc.,Mc Carran Intl
+1,3,719,-1,1107,-35,AS,N565AS,855,KOA,335,2607,7,19,Alaska Airlines Inc.,Kona Intl At Keahole
+1,3,722,37,947,42,AS,N408AS,560,LAX,110,834,7,22,Alaska Airlines Inc.,Los Angeles Intl
+1,3,744,-1,854,14,OO,N582SW,5379,SEA,47,129,7,44,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,3,751,1,927,-13,WN,N483WN,373,SJC,83,569,7,51,Southwest Airlines Co.,Norman Y Mineta San Jose Intl
+1,3,755,-5,1017,-8,AS,N786AS,568,LAX,112,834,7,55,Alaska Airlines Inc.,Los Angeles Intl
+1,3,758,-7,1330,-20,AA,N4WJAA,1220,DFW,187,1616,7,58,American Airlines Inc.,Dallas Fort Worth Intl
+1,3,803,-2,939,-11,WN,N552WN,48,OAK,84,543,8,3,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,3,811,-4,1323,-10,DL,N924DN,2154,MSP,175,1426,8,11,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,3,852,27,1439,9,UA,N37413,1510,IAH,212,1825,8,52,United Air Lines Inc.,George Bush Intercontinental
+1,3,858,8,1130,0,WN,N456WN,223,SLC,81,630,8,58,Southwest Airlines Co.,Salt Lake City Intl
+1,3,911,-4,1239,-26,OO,N215AG,3466,TUS,135,1119,9,11,SkyWest Airlines Inc.,Tucson Intl
+1,3,918,-2,1644,-1,DL,N3747D,1940,ATL,253,2172,9,18,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,3,922,-3,1720,-15,AS,N593AS,30,BOS,279,2537,9,22,Alaska Airlines Inc.,General Edward Lawrence Logan Intl
+1,3,924,3,1024,8,OO,N294SW,5428,SEA,44,129,9,24,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,3,933,3,1119,-4,OO,N758SK,5196,SFO,79,550,9,33,SkyWest Airlines Inc.,San Francisco Intl
+1,3,949,-1,1718,-17,AS,N570AS,752,ATL,248,2172,9,49,Alaska Airlines Inc.,Hartsfield Jackson Atlanta Intl
+1,3,957,7,1334,36,AS,N769AS,131,ANC,256,1542,9,57,Alaska Airlines Inc.,Ted Stevens Anchorage Intl
+1,3,1001,6,1735,-5,AS,N520AS,764,DCA,262,2350,10,1,Alaska Airlines Inc.,Ronald Reagan Washington Natl
+1,3,1005,0,1222,-1,AS,N615AS,580,SNA,115,859,10,5,Alaska Airlines Inc.,John Wayne Arpt Orange Co
+1,3,1013,-2,1425,5,HA,N391HA,25,HNL,340,2603,10,13,Hawaiian Airlines Inc.,Honolulu Intl
+1,3,1017,7,1558,-8,AS,N611AS,686,ORD,199,1739,10,17,Alaska Airlines Inc.,Chicago Ohare Intl
+1,3,1019,4,1248,-8,DL,N302NB,2189,SLC,76,630,10,19,Delta Air Lines Inc.,Salt Lake City Intl
+1,3,1023,8,1546,-18,AS,N579AS,658,DFW,183,1616,10,23,Alaska Airlines Inc.,Dallas Fort Worth Intl
+1,3,1024,-6,1344,-13,AS,N528AS,640,PHX,123,1009,10,24,Alaska Airlines Inc.,Phoenix Sky Harbor Intl
+1,3,1029,-1,1439,-6,AS,N594AS,803,LIH,352,2631,10,29,Alaska Airlines Inc.,Lihue
+1,3,1032,3,1255,-3,OO,N479CA,6518,LAX,114,834,10,32,SkyWest Airlines Inc.,Los Angeles Intl
+1,3,1044,119,1634,114,UA,N39461,1142,ORD,193,1739,10,44,United Air Lines Inc.,Chicago Ohare Intl
+1,3,1053,-7,1253,-20,AS,N703AS,564,LAX,107,834,10,53,Alaska Airlines Inc.,Los Angeles Intl
+1,3,1103,-4,1204,2,OO,N290SW,5397,SEA,47,129,11,3,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,3,1107,22,1423,18,F9,N218FR,788,DEN,115,991,11,7,Frontier Airlines Inc.,Denver Intl
+1,3,1110,20,1613,8,WN,N407WN,899,MCI,172,1482,11,10,Southwest Airlines Co.,Kansas City Intl
+1,3,1115,-5,1522,-13,AS,N586AS,809,OGG,345,2562,11,15,Alaska Airlines Inc.,Kahului
+1,3,1124,-1,1439,-15,US,N806AW,634,PHX,121,1009,11,24,US Airways Inc.,Phoenix Sky Harbor Intl
+1,3,1127,27,1443,13,WN,N365SW,1537,PHX,125,1009,11,27,Southwest Airlines Co.,Phoenix Sky Harbor Intl
+1,3,1128,8,1445,-9,OO,N952SW,5576,DEN,116,991,11,28,SkyWest Airlines Inc.,Denver Intl
+1,3,1135,5,1350,-1,AS,N563AS,578,SAN,118,933,11,35,Alaska Airlines Inc.,San Diego Intl
+1,3,1154,14,1846,5,DL,N398DA,1466,DTW,212,1953,11,54,Delta Air Lines Inc.,Detroit Metro Wayne Co
+1,3,1157,1,1234,-4,OO,N582SW,5325,RDM,23,116,11,57,SkyWest Airlines Inc.,Roberts Fld
+1,3,1159,29,1412,37,WN,N909WN,359,LAS,102,763,11,59,Southwest Airlines Co.,Mc Carran Intl
+1,3,1204,22,1254,32,OO,N294SW,5438,EUG,34,106,12,4,SkyWest Airlines Inc.,Mahlon Sweet Fld
+1,3,1206,1,1346,-4,VX,N524VA,817,SFO,84,550,12,6,Virgin America,San Francisco Intl
+1,3,1210,-5,1410,-11,OO,N218AG,3454,BUR,105,817,12,10,SkyWest Airlines Inc.,Bob Hope
+1,3,1219,9,1746,-9,AA,N566AA,1568,DFW,184,1616,12,19,American Airlines Inc.,Dallas Fort Worth Intl
+1,3,1231,65,1809,49,UA,N445UA,646,ORD,189,1739,12,31,United Air Lines Inc.,Chicago Ohare Intl
+1,3,1236,31,1557,22,WN,N653SW,3518,ABQ,129,1111,12,36,Southwest Airlines Co.,Albuquerque International Sunport
+1,3,1236,41,1357,37,WN,N633SW,361,SMF,62,479,12,36,Southwest Airlines Co.,Sacramento Intl
+1,3,1239,49,1449,39,OO,N617QX,4469,LAX,109,834,12,39,SkyWest Airlines Inc.,Los Angeles Intl
+1,3,1241,8,1423,-3,UA,N437UA,353,SFO,82,550,12,41,United Air Lines Inc.,San Francisco Intl
+1,3,1243,-7,1443,3,AS,N627AS,388,SFO,84,550,12,43,Alaska Airlines Inc.,San Francisco Intl
+1,3,1250,-5,1500,3,AS,N619AS,622,LAS,103,763,12,50,Alaska Airlines Inc.,Mc Carran Intl
+1,3,1256,-4,1811,-8,DL,N906DA,2164,MSP,158,1426,12,56,Delta Air Lines Inc.,Minneapolis St Paul Intl
+1,3,1301,106,1617,102,WN,N912WN,3042,DEN,118,991,13,1,Southwest Airlines Co.,Denver Intl
+1,3,1311,-4,1513,-17,OO,N223AG,3478,LGB,111,846,13,11,SkyWest Airlines Inc.,Long Beach
+1,3,1324,-8,1508,-17,UA,N841UA,367,SFO,79,550,13,24,United Air Lines Inc.,San Francisco Intl
+1,3,1333,8,1937,2,AA,N3HAAA,115,ORD,212,1739,13,33,American Airlines Inc.,Chicago Ohare Intl
+1,3,1333,13,1605,3,DL,N395DN,2093,SLC,77,630,13,33,Delta Air Lines Inc.,Salt Lake City Intl
+1,3,1336,-5,1434,0,OO,N290SW,5423,SEA,41,129,13,36,SkyWest Airlines Inc.,Seattle Tacoma Intl
+1,3,1402,42,1618,53,WN,N712SW,425,LAS,104,763,14,2,Southwest Airlines Co.,Mc Carran Intl
+1,3,1425,60,2140,47,DL,N804DN,773,ATL,242,2172,14,25,Delta Air Lines Inc.,Hartsfield Jackson Atlanta Intl
+1,3,1431,346,1800,347,US,N664AW,685,PHX,120,1009,14,31,US Airways Inc.,Phoenix Sky Harbor Intl
+1,3,1440,65,1612,57,WN,N218WN,578,OAK,79,543,14,40,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,3,1441,136,1605,115,WN,N636WN,426,OAK,72,543,14,41,Southwest Airlines Co.,Metropolitan Oakland Intl
+1,3,1445,155,1617,142,WN,N7730A,3252,SJC,81,569,14,45,Southwest Airlines Co.,Norman Y Mineta San Jose Intl
+1,3,1446,-6,1703,-7,OO,N625CA,4556,LAX,108,834,14,46,SkyWest Airlines Inc.,Los Angeles Intl
+1,3,1447,181,1653,172,B6,N589JB,1521,LGB,113,846,14,47,JetBlue Airways,Long Beach

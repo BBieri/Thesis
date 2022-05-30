@@ -1,0 +1,18 @@
+I would like to express my heartfelt thanks to Prof. Joëlle Noailly for
+her supervision without which the present work would not exist. Her guidance
+on how to adress methodological issues as well as her insight in the field
+of environmental economics proved to be invaluable in the writing of this
+thesis.
+Additionally, I would like to thank Prof. James Hollway for the co-supervision
+of this thesis and in particular for the collaboration within the PANARCHIC project
+which allowed me to continuously refine my programming skills and discover the
+importance of social network analysis to further refine our understanding
+of social issues.
+Furthermore, I would like to thank Henrique Sposito, Jael Tan and Esther
+Peev, all members of the PANARCHIC team, for their help.
+
+\begin{flushright}
+Bernhard Bieri \\
+Geneva Graduate Institute \\
+30 June 2022
+\end{flushright}

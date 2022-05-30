@@ -1,0 +1,19 @@
+---
+title: Introduction
+# author: Author
+chapter: 1
+in_context: True
+knit: iheiddown::chapter_pdf
+# abstract: |
+#   In this chapter, I'll introduce how to write basic text using markdown.
+#   It is super simple, as you will see. You just write normal text,
+#   but then indicate where you want certain formatting with some very basic 'markup'.
+output: iheiddown::chapter_pdf
+---
+
+\setcounter{chapter}{0}
+# Introduction {#intro}
+
+
+
+

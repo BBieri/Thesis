@@ -1,0 +1,74 @@
+---
+####################
+## Metadata       ##
+####################
+doctitle: |
+  On the effect of global environmental governance on innovative outcomes;
+  Revisiting the Porter Hypothesis
+firstnames: Bernhard
+lastnames: Bieri
+thesisno: 12345
+phd: false # Or: false for Masters
+department: Master of International Economics
+degreedate: June 2022
+supervisor: Prof. Joëlle Noailly
+secondreader: Prof. James Hollway
+# This is the YAML (YAML Ain't Markup Language) header that includes 
+# metadata used to produce the document. 
+# Be careful with spacing in this header!
+# Two spaces at the start of the line create indentation,
+# which embeds the parameter in a hierarchy.
+
+####################
+## Front Matter   ##
+####################
+# dedication: For you #If you'd prefer to not include a Dedication, for example, simply delete the section entirely, or silence them (add # before each line). 
+resume: | # otherwise known as the abstract
+  `r paste(readLines("front-matter/_abstract.Rmd"), collapse = '\n  ')`
+acknowledgements: |
+  `r paste(readLines("front-matter/_acknowledgements.Rmd"), collapse = '\n  ')`
+# abbreviations: "front-matter/abbreviations" # path to .tex file with abbreviations
+toc-depth: 2 # depth of heading to include in table of contents
+lof: true # list of figures in front matter?
+lot: true # list of tables in front matter?
+mini-toc: false  # mini-table of contents at start of each chapter? (this just prepares it; you must also add \minitoc after the chapter titles)
+mini-lot: false  # mini-list of tables by start of each chapter?
+mini-lof: false  # mini-list of figures by start of each chapter?
+
+####################
+## Bibliography   ##
+####################
+bibliography: bib/references.bib #Set your bibliography file here.
+bibliography-heading-in-pdf: References
+bib-style: authoryear # See https://www.overleaf.com/learn/latex/biblatex_citation_styles for a list of the commonly used built-in citations styles of biblatex.
+bib-sorting: nyt #See https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX for different bibliography sorting options.
+citeall: true #Set this to true if you want all elements in your .bib file to appear in your bibliography (i.e. all R-packages you used).
+
+#####################
+## PDF Formatting  ##
+#####################
+draft: false # add DRAFT mark in the footer and line numbering?
+page-layout: oneside #'oneside' for PDF output (equal margins), 
+# or 'twoside' for two-sided binding (mirror margins and blank pages) 
+hidelinks: false #if false, the PDF output highlights clickable links with a colored border 
+# you will probably want to set this to true for PDF version you wish to physically print
+knit: iheiddown::thesis_pdf
+#####################
+## Output Options  ##
+#####################
+output: iheiddown::thesis_pdf
+link-citations: true
+documentclass: book
+---
+
+<!-- 
+The {.unnumbered} option here means that the introduction will be 
+"Chapter 0." You can also use {-} for no numbers on chapters.
+# Preface {.unnumbered}
+-->
+
+<!-- This chunk creates automatically a .bib file to cite the loaded packages in the bibliography. Do not forget to set "citeall" to true in the bibliography section of the YAML header if you want all packages to be cited even if you did not mention them in the body of the text.-->
+
+```{r, include=FALSE}
+knitr::write_bib(c(.packages(), "bookdown"), "bib/packages.bib")
+```

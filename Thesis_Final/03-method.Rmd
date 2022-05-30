@@ -1,0 +1,25 @@
+---
+title: Methods
+# author: Author
+chapter: 3
+in_context: False
+knit: iheiddown::chapter_pdf
+output: iheiddown::chapter_pdf
+---
+
+\setcounter{chapter}{2}
+# Methods and Data {#methodsdata}
+
+This section will outline the computation of a novel set of centrality measures
+which will be used in the subsequent analysis to proxy international environmental
+policy certainty and 
+
+## International Environmental Governance Network:
+
+### From a Bipartite Membership Network:
+
+### To a Monopartite Cooperation Network:
+
+### Selecting and Computing Network Centrality Measures:
+
+## Summary Statistics:

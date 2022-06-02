@@ -118,47 +118,135 @@ literature review.].
 
 The empirical literature analyzing the weak version of the Porter Hypothesis
 usually operationalizes innovation as R&D expenditures or through
-(aggregate or sector specific) patent counts. On the right hand side, the
+(aggregate or sector specific) patent counts. When instead analysing the
+strong version of the *PH* studies usually rely on firm profits.
+On the right hand side, the
 independent variable, environmental policy stringency, was initially proxied
-by pollution abatement costs before being more holistically estimated via the
-use of indicators such as the Environmental Policy Stringency (*EPS*) indicator
+by pollution abatement costs [@jaffeEnvironmentalRegulationInnovation1997] or 
+energy prices [@newellInducedInnovationHypothesis1999] before being more
+holistically estimated via the use of indicators such as the Environmental Policy Stringency (*EPS*) indicator
 developed by the OECD [@kruseMeasuringEnvironmentalPolicy2022] or national
-firm-level surveys
+firm-level surveys such as the Community Innovation Survey^[See
+@cohenImpactEnvironmentalRegulation2018 for a recent meta-analysis of
+the Porter Hypothesis and an outline of the different measures used.] [@eurostatCommunityInnovationSurvey2022].
+As we will outline more in detail in section 3 of the paper, we will take
+the modern approach and use the EPS index to proxy for environmental regulation
+stringency at the domestic level and patent counts and business R&D
+expenditures to proxy inventive activity of firms.
+The weak version of the Porter Hypothesis is found to be the most consistently
+verified hypothesis among the three as outlined in the meta-analysis by @cohenImpactEnvironmentalRegulation2018. The authors of the meta-analysis
+namely highlight the following points:
 
+- Early studies tend to find a negative relationship between environmental
+stringency and innovation/competitiveness. More recent studies find a
+positive relationship between the two variables.
+- Cross-country studies are more likely to find a positive link than
+firm-level studies. One possible reason for this can be found in the fact that 
+innovative activity of upstream equipment manufacturers or new entrants may also 
+respond to changes in the regulatory frameworks within an industry [@noaillyDirectingTechnicalChange2015; @sanyalProductMarketCompetition2013]^[Furthermore, 
+@cohenImpactEnvironmentalRegulation2018 note
+that "[t]o the extent that the Porter Hypothesis as originally 
+formulated focused on the competitiveness of nations, this finding is of
+particular interest [...]". In other words, since the original *PH* focused
+on nations as the unit of analysis, it is natural to take this unit of
+analysis when empirically testing it.].
+- Studies incorporating a temporal lag between the change in regulation
+stringency and inventive or profitability outcomes are more likely to
+find a positive relationship. This echoes once again the original formulation
+of the Porter Hypothesis which states that while regulation may hurt short
+term competitiveness and productivity, the long term effects would be positive.
 
+These findings will guide us in the elaboration of a panel model
+that will be outlined in more detail in section 3. Let us now turn our
+attention to the second strand of literature use to guide our empirical strategy
+and examine the impact of policy (un-)certainty on innovation.
 
 ## The Role of Policy Certainty on the Innovative Behavior of Firms
 
 
+While the empirical literature on the impact of policy certainty on innovation
+is more
+recent and less abundant than the one investigating the Porter Hypothesis,
+a number of papers have investigated it.
+The literature of the impact of policy certainty on innovative
+activity was derived from the one that links policy uncertainty and investments
+in tangible assets. Early theoretical contributions outline that non-reversible
+investments are often delayed or scrapped if firms experience regulatory
+uncertainty via an increase in the utility derived from the status-quo^[See
+@bernankeIrreversibilityUncertaintyCyclical1983 and
+@bloomTradeInducedTechnical2016 for respectively a seminal and a
+recent theoretical model.].
+On the empirical front, @alesinaIncomeDistributionPolitical1996 were the first
+to investigate this link with a cross-section analysis of over 70 countries.
+More specifically, they find that more unequal countries are more likely to
+be politically unstable and political instability in itself has an adverse
+effect on investments in tangible assets. Additional empirical evidence
+highlighting the negative effect of policy uncertainty was provided by
+@bloomUncertaintyInvestmentDynamics2007 who extend the analysis to a panel model,
+@julioPoliticalUncertaintyCorporate2012 who highlight a negative impact of being
+in an election year on firm investments, and
+@gulenPolicyUncertaintyCorporate2016 who leverage the Economic Policy
+Uncertainty index developed by @bakerMeasuringEconomicPolicy2016 to
+describe a similar effect within a panel analysis.
+
+This negative effect between uncertainty and tangible asset
+investments need not hold for intangible investments in R&D
+since the latter are different and are namely characterized by
+a long-term horizon and a fat tailed risk
+distribution^[This characteristic is a product of the trial and
+error nature of the R&D process where only a small subset of research
+endeavors are successful and profitable.].
+@bhattacharyaWhatAffectsInnovation2017 were the
+first to investigate the effect of policy uncertainty on innovation outcomes (i.e. 
+patent quantities and citations) empirically. They extend the theoretical
+model proposed by @edmansBlockholderTradingMarket2009 on managerial myopia
+by adding economic uncertainty, a measure of policy state and a measure of
+policy uncertainty. Using this theoretical framework, they test whether
+the pure effect of country level policy orientation as proxied by the Database
+of Political Institutions and
+more crucially in our case whether policy uncertainty, as proxied by
+the occurrence of election events, have an impact on firm-level innovation
+[@keefer2012database]. Crucially, they are able to show that innovation
+is more affected by policy uncertainty than by policy itself. This leads
+to the conclusion that a politically stable environment is beneficial to
+long-term and high tail risk investments.
+
+These studies are looking at the aggregate level effect between policy
+certainty and innovation.
+More recently however, newspaper indices on both climate policy uncertainty
+[@gavriilidisMeasuringClimatePolicy2021] and on
+climate policy salience became available [@noaillyHeardNewsEnvironmental2021].
+These indexes are both built by programmatically analyzing US newspaper
+articles over a given period to detect the co-occurrence of a given set of
+words^[Both follow the methodology outlined in the Economic Policy
+Uncertainty index developed by @bakerMeasuringEconomicPolicy2016 and apply
+different keywords to the programmatic analysis of US newspapers.].
+@gavriilidisMeasuringClimatePolicy2021 used his index to show that
+increased policy uncertainty lead to a reduction of CO2 emissions.
+He further argues that, this might be due to either a decrease in energy
+consumption and a reduction in non-essential transport or an increase in
+the demand for renewable energy consumption and an associated increase in
+climate-friendly innovations.
+On the other hand@noailly2021heard were able to leverage their policy salience
+index to
+demonstrate a positive link between policy salience and the probability
+of cleantech startups receiving venture capital funding.
+While these indices are able to inform research on the link between
+environmental policy uncertainty/salience and innovative inputs and outcomes
+for the US, they cannot yet be used within a panel framework. Furthermore,
+these indices are symptomatic in that they capture perceptions of an aggregate
+policy environment. As both papers outline the aggregate sentiment as proxied
+by newspaper articles, they do not consider the causes of this uncertainty or
+salience.
+
+This leads us to consider the potential variables which influence domestic
+environmental policy certainty and may guide innovative activity. Some of
+these factors have been outlined in the international relations and political
+science literature and will be more closely analyzed in the next subsection. 
 
 
+## Global Environmental Governance as a Policy Certainty Signal
 
+Build from Jahn book.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## The Evolution of Global Environmental Governance
+Mention the international environmental governance framework.

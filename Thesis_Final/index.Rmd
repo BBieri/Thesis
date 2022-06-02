@@ -3,8 +3,8 @@
 ## Metadata       ##
 ####################
 doctitle: |
-  On the effect of global environmental governance on innovative outcomes;
-  Revisiting the Porter Hypothesis
+  The Impact of Global Environmental Governance Signalling on Firm Innovation;
+  Revisiting the Porter Hypothesis at the International Level.
 firstnames: Bernhard
 lastnames: Bieri
 thesisno: 12345

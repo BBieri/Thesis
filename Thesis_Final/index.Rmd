@@ -3,7 +3,7 @@
 ## Metadata       ##
 ####################
 doctitle: |
-  The Impact of Global Environmental Governance Signalling on Firm Innovation;
+  The Impact of Global Environmental Governance on Firm Innovation;
   Revisiting the Porter Hypothesis at the International Level.
 firstnames: Bernhard
 lastnames: Bieri
@@ -68,6 +68,20 @@ The {.unnumbered} option here means that the introduction will be
 -->
 
 <!-- This chunk creates automatically a .bib file to cite the loaded packages in the bibliography. Do not forget to set "citeall" to true in the bibliography section of the YAML header if you want all packages to be cited even if you did not mention them in the body of the text.-->
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(
+  comment = '',
+  echo = FALSE,
+  fig.align = 'center',
+  out.width = "\\textwidth",
+  message = FALSE,
+  warning = FALSE
+)
+# Load fonts
+library(extrafont)
+extrafont::loadfonts(quiet = T)
+```
 
 ```{r, include=FALSE}
 knitr::write_bib(c(.packages(), "bookdown"), "bib/packages.bib")

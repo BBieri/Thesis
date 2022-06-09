@@ -1,25 +1,231 @@
 ---
 title: Methods
-# author: Author
+author: Author
 chapter: 3
 in_context: False
 knit: iheiddown::chapter_pdf
 output: iheiddown::chapter_pdf
 ---
 
+```{r intialize, echo=FALSE}
+# Setting chunk opts
+
+# Libraries
+library(skimr)
+library(tidyverse)
+library(gridExtra)
+library(kableExtra)
+library(tidygraph)
+library(ggraph)
+
+# Set paths
+project_path <- substr(getwd(), 1, 56)
+graph_path <- paste0(project_path, "/graphs/")
+ecolex_path <- paste0(project_path, "/data/ECOLEX/Membership/ECOLEX_Membership.rds")
+```
+
 \setcounter{chapter}{2}
-# Methods and Data {#methodsdata}
+# Methodology and Data {#methodsdata}
 
 This section will outline the computation of a novel set of centrality measures
-which will be used in the subsequent analysis to proxy international environmental
-policy certainty and 
+which will be used in the subsequent analysis to proxy the relative importance
+of countries within the international environmental governance complex and
+account for the increasing importance of international policy to tackle
+environmental challenges. In what follows, we will describe the construction
+of the bipartite membership network of international agreements^[Note that we
+interchangeably use bimodal and bipartite as adjectives to qualify the nature
+of the original membership network. The original network is both bimodal,
+since it has two different types of agreements, and bipartite since it does
+not have links between two nodes of the same type.
+[@borgatti20092]] and the
+extraction of a monopartite cooperation network which defines links between countries
+as the number of agreements that have been signed in common. We then
+statistically validate this projection by comparing the resulting observed
+one cooperation network with a null model. This process is also commonly
+known as *backbone extraction*. Finally, we describe the computation of
+two centrality indices that will proxy the intensity and the certainty of
+international policy. Finally, we will define the empirical panel model that
+we will estimate in the next section.
 
-## International Environmental Governance Network:
+
+## Defining Hypotheses:
+
+## Constructing international environmental cooperation centrality measures:
+
+We leverage the ECOLEX dataset to construct country level measures of
+embeddedness in the international environmental cooperation network
+[@unepiucnfaoECOLEXGatewayEnvironmental2022]^[To be more specific, we use a 
+pre-scraped version included in the `{manyenviron}` package 
+[@hollwayManyenvironEnvironmentalAgreements2021] which was originally used in
+@sommerGlobalGovernanceForestry2020]. This dataset lists
+environmental agreements between two or more parties and the related
+membership actions over the period between 1868 and 2018 and contains over
+25000 individual membership actions.^[See Table \@ref(tab:ECOLEX) describing
+the structure of the dataset and displaying the first few observations.]
+We follow @carattiniWhatDoesNetwork2021
+and retain agreements that were signed in the Post-war period starting in
+1948. We retain 21270 individual membership actions after filtering out
+agreements signed before 1948. After further cleaning the data by excluding
+observations on which we do not have identifying information such as the date of
+the ratification of the agreement and the date of entry into force or the
+country which is the subject of the membership action, we retain 18878
+individual membership actions that describe 521 individual international
+environmental agreements.
+
+```{r ECOLEX, echo=FALSE, results='asis', fig.pos = 'h'}
+load(ecolex_path)
+# Remove unsigned
+ECOLEX_mems <- ECOLEX_mems %>%
+  dplyr::filter(!is.na(Force)) %>%
+  dplyr::select(ecolexID, treatyID, CountryID, Title, Beg, End,
+                SignatureCountry, Rat, Force, DocType, GeogArea, Subject)
+# Create table
+kableExtra::kbl(head(ECOLEX_mems, 20),
+                caption = "ECOLEX Dataset Head",
+                booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "scale_down")) %>%
+  kableExtra::landscape()
+```
 
 ### From a Bipartite Membership Network:
 
+The ECOLEX dataset presented above in \@ref(tab:ECOLEX) can be visualized as
+an annual series of undirected, unweighted, bipartite/bimodal networks.
+This can be done in the form of a yearly incidence matrix $I_{c \times a}^t$ where each row
+corresponds to a country and each column to a treaty. $i_{c \times a}$ equals $1$
+if country $c$ has ratified agreement $a$ and agreement $a$ has entered into force
+and $0$ otherwise. A country can only be a member of a treaty once which implies
+that $i_{c \times a} \in \{0,1\}$.
+
+```{=latex}
+\begin{equation*}
+  \begin{rcases}\displaystyle
+    I_{c,a} = \overbrace{\begin{pmatrix}
+    i_{1,1}     & i_{1,2}     & i_{1,3}     & \dots     & i_{1,A}           \\
+    i_{2,1}     & i_{2,2}     & i_{2,3}     & \dots     & i_{2,A}           \\
+    i_{3,1}     & i_{3,2}     & i_{3,3}     & \dots     & i_{3,A}           \\
+    \vdots      & \vdots      & \vdots      & \ddots    & \vdots      \\
+    i_{C,1}     & i_{C,2}     & i_{C,3}     & \dots     & i_{C,A}
+  \end{pmatrix}}^{\text{Agreements}}
+  \end{rcases}
+    \text{Countries}
+\end{equation*}
+```
+
+We can also visualize the bipartite/bimodal membership network directly and
+distinguish agreements from countries.
+The network is depicted in \@ref(fig:ECOLEX_bipartite_network)
+represents the membership network with all agreements that entered into force
+respectively during the period of 1948 and 1978 and 1948 and 2018. This shows
+that the network grew denser as agreements were signed, ratified and entered
+into force over time. To explore the intertemporal evolution of
+the structure of the network, we will divide this network and construct
+yearly snapshots of the membership graph whose incidence matrix we define as
+$I_{c \times a}^t$ which is one of the standard methods used in social network
+analysis to account for the intertemporal evolution of a network
+[@everettDualprojectionApproachTwomode2013].
+
+```{r ECOLEX_bipartite_network, echo=FALSE, fig.pos = 'h'}
+ECOLEX_mems_net1 <- ECOLEX_mems %>%
+  dplyr::mutate(Year = as.numeric(format(ECOLEX_mems$Force, format = "%Y"))) %>%
+  dplyr::filter(Year <= 1978) %>%
+  dplyr::select(ecolexID, CountryID) %>%
+  migraph::as_tidygraph(twomode = T) %>%
+  dplyr::mutate(Type = ifelse(type, "Country", "Agreement"))
+ECOLEX_mems_net2 <- ECOLEX_mems %>%
+  dplyr::mutate(Year = as.numeric(format(ECOLEX_mems$Force, format = "%Y"))) %>%
+  dplyr::select(ecolexID, CountryID) %>%
+  migraph::as_tidygraph(twomode = T) %>%
+  dplyr::mutate(Type = ifelse(type, "Country", "Agreement"))
+# Graph things
+layout_bi1 <- ggraph::create_layout(ECOLEX_mems_net1, layout = "igraph",
+                                algorithm = "bipartite")
+layout_bi2 <- ggraph::create_layout(ECOLEX_mems_net2, layout = "igraph",
+                                algorithm = "bipartite")
+plot1 <- ggraph::ggraph(ECOLEX_mems_net1, layout = layout_bi1) +
+  ggraph::geom_edge_link(alpha = 0.01) +
+  ggraph::geom_node_point(aes(shape = Type, color = Type)) +
+  ggplot2::labs(title = "Membership Network 1948-1978") +
+  ggplot2::theme_void() +
+  theme(legend.position = 'bottom')
+plot2 <- ggraph::ggraph(ECOLEX_mems_net2, layout = layout_bi2) +
+  ggraph::geom_edge_link(alpha = 0.01) +
+  ggraph::geom_node_point(aes(shape = Type, color = Type)) +
+  ggplot2::labs(title = "Membership Network 1948-2018") +
+  ggplot2::theme_void() +
+  theme(legend.position = 'bottom',
+        )
+# Combine plots
+gridExtra::grid.arrange(plot1, plot2, ncol = 2)
+```
+
 ### To a Monopartite Cooperation Network:
+
+While we could further analyze this
+network directly, we will transform it into a more easily interpretable
+one mode network by using a projection and retaining only significant edges
+through a backbone extraction algorithm. We will thus broadly follow
+@carattiniWhatDoesNetwork2021 while ensuring that our results are not contingent
+on the backbone extraction algorithm since the theoretical underpinnings of
+the latter are still somewhat unclear in empirical social network analysis
+[@nealComparingAlternativesFixed2021].
+We thus begin by creating a naive projection of the membership network. To perform
+this naive projection we multiply the yearly incidence matrix $I_{c \times a}^t$
+defined above by its transposed $I_{a \times c}^t$ as follows:
+
+$$
+I_{c \times a}^t I_{a \times c}^t = P_{c\times c}^t
+$$
+Where $P_{c\times c}^t$ is the adjacency matrix of the projected cooperation network in
+which $p_{ij}^t$ is the number of co-signed agreements between the two countries
+that entered into force in the interval $[1948; t]$. These weights capture
+the intensity of the environmental cooperation between two countries much like
+@newmanScientificCollaborationNetworks2001 captured collaboration within a
+bipartite network of scientific collaboration. Concurrently,
+it implies that bilateral treaties, ceteris paribus, carry a greater weight
+in the cooperation network than multilateral treaties. This is consistent with
+the heterogeneous role both play within the environmental governance network.
+As highlighted by @hollwayMultilevelEmbeddednessCase2016, bilateral treaties
+are akin to contracts between two parties while multilateral treaties serve
+"normative [...] law-making tools". While both types may act as policy stringency
+signals, bilateral treaties carry more weight through their specific contractual nature
+hence developing a greater policy stringency signal for firms. 
+
+We cannot, however, directly analyze this cooperation network as the resulting
+*naive* monopartite network, depicted in the first panel of
+\@ref(fig:ECOLEX_monopartite), still suffers from two issues. First, nodes
+with larger degrees in the original bipartite membership network
+(e.g. agreements with a larger number signatories or
+countries having signed a larger number of agreements) will bear stronger
+edges in the projected network. In other words,
+if *country A* and *country B* are members to the same 5 agreements and have
+each signed 5 agreements in total, they are conceptually "closer" than
+*country C* and *country D* who also share the membership in 5 agreements but
+have each signed a total of 50 agreements
+[@borgatti2011analyzing; @latapyBasicNotionsAnalysis2008;
+@nealBackboneBipartiteProjections2014;
+@saraccoInferringMonopartiteProjections2017].
+The second issue relates to the fact that *naive* projections may lead to the
+emergence of spurious cliques in the projection that are due to a node with a
+single connection to the opposite layer in the original bipartite network [@saraccoInferringMonopartiteProjections2017]. To solve these two common issues
+we leverage what is known as a backbone extraction algorithm to retain only the
+statistically significant edges from the naive projection.
+
+### Correcting the Monopartite Cooperation Network:
+
+We will use the following three distinct backbone extraction methods to ensure
+that our results are not the product of the choice of a particular extraction
+method alone. All three algorithms, follow the same process in that they
+apply a constraint on the degree of the original bipartite network 
+
+#### Fixed Row Model:
+
+#### Fixed Degree Sequence Model:
+
+#### Stochastic Degree Sequence Model:
 
 ### Selecting and Computing Network Centrality Measures:
 
-## Summary Statistics:
+## Other Data Sources:
+
+## The Model:

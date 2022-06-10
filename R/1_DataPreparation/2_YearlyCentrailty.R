@@ -23,7 +23,8 @@ load(paste0(loadpath, "ECOLEX_Membership.rds")) # ECOLEX_mems
 ecolex_lst <- list()
 for (i in seq(length(unique(as.numeric(stringr::str_extract(ECOLEX_mems$Beg, "[:digit:]{4}")))))) {
   ecolex_lst[[i]] <- ECOLEX_mems %>%
-    dplyr::mutate(year_beg = as.numeric(stringr::str_extract(Beg, "[:digit:]{4}")),
+    dplyr::filter(!is.na(Force)) %>% # Remove treaties which are not into force (910 membership actions)
+    dplyr::mutate(year_beg = as.numeric(stringr::str_extract(Force, "[:digit:]{4}")),
                   year_end = as.numeric(stringr::str_extract(End, "[:digit:]{4}"))) %>%
     dplyr::filter(year_beg <= 1947 + i & year_end >= 1947 + i | # Future end date
                     year_beg <= 1947 + i & is.na(year_end)) %>% # No end date
@@ -89,15 +90,15 @@ ecolex_lst_onemode_frow <- ecolex_lst_onemode_adj
 for (i in seq(length(ecolex_lst_frow))) { # 71 years
   ecolex_lst_onemode_frow[[i]][ecolex_lst_frow[[i]] == 0] <- 0
 }
-all(unlist(lapply(ecolex_lst_onemode_frow, isSymmetric))) # Matrices are all symmetric
+# Convert corrected network projection back to igraph object
 ecolex_lst_onemode_frow_igraph <- list()
 for (i in seq(length(ecolex_lst_frow))) { # 71 years
-  # Convert corrected network projection back to igraph object
-  ecolex_lst_onemode_frow_igraph[[i]] <- igraph::graph_from_adjacency_matrix(ecolex_lst_onemode_frow[[i]], weighted = T, mode = "undirected")
+  ecolex_lst_onemode_frow_igraph[[i]] <- igraph::graph_from_adjacency_matrix(ecolex_lst_onemode_frow[[i]],
+                                                                             weighted = T,
+                                                                             mode = "undirected")
 }
 is.directed(ecolex_lst_onemode_frow_igraph[[70]]) # False as expected
 names(ecolex_lst_onemode_frow_igraph) <- as.character(1948:2018)
-
 
 # #################################
 # Let's use the FDSM algorithm ----

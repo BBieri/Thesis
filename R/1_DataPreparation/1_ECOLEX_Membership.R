@@ -64,7 +64,12 @@ ECOLEX_mems <- ECOLEX_mems %>%
 
 # Additional cleaning:
 
-country_ranking <- dplyr::count(ECOLEX_mems, CountryID, sort = TRUE) %>% dplyr::mutate(Name = countrycode::countrycode(CountryID, "iso3c", "country.name", custom_match = c('BAV' = 'Bavaria', 'BAD' = 'BadenWutemberg', 'KOS' = 'Kosovo', 'EUE' = 'European Union')))
+country_ranking <- dplyr::count(ECOLEX_mems, CountryID, sort = TRUE) %>%
+  dplyr::mutate(Name = countrycode::countrycode(CountryID, "iso3c", "country.name",
+                                                custom_match = c('BAV' = 'Bavaria',
+                                                                 'BAD' = 'BadenWutemberg',
+                                                                 'KOS' = 'Kosovo',
+                                                                 'EUE' = 'European Union')))
 
 # Remove Subnational Entities, SAR, etc.
 # De Jure sovereign states remain.

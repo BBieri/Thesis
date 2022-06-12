@@ -22,6 +22,7 @@ library(ggraph)
 project_path <- substr(getwd(), 1, 56)
 graph_path <- paste0(project_path, "/graphs/")
 ecolex_path <- paste0(project_path, "/data/ECOLEX/Membership/ECOLEX_Membership.rds")
+onemodenetpath <- paste0(project_path, "/data/CleanData/OnemodeNetworks/")
 ```
 
 \setcounter{chapter}{2}
@@ -157,8 +158,7 @@ plot2 <- ggraph::ggraph(ECOLEX_mems_net2, layout = layout_bi2) +
   ggraph::geom_node_point(aes(shape = Type, color = Type)) +
   ggplot2::labs(title = "Membership Network 1948-2018") +
   ggplot2::theme_void() +
-  theme(legend.position = 'bottom',
-        )
+  theme(legend.position = 'bottom')
 # Combine plots
 gridExtra::grid.arrange(plot1, plot2, ncol = 2)
 ```
@@ -179,10 +179,10 @@ this naive projection we multiply the yearly incidence matrix $I_{c \times a}^t$
 defined above by its transposed $I_{A \times C}^t$ as follows:
 
 $$
-I_{C \times A}^t I_{A \times C}^t = P_{C\times C}^t
+I_{C \times A}^t I_{A \times C}^t = Adj_{C\times C}^t
 $$
-Where $P_{c\times c}^t$ is the adjacency matrix of the projected cooperation network in
-which $p_{ij}^t$ is the number of observed co-signed agreements between the two countries
+Where $Adj_{c\times c}^t$ is the adjacency matrix of the projected cooperation network in
+which $Adj_{ij}^t$ is the number of observed co-signed agreements between the two countries
 that entered into force in the interval $[1948; t]$. These weights capture
 the intensity of the environmental cooperation between two countries much like
 @newmanScientificCollaborationNetworks2001 captured collaboration within a
@@ -203,7 +203,7 @@ with larger degrees in the original bipartite membership network
 (e.g. agreements with a larger number signatories or
 countries having signed a larger number of agreements) will bear stronger
 edges in the projected network. In other words,
-if *country A* and *country B* are members to the same 5 agreements and have
+if *country A* and *country B* are bound by the same 5 agreements and have
 each signed 5 agreements in total, they are conceptually "closer" than
 *country C* and *country D* who share the membership in 10 agreements but
 have each signed a total of 50 agreements
@@ -214,9 +214,11 @@ projection, the latter will be weighted more than the former.
 The second issue relates to the fact that *naive* projections may lead to the
 emergence of spurious cliques in the projection that are due to a node with a
 single connection to the opposite layer in the original bipartite network 
-[@saraccoInferringMonopartiteProjections2017]. To solve these two common issues
+[@saraccoInferringMonopartiteProjections2017]. To solve these two common issues,
 we leverage what is known as a backbone extraction algorithm to retain only the
-statistically significant edges from the naive projection.
+statistically significant edges from the naive projection e.g. the edges
+that appear more frequently in the projection than expected by a given null
+model.
 
 ### Correcting the Monopartite Cooperation Network:
 
@@ -250,9 +252,12 @@ p_{i j}^{B}=
 0 & \text { else }\end{cases}
 $$
 
-As pointed out by @nealComparingAlternativesFixed2021, we use a two-tailed test
+Like @nealComparingAlternativesFixed2021, we use a two-tailed test
 since we would like to filter out both uncommonly small *and* uncommonly large
-collaborative ties. Now that we have a general understanding of the process
+collaborative ties in the projection. Finally, this hypothesis test yields a binary correction
+matrix which informs us whether to keep a tie in the naive projection or not and
+thereby solves both issues of the naive projection described above.
+Now that we have a general understanding of the process
 of a backbone extraction algorithm, we turn to the following three subsections
 which will focus on the differences between the
 different algorithms that lie in the nature of the constraint they
@@ -296,17 +301,145 @@ network are chiefly responsive for the structure of its monopartite projection.]
 The main disadvantage of such an algorithm is that it is ill suited for large
 bipartite networks due the computational complexity of the algorithm
 [@nealComparingAlternativesFixed2021]. A set of alternative models has been developed
-to alleviate this issue, among which are the Fixed Row Model and the Stochastic
-Degree Sequence Model which we define below.
+to alleviate this computational issue, among which are the Fixed Row Model
+and the Stochastic Degree Sequence Model which we define below.
 
 #### Fixed Row Model:
 
-The Fixed Row Model (FRM) is 
+Like the FDSM, the Fixed Row Model (FRM) is also a microcanonical algorithm.
+However, the main difference is that it imposes the degree sequence constraint
+on the row sums of the incidence matrix only.^[E.g.
+$$
+\forall_{i \in \{1,...,C\}} \sum_{k = 1}^{A} i_{ik} = \forall_{i \in \{1,...,C\}} \sum_{k = 1}^{A} 
+i_{ik}^*
+$$
+]
+^[The FRM model is also sometimes referred to as the hypergeometric
+model [@tumminelloStatisticallyValidatedNetworks2011].]
+That is, the degree of every *agent*/country is strictly controlled for, which
+implies that in all simulated networks, a country will be bound by the same
+number of agreements than in the observed network. However, an agreement
+is free to have a different number of total signatories. This leads us to the
+reason why we are not considering the Fixed Column Model: agency. Recall that
+we previously defined two distinct sets of nodes depending on whether or not
+the nodes posses agency over the links they would like to create or dissolve.
+Since agreements do not have agency and are constructed through the will
+of countries, we constrain the latter's degree only.
+@carattiniWhatDoesNetwork2021 applied the Bipartite Partial Configuration Model
+which is the canonical version of the FRM algorithm, to their membership network
+[@saraccoInferringMonopartiteProjections2017].
+This implies that the restriction imposed on the degree sequence of countries
+is only satisfied *on average* over all simulations.
+Since our membership network is small enough to
+be corrected by applying the more computationally intensive FRM algorithm, we
+follow the latter as it carries more information about the structure of the
+original bipartite network than the BiPCM algorithm
+[@saraccoInferringMonopartiteProjections2017].
 
 #### Stochastic Degree Sequence Model:
 
+The Stochastic Degree Sequence Model (SDSM) is a canonical algorithm that
+imposes a constraint on both the degree sequence of countries and on the
+degree sequence of agreements like the FDSM extraction method. However,
+the set of simulated networks satisfy this constraint only *on average*.
+In our case, this implies that the average number of member countries
+in a given international agreement $k$ in the set of simulated networks is equal
+to the number of countries in the observed membership network. Conversely,
+it also implies that the average number of agreements signed by a given country
+$i$ in the set of simulated networks is equal to the average number of agreements
+signed by country $i$ in the observed network. Several methods exist to
+simulate networks satisfying this constraint which are compared in terms of
+accuracy and computational speed in @nealComparingAlternativesFixed2021.
+The authors show that the Bipartite Configuration Model (BICM) is both the
+fastest and most accurate method to generate simulated network satisfying
+the average condition [@saraccoInferringMonopartiteProjections2017]. We thus
+leverage it as our third and last backbone extraction model.
+
+#### Visual comparison of the projections:
+
+Before moving on to the definition of the 
+
+```{r ComparingBackbones}
+# Load different networks 2015
+Naive <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, "Onemode_Network_Naive_2010.rds")))
+# FDSM <- readRDS(paste0(loadpath, "Onemode_Network_FDSM_2015"))
+FROW <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, "Onemode_Network_FROW_2010.rds")))
+SDSM <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, "Onemode_Network_SDSM_2010.rds")))
+
+# Graph things
+layout_naive <- ggraph::create_layout(Naive, layout = "igraph",
+                                algorithm = "lgl")
+layout_FROW <- ggraph::create_layout(FROW, layout = "igraph",
+                                algorithm = "lgl")
+layout_SDSM <- ggraph::create_layout(SDSM, layout = "igraph",
+                                algorithm = "lgl")
+# layout_FDSM <- ggraph::create_layout(FDSM, layout = "igraph",
+#                                 algorithm = "lgl")
+Naive_plot <- ggraph::ggraph(Naive, layout = layout_naive) +
+  ggraph::geom_edge_link(alpha = 0.01) +
+  # ggraph::geom_node_label(aes(label = name), repel = T) +
+  ggplot2::labs(title = "Cooperation Network Naive",
+                caption = "ECOLEX, 1948-2010") +
+  ggplot2::theme_void()
+FROW_plot <- ggraph::ggraph(FROW, layout = layout_FROW) +
+  ggraph::geom_edge_link(alpha = 0.01) +
+  # ggraph::geom_node_label(aes(label = name), repel = T) +
+  ggplot2::labs(title = "Cooperation Network FROW",
+                caption = "ECOLEX, 1948-2010") +
+  ggplot2::theme_void()
+SDSM_plot <- ggraph::ggraph(SDSM, layout = layout_SDSM) +
+  ggraph::geom_edge_link(alpha = 0.01) + 
+  # ggraph::geom_node_label(aes(label = name), repel = T) +
+  ggplot2::labs(title = "Cooperation Network SDSM",
+                caption = "ECOLEX, 1948-2010") +
+  ggplot2::theme_void()
+FDSM_plot <- ggraph::ggraph(FDSM, layout = layout_FDSM) +
+  ggraph::geom_edge_link(alpha = 0.001) +
+  ggplot2::labs(title = "Cooperation Network FDSM",
+                caption = "ECOLEX, 1948-2010") +
+  ggplot2::theme_void() +
+  theme(legend.position = 'bottom')
+# Combine plots
+gridExtra::grid.arrange(Naive_plot, FROW_plot,
+                        SDSM_plot, FDSM_plot,
+                        ncol = 2)
+```
+
 ### Selecting and Computing Network Centrality Measures:
 
-## Other Data Sources:
+Now that we constructed and corrected the monopartite cooperation networks,
+we can characterise the topological position of a given country within the
+network and construct proxies for the *embeddedness* of a country in the
+international environmental governance complex. While there exist a multitude
+of centrality indices to characterise the position of a country, we will
+consider the commonly used strenght centrality measure and the
+eigenvector centrality measure.
 
-## The Model:
+#### Strength Centrality:
+
+The strength of a node in an undirected and unweighted network measures the
+number of ties emanating from a node and weights them by their respective
+weights as follows:
+
+CITE BARRAT
+
+$$
+s_{i}=\sum_{j=1}^{N} a_{i j} w_{i j}
+$$
+This echoes Jahn and captures the sum of cooperative ties of a given country
+
+
+CITE JAHN
+
+#### Eigenvector Centrality:
+
+The eigenvector centrality 
+
+## The Empirical Model:
+
+We leverage a panel model and consider all OECD countries (as of 2021)
+over the time period between 1990 and 2015.
+
+## Descriptive Statistics:
+
+Some plots

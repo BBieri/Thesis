@@ -252,9 +252,23 @@ p_{i j}^{B}=
 0 & \text { else }\end{cases}
 $$
 
-Like @nealComparingAlternativesFixed2021, we use a two-tailed test
+As described in @nealComparingAlternativesFixed2021, we use a two-tailed test
 since we would like to filter out both uncommonly small *and* uncommonly large
-collaborative ties in the projection. Finally, this hypothesis test yields a binary correction
+collaborative ties in the projection. @nealBackbonePackageExtract2022 point
+out that since we perform this hypothesis test for every non-null edge, we
+will inflate the Type-I error i.e. include too many false positives in our
+corrected graph. ^[The significance level $\alpha$ defines the probability
+that a given edge is included in the backbone. Since we run this test over
+$e$ edges, the probability that we detect at least one such false positive across our
+test equals $1-(1-\alpha)^e$ which is strictly increasing in the number of tests
+$e$.] Following  therefore leverage the False Discovery Rate multiple test correction
+method which sorts the observed p-values in an increasing order before retaining
+all edges with a p-value satisfying $\text{P-value}_{d}\leq \frac{d}{m} \alpha$
+where $d \in \{1,\dots, e\}$.
+
+CITE BENIAMINI HOCHBERG 1995
+
+Finally, this hypothesis test yields a binary correction
 matrix which informs us whether to keep a tie in the naive projection or not and
 thereby solves both issues of the naive projection described above.
 Now that we have a general understanding of the process
@@ -355,16 +369,35 @@ fastest and most accurate method to generate simulated network satisfying
 the average condition [@saraccoInferringMonopartiteProjections2017]. We thus
 leverage it as our third and last backbone extraction model.
 
-#### Visual comparison of the projections:
+#### Comparing the Projections:
 
-Before moving on to the definition of the 
+Before moving on to the definition of the various centrality measures we
+will use to measure the level of international embeddedness of countries
+within the network of international environmental agreements, we will compare
+the resulting corrected projections. We namely see that the correction
+of performed by the FROW backbone extraction process retains about 90 percent of the
+edges of the naive projection which leads to an overly dense network. We
+will therefore not consider it in the further analysis as it does not solve
+the two issues which we try to correct. This is consistent with Carattini et al.
+who mention that their BiPCM-corrected cooperation network's density is so high that
+almost every node is connected to each other [@carattiniWhatDoesNetwork2021].
+On the other hand, both the
+SDSM and the FDSM retain on average about 15 percent of the most significant
+edges present in the naive projection. This ensures that we capture the true
+cooperative network and not a statistical artifact caused by the two issues
+we are trying to correct for. We will therefore compute the centrality scores
+on the basis of the latter two corrected networks.
 
 ```{r ComparingBackbones}
 # Load different networks 2015
-Naive <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, "Onemode_Network_Naive_2010.rds")))
-# FDSM <- readRDS(paste0(loadpath, "Onemode_Network_FDSM_2015"))
-FROW <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, "Onemode_Network_FROW_2010.rds")))
-SDSM <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, "Onemode_Network_SDSM_2010.rds")))
+Naive <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, 
+                                                "Onemode_Network_Naive_2010.rds")))
+FDSM <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, 
+                                               "Onemode_Network_FDSM_NonFDR_2010.rds")))
+FROW <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, 
+                                               "Onemode_Network_FROW_2010.rds")))
+SDSM <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, 
+                                               "Onemode_Network_SDSM_2010.rds")))
 
 # Graph things
 layout_naive <- ggraph::create_layout(Naive, layout = "igraph",
@@ -373,8 +406,8 @@ layout_FROW <- ggraph::create_layout(FROW, layout = "igraph",
                                 algorithm = "lgl")
 layout_SDSM <- ggraph::create_layout(SDSM, layout = "igraph",
                                 algorithm = "lgl")
-# layout_FDSM <- ggraph::create_layout(FDSM, layout = "igraph",
-#                                 algorithm = "lgl")
+layout_FDSM <- ggraph::create_layout(FDSM, layout = "igraph",
+                                algorithm = "lgl")
 Naive_plot <- ggraph::ggraph(Naive, layout = layout_naive) +
   ggraph::geom_edge_link(alpha = 0.01) +
   # ggraph::geom_node_label(aes(label = name), repel = T) +
@@ -394,7 +427,7 @@ SDSM_plot <- ggraph::ggraph(SDSM, layout = layout_SDSM) +
                 caption = "ECOLEX, 1948-2010") +
   ggplot2::theme_void()
 FDSM_plot <- ggraph::ggraph(FDSM, layout = layout_FDSM) +
-  ggraph::geom_edge_link(alpha = 0.001) +
+  ggraph::geom_edge_link(alpha = 0.01) +
   ggplot2::labs(title = "Cooperation Network FDSM",
                 caption = "ECOLEX, 1948-2010") +
   ggplot2::theme_void() +
@@ -408,12 +441,15 @@ gridExtra::grid.arrange(Naive_plot, FROW_plot,
 ### Selecting and Computing Network Centrality Measures:
 
 Now that we constructed and corrected the monopartite cooperation networks,
-we can characterise the topological position of a given country within the
+we can characterize the topological position of a given country within the
 network and construct proxies for the *embeddedness* of a country in the
 international environmental governance complex. While there exist a multitude
-of centrality indices to characterise the position of a country, we will
-consider the commonly used strenght centrality measure and the
-eigenvector centrality measure.
+of centrality indices to characterize the position of a country
+and no unifying theoretical framework for defining it, we will
+consider the commonly used strength centrality measure and the
+eigenvector centrality measure which we will theoretically justify in turn.
+
+CITE NETRANKR
 
 #### Strength Centrality:
 
@@ -421,24 +457,46 @@ The strength of a node in an undirected and unweighted network measures the
 number of ties emanating from a node and weights them by their respective
 weights as follows:
 
-CITE BARRAT
-
 $$
 s_{i}=\sum_{j=1}^{N} a_{i j} w_{i j}
 $$
-This echoes Jahn and captures the sum of cooperative ties of a given country
+Strength centrality echoes the proxy @jahnPoliticsEnvironmentalPerformance2016
+used to measure embeddedness in the
+international governance complex in that it captures the sum of
+cooperative ties of a given country within the weighted network of ties. Hence
+we expect that a country with a higher level of strength, ceteris paribus,
+will be more embedded in the international environmental agreement network.
+As stated in the previous chapter, we expect that this increased embeddedness
+leads to an increase in environmental innovation through both direct effects
+of the international policy framework and the indirect effects of a greater
+policy certainty. While we cannot distinguish both channels in this study,
+we expect that the node strength captures a relatively greater share of 
+the direct effects of the increased embeddedness on innovation as
+it measures the quantity of agreement a country is bound by. The opposite
+can be said of the eigenvector centrality measure we define below.
 
+#### Weighted Clustering Coefficient:
 
-CITE JAHN
-
-#### Eigenvector Centrality:
-
-The eigenvector centrality 
+The weighted clustering coefficient extends the notion of embeddedness by
+examining the centrality of a node. In mathematical terms, the
+eigenvector centrality of a node in a weighted and undirected network is
+defined as the following index: 
+$$
+c_{i}^{w}=\frac{1}{s_{i}\left(k_{i}-1\right)} \sum_{j, h} \frac{\left(w_{i j}+w_{i h}\right)}{2} a_{i j} a_{i h} a_{j h}
+$$
+In our international cooperation
+network, this can be trans
 
 ## The Empirical Model:
 
-We leverage a panel model and consider all OECD countries (as of 2021)
+We define a panel model and consider all OECD countries (as of 2021)
 over the time period between 1990 and 2015.
+
+$$
+y_{it} = \beta_1 \text{EPS}_{it} + \beta_2 \text{Strength}_{it} +
+\beta_3 \text{WeightedClustering}_{it} + \beta_4 X_{it} + \alpha_i + \delta_t + u_{it}
+$$
+
 
 ## Descriptive Statistics:
 

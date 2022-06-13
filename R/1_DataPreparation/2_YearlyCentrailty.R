@@ -81,10 +81,13 @@ ecolex_lst_onemode_adj <- lapply(ecolex_lst_igraph_onemode,
 # of each agent (country) exactly. It is a more sophisticated BiPCM strategy
 # which sets the restrictions exactly instead of on average. The agents'
 # degrees are considered instead of the artifacts since they have agency
-# over how many agreements to sign.
+# over how many agreements to sign. Note also that we impose the same
+# alpha as Carattini et al. of 0.01 and the False Discovery Rate correction
+# for multiple hypothesis testing they use.
 
 ecolex_lst_frow <- lapply(ecolex_lst_incidence, backbone::fixedrow,
-                          alpha = 0.05, signed = FALSE, narrative = TRUE)
+                          alpha = 0.01, mtc = "fdr",
+                          signed = FALSE, narrative = TRUE)
 # Keep only significant edges:
 ecolex_lst_onemode_frow <- ecolex_lst_onemode_adj
 for (i in seq(length(ecolex_lst_frow))) { # 71 years
@@ -100,6 +103,8 @@ for (i in seq(length(ecolex_lst_frow))) { # 71 years
 is.directed(ecolex_lst_onemode_frow_igraph[[70]]) # False as expected
 names(ecolex_lst_onemode_frow_igraph) <- as.character(1948:2018)
 
+# Still extremely dense...
+
 # #################################
 # Let's use the FDSM algorithm ----
 # #################################
@@ -110,21 +115,41 @@ names(ecolex_lst_onemode_frow_igraph) <- as.character(1948:2018)
 # sum of each individual column (e.g. the country and the treaty) degrees
 # constant.
 
-# ecolex_lst_fdsm <- lapply(ecolex_lst_incidence, backbone::fdsm, alpha = 0.05,
-#                           signed = FALSE, narrative = TRUE)
-# Keep only significant edges:
-# ecolex_lst_onemode_fdsm <- ecolex_lst_onemode_adj
-# for (i in seq(length(ecolex_lst_fdsm))) { # 71 years
-#   ecolex_lst_onemode_fdsm[[i]][ecolex_lst_fdsm[[i]] == 0] <- 0
+ecolex_lst_fdsm <- lapply(ecolex_lst_incidence, backbone::fdsm, alpha = 0.05,
+                          mtc = "fdr", trials = 80000,
+                          signed = FALSE, narrative = TRUE)
+# Keep only significant edges with FDR:
+ecolex_lst_onemode_fdsm <- ecolex_lst_onemode_adj
+for (i in seq(length(ecolex_lst_fdsm))) { # 71 years
+  ecolex_lst_onemode_fdsm[[i]][ecolex_lst_fdsm[[i]] == 0] <- 0
+}
+all(unlist(lapply(ecolex_lst_onemode_fdsm, isSymmetric))) # Matrices are all symmetric
+ecolex_lst_onemode_fdsm_igraph <- list()
+for (i in seq(length(ecolex_lst_fdsm))) { # 71 years
+  # Convert corrected network projection back to igraph object
+  ecolex_lst_onemode_fdsm_igraph[[i]] <- igraph::graph_from_adjacency_matrix(ecolex_lst_onemode_fdsm[[i]], weighted = T, mode = "undirected")
+}
+is.directed(ecolex_lst_onemode_fdsm_igraph[[70]]) # False as expected
+names(ecolex_lst_onemode_fdsm_igraph) <- as.character(1948:2018)
+
+# # Faster without FDR:
+# ecolex_lst_fdsm_nonFDR <- lapply(ecolex_lst_incidence, backbone::fdsm, alpha = 0.05,
+#                                  signed = FALSE, trials = 80000, narrative = TRUE)
+# # Keep only significant edges without FDR:
+# ecolex_lst_onemode_fdsm_nonFDR <- ecolex_lst_onemode_adj
+# for (i in seq(length(ecolex_lst_fdsm_nonFDR))) { # 71 years
+#   ecolex_lst_onemode_fdsm_nonFDR[[i]][ecolex_lst_fdsm_nonFDR[[i]] == 0] <- 0
 # }
-# all(unlist(lapply(ecolex_lst_onemode_fdsm, isSymmetric))) # Matrices are all symmetric
-# ecolex_lst_onemode_fdsm_igraph <- list()
-# for (i in seq(length(ecolex_lst_fdsm))) { # 71 years
+# all(unlist(lapply(ecolex_lst_onemode_fdsm_nonFDR, isSymmetric)))
+# # Matrices are all symmetric
+# ecolex_lst_onemode_fdsm_nonFDR_igraph <- list()
+# for (i in seq(length(ecolex_lst_fdsm_nonFDR))) { # 71 years
 #   # Convert corrected network projection back to igraph object
-#   ecolex_lst_onemode_fdsm_igraph[[i]] <- igraph::graph_from_adjacency_matrix(ecolex_lst_onemode_fdsm[[i]], weighted = T, mode = "undirected")
+#   ecolex_lst_onemode_fdsm_nonFDR_igraph[[i]] <- igraph::graph_from_adjacency_matrix(ecolex_lst_onemode_fdsm_nonFDR[[i]], weighted = T, mode = "undirected")
 # }
-# is.directed(ecolex_lst_onemode_fdsm_igraph[[70]]) # False as expected
-# names(ecolex_lst_onemode_fdsm_igraph) <- as.character(1948:2018)
+# is.directed(ecolex_lst_onemode_fdsm_nonFDR_igraph[[70]]) # False as expected
+# length(ecolex_lst_onemode_fdsm_nonFDR_igraph) # 71 as expected
+# names(ecolex_lst_onemode_fdsm_nonFDR_igraph) <- as.character(1948:2018)
 
 
 # #################################
@@ -138,8 +163,14 @@ names(ecolex_lst_onemode_frow_igraph) <- as.character(1948:2018)
 # algorithm with less power.
 # E.g. it over-rejects the presence of an edge
 ecolex_lst_sdsm <- lapply(ecolex_lst_incidence, backbone::sdsm, alpha = 0.13,
-                          method = "DivideFFT",
+                          method = "DivideFFT", # Poisson Binomial estimation method. Better quality.
+                          mtc = "fdr",
                           signed = FALSE, narrative = TRUE)
+# ecolex_lst_sdsm_nonFDR <- lapply(ecolex_lst_incidence, backbone::sdsm, alpha = 0.13,
+#                           method = "DivideFFT", # Poisson Binomial estimation method. Better quality.
+#                           signed = FALSE, narrative = TRUE)
+# Both networks exhibit the same structure. Good.
+
 # Test plot
 plot(as.undirected(graph_from_adjacency_matrix(ecolex_lst_sdsm[[71]], weighted = T)))
 
@@ -157,27 +188,49 @@ for (i in seq(length(ecolex_lst_sdsm))) { # 71 years
 is.directed(ecolex_lst_onemode_sdsm_igraph[[70]]) # False as expected
 names(ecolex_lst_onemode_sdsm_igraph) <- as.character(1948:2018)
 
+# Save corrected network objects
+net_save_path <- "data/CleanData/OnemodeNetworks/"
+save_networks <- function(network_lst, type) {
+  for (i in seq(length(names(network_lst)))) {
+    saved <- network_lst[[i]]
+    saveRDS(saved, file = paste0(net_save_path, "Onemode_Network_", type , "_",
+                              names(network_lst)[[i]], ".rds"))
+  }
+}
+
+save_networks(ecolex_lst_igraph_onemode, type = "Naive")
+save_networks(ecolex_lst_onemode_sdsm_igraph, type = "SDSM") # With FDR correction
+save_networks(ecolex_lst_onemode_fdsm_igraph, type = "FDSM") # With FDR correction
+save_networks(ecolex_lst_onemode_fdsm_nonFDR_igraph, type = "FDSM_NonFDR") # Without FDR correction
+save_networks(ecolex_lst_onemode_frow_igraph, type = "FROW") # With FDR correction
+
 # Some intermediary plots to highlight the backbone extraction process:
 l <- layout.fruchterman.reingold(as.undirected(ecolex_lst_onemode_sdsm_igraph$`2010`))
-par(mfrow = c(1, 3))
+par(mfrow = c(2, 2))
 plot(ecolex_lst_igraph_onemode$`2010`,
      vertex.size = 1,
      edge.width = 0.5,
      vertex.label = NA,
      layout = l,
-     main = "2010 Cooperation Network")
-plot(as.undirected(igraph::graph_from_adjacency_matrix(ecolex_lst_sdsm$`2010`)),
+     main = "2010 Cooperation Network\nNaive")
+plot(as.undirected(ecolex_lst_onemode_frow_igraph$`2010`),
      vertex.size = 1,
      edge.width = 0.5,
      vertex.label = NA,
      layout = l,
-     main = "2010 Cooperation Network Backbone")
+     main = "2010 Cooperation Network\nFROW Corrected")
 plot(as.undirected(ecolex_lst_onemode_sdsm_igraph$`2010`),
      vertex.size = 1,
      edge.width = 0.5,
      vertex.label = NA,
      layout = l,
-     main = "2010 Cooperation Network\n(Backbone Corrected)")
+     main = "2010 Cooperation Network\nSDSM Corrected")
+plot(as.undirected(ecolex_lst_onemode_fdsm_igraph$`2010`),
+     vertex.size = 1,
+     edge.width = 0.5,
+     vertex.label = NA,
+     layout = l,
+     main = "2010 Cooperation Network\nFDSM Corrected")
 dev.off()
 
 
@@ -185,7 +238,7 @@ dev.off()
 
 # Mini {netrankr} test drive
 
-library(netrankr) # Version 1.1.1
+# library(netrankr) # Version 1.1.1
 
 # Comparing centrality measures in a graph
 # cent_scores <- data.frame(
@@ -342,17 +395,17 @@ ecolex_closeness_panel_frow <-
 ecolex_subgraph_panel_frow <-
   centralitylst_centralitypanel(ecolex_net_lst_onemode_subgraph_centrality_frow)
 
-# # FDSM
-# ecolex_eigenvector_panel_fdsm <-
-#   centralitylst_centralitypanel(ecolex_net_lst_onemode_eigenvector_centrality_fdsm)
-# ecolex_strength_panel_fdsm <-
-#   centralitylst_centralitypanel(ecolex_net_lst_onemode_strength_centrality_fdsm)
-# ecolex_betweenness_panel_fdsm <-
-#   centralitylst_centralitypanel(ecolex_net_lst_onemode_betweenness_centrality_fdsm)
-# ecolex_closeness_panel_fdsm <-
-#   centralitylst_centralitypanel(ecolex_net_lst_onemode_closeness_centrality_fdsm)
-# ecolex_subgraph_panel_fdsm <-
-#   centralitylst_centralitypanel(ecolex_net_lst_onemode_subgraph_centrality_fdsm)
+# FDSM
+ecolex_eigenvector_panel_fdsm <-
+  centralitylst_centralitypanel(ecolex_net_lst_onemode_eigenvector_centrality_fdsm)
+ecolex_strength_panel_fdsm <-
+  centralitylst_centralitypanel(ecolex_net_lst_onemode_strength_centrality_fdsm)
+ecolex_betweenness_panel_fdsm <-
+  centralitylst_centralitypanel(ecolex_net_lst_onemode_betweenness_centrality_fdsm)
+ecolex_closeness_panel_fdsm <-
+  centralitylst_centralitypanel(ecolex_net_lst_onemode_closeness_centrality_fdsm)
+ecolex_subgraph_panel_fdsm <-
+  centralitylst_centralitypanel(ecolex_net_lst_onemode_subgraph_centrality_fdsm)
 
 # SDSM
 ecolex_eigenvector_panel_sdsm <-
@@ -381,11 +434,11 @@ ecolex_betweenness_OECD_frow <- ecolex_betweenness_panel_frow[ecolex_betweenness
 ecolex_subgraph_OECD_frow <- ecolex_subgraph_panel_frow[ecolex_subgraph_panel_frow$Country %in% oecd$Code, ]
 
 # FDSM
-# ecolex_eigen_OECD_fdsm <- ecolex_eigenvector_panel_fdsm[ecolex_eigenvector_panel_fdsm$Country %in% oecd$Code, ]
-# ecolex_strength_OECD_fdsm <- ecolex_strength_panel_fdsm[ecolex_strength_panel_fdsm$Country %in% oecd$Code, ]
-# ecolex_closeness_OECD_fdsm <- ecolex_closeness_panel_fdsm[ecolex_closeness_panel_fdsm$Country %in% oecd$Code, ]
-# ecolex_betweenness_OECD_fdsm <- ecolex_betweenness_panel_fdsm[ecolex_betweenness_panel_fdsm$Country %in% oecd$Code, ]
-# ecolex_subgraph_OECD_fdsm <- ecolex_subgraph_panel_fdsm[ecolex_subgraph_panel_fdsm$Country %in% oecd$Code, ]
+ecolex_eigen_OECD_fdsm <- ecolex_eigenvector_panel_fdsm[ecolex_eigenvector_panel_fdsm$Country %in% oecd$Code, ]
+ecolex_strength_OECD_fdsm <- ecolex_strength_panel_fdsm[ecolex_strength_panel_fdsm$Country %in% oecd$Code, ]
+ecolex_closeness_OECD_fdsm <- ecolex_closeness_panel_fdsm[ecolex_closeness_panel_fdsm$Country %in% oecd$Code, ]
+ecolex_betweenness_OECD_fdsm <- ecolex_betweenness_panel_fdsm[ecolex_betweenness_panel_fdsm$Country %in% oecd$Code, ]
+ecolex_subgraph_OECD_fdsm <- ecolex_subgraph_panel_fdsm[ecolex_subgraph_panel_fdsm$Country %in% oecd$Code, ]
 
 # SDSM
 ecolex_eigen_OECD_sdsm <- ecolex_eigenvector_panel_sdsm[ecolex_eigenvector_panel_sdsm$Country %in% oecd$Code, ]
@@ -415,11 +468,11 @@ ecolex_betweenness_OECD_frow <- ecolex_betweenness_OECD_frow[order(ecolex_betwee
 ecolex_subgraph_OECD_frow <- ecolex_subgraph_OECD_frow[order(ecolex_subgraph_OECD_frow$Country), ]
 
 # FDSM
-# ecolex_eigen_OECD_fdsm <- ecolex_eigen_OECD_fdsm[order(ecolex_eigen_OECD_fdsm$Country), ]
-# ecolex_strength_OECD_fdsm <- ecolex_strength_OECD_fdsm[order(ecolex_strength_OECD_fdsm$Country), ]
-# ecolex_closeness_OECD_fdsm <- ecolex_closeness_OECD_fdsm[order(ecolex_closeness_OECD_fdsm$Country), ]
-# ecolex_betweenness_OECD_fdsm <- ecolex_betweenness_OECD_fdsm[order(ecolex_betweenness_OECD_fdsm$Country), ]
-# ecolex_subgraph_OECD <- ecolex_subgraph_OECD[order(ecolex_subgraph_OECD$Country), ]
+ecolex_eigen_OECD_fdsm <- ecolex_eigen_OECD_fdsm[order(ecolex_eigen_OECD_fdsm$Country), ]
+ecolex_strength_OECD_fdsm <- ecolex_strength_OECD_fdsm[order(ecolex_strength_OECD_fdsm$Country), ]
+ecolex_closeness_OECD_fdsm <- ecolex_closeness_OECD_fdsm[order(ecolex_closeness_OECD_fdsm$Country), ]
+ecolex_betweenness_OECD_fdsm <- ecolex_betweenness_OECD_fdsm[order(ecolex_betweenness_OECD_fdsm$Country), ]
+ecolex_subgraph_OECD <- ecolex_subgraph_OECD[order(ecolex_subgraph_OECD$Country), ]
 
 # SDSM
 ecolex_eigen_OECD_sdsm <- ecolex_eigen_OECD_sdsm[order(ecolex_eigen_OECD_sdsm$Country), ]
@@ -433,9 +486,9 @@ ecolex_subgraph_OECD_sdsm <- ecolex_subgraph_OECD_sdsm[order(ecolex_subgraph_OEC
 OECD_centrality_frow <- list(ecolex_eigen_OECD_frow, ecolex_strength_OECD_frow,
                         ecolex_closeness_OECD_frow, ecolex_betweenness_OECD_frow,
                         ecolex_subgraph_OECD_frow)
-# OECD_centrality_fdsm <- list(ecolex_eigen_OECD_fdsm, ecolex_strength_OECD_fdsm,
-#                              ecolex_closeness_OECD_fdsm, ecolex_betweenness_OECD_fdsm,
-#                              ecolex_subgraph_OECD_fdsm)
+OECD_centrality_fdsm <- list(ecolex_eigen_OECD_fdsm, ecolex_strength_OECD_fdsm,
+                             ecolex_closeness_OECD_fdsm, ecolex_betweenness_OECD_fdsm,
+                             ecolex_subgraph_OECD_fdsm)
 OECD_centrality_sdsm <- list(ecolex_eigen_OECD_sdsm, ecolex_strength_OECD_sdsm,
                              ecolex_closeness_OECD_sdsm, ecolex_betweenness_OECD_sdsm,
                              ecolex_subgraph_OECD_sdsm)
@@ -444,10 +497,10 @@ OECD_centrality_frow <- lapply(OECD_centrality_frow,
                           tidyr::pivot_longer,
                           where(is.numeric),
                           names_to = "Year")
-# OECD_centrality_fdsm <- lapply(OECD_centrality_fdsm,
-#                                tidyr::pivot_longer,
-#                                where(is.numeric),
-#                                names_to = "Year")
+OECD_centrality_fdsm <- lapply(OECD_centrality_fdsm,
+                               tidyr::pivot_longer,
+                               where(is.numeric),
+                               names_to = "Year")
 OECD_centrality_sdsm <- lapply(OECD_centrality_sdsm,
                                tidyr::pivot_longer,
                                where(is.numeric),
@@ -479,7 +532,7 @@ saving_lists <- function(panel){
   for (i in seq(length(names(panel)))) {
     saved <- panel[[i]]
     type <- sub(".*_", "", deparse(substitute(panel)))
-    save(saved, file = paste0(save_path, "OECD_Panel_",
+    save(saved, file = paste0(save_path, "/Centrality/OECD_Panel_",
                               names(panel)[[i]], "_", type, ".rds"))
   }
 }

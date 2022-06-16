@@ -23,6 +23,7 @@ project_path <- substr(getwd(), 1, 56)
 graph_path <- paste0(project_path, "/graphs/")
 ecolex_path <- paste0(project_path, "/data/ECOLEX/Membership/ECOLEX_Membership.rds")
 onemodenetpath <- paste0(project_path, "/data/CleanData/OnemodeNetworks/")
+clean_data_path <- paste0(project_path, "/data/CleanData/")
 ```
 
 \setcounter{chapter}{2}
@@ -45,11 +46,21 @@ statistically validate this projection by comparing the resulting observed
 one cooperation network with a null model. This process is also commonly
 known as *backbone extraction*. Finally, we describe the computation of
 two centrality indices that will proxy the intensity and the certainty of
-international policy. Finally, we will define the empirical panel model that
-we will estimate in the next section.
+international policy. Let us start by defining the empirical panel model that
+we will estimate in the next section before detailing the construction of
+the various estimated coefficients.
+
+## The Empirical Model:
+
+We define a panel model and consider all OECD countries (as of 2021)
+over the time period between 1990 and 2015.
+
+$$
+y_{it} = \beta_1 \text{EPS}_{it} + \beta_2 \text{Strength}_{it} +
+\beta_3 \text{WeightedClustering}_{it} + \beta_4 X_{it} + \alpha_i + \delta_t + u_{it}
+$$
 
 
-## Defining Hypotheses:
 
 ## Constructing international environmental cooperation centrality measures:
 
@@ -473,7 +484,7 @@ the direct effects of the increased embeddedness on innovation as
 it measures the quantity of agreement a country is bound by. The opposite
 can be said of the eigenvector centrality measure we define below.
 
-#### Weighted Clustering Coefficient:
+#### Transitivity:
 
 The weighted clustering coefficient extends the notion of embeddedness by
 computing the weighted proportion of triangles over connected triples
@@ -482,11 +493,11 @@ On the illustration below, we see that
 the figure on the right is an open triple from the point of view of the orange
 node but not a triangle as opposed to the figure on the right. If we abstract
 from the weights, it is easy to see that the clustering coefficient,
-sometimes also known as transitivity, of the orange node on the left figure is
+also known as transitivity, of the orange node on the left figure is
 equal to 1 while the transitivity of the orange node on the right hand side figure
 is 0.
 
-```{r transitivitygraph, echo=FALSE}
+```{r transitivitygraph, echo=FALSE, fig.cap = "Transitivity"}
 knitr::include_graphics("figures/Transitivity.png")
 ```
 
@@ -520,13 +531,115 @@ defecting. This in turn leads to a higher level of trust within the network,
 and crucially in our case, a higher level of economic policy certainty which
 we hypothesize is favorable to the process of green innovation.
 
-## The Empirical Model:
+## Other variables:
 
-We define a panel model and consider all OECD countries (as of 2021)
-over the time period between 1990 and 2015.
+### Environmental Policy Stringency Index:
+
+The Environmental Policy Stringency Index (EPS) is an index created by the OECD
+which measures the stringency of environmental policy at the country level
+during the period of 1990 to 2015 [@bottaMeasuringEnvironmentalPolicy2014].
+As pointed out in the literature on environmental policy and innovation by
+@poppEnvironmentalPolicyInnovation2019, the  
+index is often used as an empirical proxy to measure environmental policy in
+the literature including in studies examining Porter's Hypothesis
+[@galeottiMeasuringEnvironmentalPolicy2020;
+@martinez-zarzosoDoesEnvironmentalPolicy2019]. While we refer the reader
+to the original paper by @bottaMeasuringEnvironmentalPolicy2014 for a detailed
+description of the construction of the index, we can summarize it as follows.
+The basis of the EPS index are individual indices of policy stringency such
+as emission taxes, trading schemes, environmental standards, and governmental
+R&D subsidies. These individual policy categories are then given a ranking
+on a Lickert scale between 0 and 6 before being aggregated into market and
+non-market based policies. These two subsets are then once again equally
+aggregated into the composite EPS index with equal weights which provides us
+with a reliable country level measure of aggregate domestic environmental policy.
+Overall, one can discern a positive trend in the stringency level over the
+considered period for every country indicating the implementation of more
+stringent environmental policies.
+
+```{r EPSdesc, echo=FALSE, fig.cap="Environmental Policy Stringency 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+  ggplot2::ggplot(aes(x = Year, y = EPS)) +
+  ggplot2::geom_line(aes(color = COU), size = 0.6) +
+  ggplot2::guides(color = guide_legend(title = "Country")) +
+  ggplot2::labs(caption = "OECD, 2015") +
+  iheiddown::theme_iheid()
+```
+
+### Innovation Measures:
+
+We measure innovation in two main ways. First, we consider the business
+expenditures on R&D to capture the input side of the innovation process
+by using the 
+
+
+#### Business Expenditures in R&D:
+
+```{r BERDdesc, echo=FALSE, fig.cap="Business Expenditures in R&D 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+  ggplot2::ggplot(aes(x = Year, y = log(berd))) +
+  ggplot2::geom_line(aes(color = COU), size = 0.6) +
+  ggplot2::guides(color = guide_legend(title = "Country")) +
+  ggplot2::labs(caption = "OECD, 2021",
+                y = "log(BERD)") +
+  iheiddown::theme_iheid()
+```
+
+#### Triadic Patent Counts:
+
+```{r TPFdesc, echo=FALSE, fig.cap="Triadic Patent Counts 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+  ggplot2::ggplot(aes(x = Year, y = triadic_patent)) +
+  ggplot2::geom_line(aes(color = COU), size = 0.6) +
+  ggplot2::guides(color = guide_legend(title = "Country")) +
+  ggplot2::labs(caption = "OECD, 2021",
+                y = "Triadic Patent Count") +
+  iheiddown::theme_iheid()
+```
+
+#### Environmental Patent Counts:
+
+```{r TPFdesc, echo=FALSE, fig.cap="Triadic Patent Counts 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+  ggplot2::ggplot(aes(x = Year, y = EnvPat)) +
+  ggplot2::geom_point(aes(color = COU), size = 1) +
+  ggplot2::guides(color = guide_legend(title = "Country")) +
+  ggplot2::labs(caption = "OECD, 2021",
+                y = "Environmental Patent Count") +
+  iheiddown::theme_iheid()
+```
+
+### Productivity Measures:
+
+#### Total Factor Productivity:
+
+https://euklems.eu/
 
 $$
-y_{it} = \beta_1 \text{EPS}_{it} + \beta_2 \text{Strength}_{it} +
-\beta_3 \text{WeightedClustering}_{it} + \beta_4 X_{it} + \alpha_i + \delta_t + u_{it}
+\Delta \ln Y=\Delta \ln T F P 0+\bar{s}_{C} \Delta \ln K+\bar{s}_{L} \Delta \ln H
 $$
 
+```{r TFP0desc, echo=FALSE, fig.cap="Total Factor Productivity 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+  ggplot2::ggplot(aes(x = Year, y = TFP0)) +
+  ggplot2::geom_line(aes(color = COU), size = 0.6) +
+  ggplot2::guides(color = guide_legend(title = "Country")) +
+  ggplot2::labs(caption = "EU KLEMS, 2022",
+                y = "Total Factor Productivity\n(growth rate %)") +
+  ggplot2::xlim(1995, 2015) +
+  iheiddown::theme_iheid()
+```
+
+
+### Other Control Variables:
+
+GDP per capita, Import intensity, Export intensity
+
+## Correlations:
+
+Before moving on to the results, let us consider the correlations between
+our variables of interest.
+
+```{r correlations, echo=FALSE, fig.cap="Correlations"}
+knitr::include_graphics("figures/Correlations.png")
+```

@@ -122,7 +122,7 @@ GVA_BY_ACTVITY <- VA %>%
                                                  custom_match =
                                                    c("EU27_2020" = "EU27_2020")))
 # TODO: this needs to be transformed into USD from 2015 constant LCU
-# paper did it with WB correction factor
+# paper did it with WB correction factor. Not used
 
 
 activities_VA <- dplyr::tibble(Code = unique(VA$ACTIVITY),
@@ -133,7 +133,7 @@ activities_VA <- dplyr::tibble(Code = unique(VA$ACTIVITY),
 # R&D Capital stock and Patent Stock: OECD ----
 # Not sure if this is available straight up: the authors seem to compute it
 # with the R&D expenditure data and the patent data by summing the patents/the expenditures
-# over the last 10 years. --> See innovation mesures
+# over the last 10 years. --> See innovation measures
 
 # Government Expenditure in R&D per country: OECD ----
 # GOVERD

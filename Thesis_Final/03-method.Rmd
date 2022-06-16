@@ -261,12 +261,12 @@ corrected graph. ^[The significance level $\alpha$ defines the probability
 that a given edge is included in the backbone. Since we run this test over
 $e$ edges, the probability that we detect at least one such false positive across our
 test equals $1-(1-\alpha)^e$ which is strictly increasing in the number of tests
-$e$.] Following  therefore leverage the False Discovery Rate multiple test correction
+$e$.] Following @nealBackbonePackageExtract2022, we therefore leverage the
+False Discovery Rate multiple test correction
 method which sorts the observed p-values in an increasing order before retaining
 all edges with a p-value satisfying $\text{P-value}_{d}\leq \frac{d}{m} \alpha$
-where $d \in \{1,\dots, e\}$.
-
-CITE BENIAMINI HOCHBERG 1995
+where $d \in \{1,\dots, e\}$ for all backbone extraction methods
+[@benjaminiControllingFalseDiscovery1995].
 
 Finally, this hypothesis test yields a binary correction
 matrix which informs us whether to keep a tie in the naive projection or not and
@@ -449,8 +449,6 @@ and no unifying theoretical framework for defining it, we will
 consider the commonly used strength centrality measure and the
 eigenvector centrality measure which we will theoretically justify in turn.
 
-CITE NETRANKR
-
 #### Strength Centrality:
 
 The strength of a node in an undirected and unweighted network measures the
@@ -478,14 +476,49 @@ can be said of the eigenvector centrality measure we define below.
 #### Weighted Clustering Coefficient:
 
 The weighted clustering coefficient extends the notion of embeddedness by
-examining the centrality of a node. In mathematical terms, the
-eigenvector centrality of a node in a weighted and undirected network is
-defined as the following index: 
+computing the weighted proportion of triangles over connected triples
+that are centered on a given node [@barratArchitectureComplexWeighted2004].
+On the illustration below, we see that
+the figure on the right is an open triple from the point of view of the orange
+node but not a triangle as opposed to the figure on the right. If we abstract
+from the weights, it is easy to see that the clustering coefficient,
+sometimes also known as transitivity, of the orange node on the left figure is
+equal to 1 while the transitivity of the orange node on the right hand side figure
+is 0.
+
+```{r transitivitygraph, echo=FALSE}
+knitr::include_graphics("figures/Transitivity.png")
+```
+
+Mathematically, @barratArchitectureComplexWeighted2004 define the weighted index as follows
+where $w_{i j}$ is the weight of the link between node $i$ and node $j$,
+$a_{ij}$ is a binary variable indicating the presence of an edge between $i$ and $j$,
+$s_i$ is the strength of node $i$, and $k_i$ is the node's degree.
+
 $$
-c_{i}^{w}=\frac{1}{s_{i}\left(k_{i}-1\right)} \sum_{j, h} \frac{\left(w_{i j}+w_{i h}\right)}{2} a_{i j} a_{i h} a_{j h}
+c_{i}^{w}=\frac{1}{s_{i}\left(k_{i}-1\right)} \sum_{j, h} \frac{\left(w_{i j}+w_{i h}\right)}{2} a_{i j} a_{i h} a_{j h} \in [0;1]
 $$
-In our international cooperation
-network, this can be trans
+
+In our international cooperation network, we can interpret this coefficient
+as the local empirical reflection of closure which is a characteristic of
+a network where agents have a low level of information asymmetry with regards
+of the actions undertaken by each node over time [@colemanSocialCapitalCreation1988].
+This facilitated monitoring favors the application of sanctions if an agent defects
+as well as the emergence of a virtuous cycle of trust and further cooperation
+[@burtNetworkStructureSocial2000].
+This virtuous cycle echoes both arguments in sociology by
+@granovetterEconomicActionSocial1985 who posits that the cost of breaking a
+friends trust and therefore the friendship is greater when both agents have a
+friend in common since the betrayal may also affect one's relationship with the
+latter. This argument has been made concurrently in the field of economics and
+especially within the game theoretical analysis of repeated games
+[@tullockAdamSmithPrisoners1985] and within the empirical analysis of
+reputation in medieval trading [@greifReputationCoalitionsMedieval1989].
+The main insight in our case of international cooperation is therefore
+that countries with a higher transitivity index will have a higher cost of
+defecting. This in turn leads to a higher level of trust within the network,
+and crucially in our case, a higher level of economic policy certainty which
+we hypothesize is favorable to the process of green innovation.
 
 ## The Empirical Model:
 
@@ -497,7 +530,3 @@ y_{it} = \beta_1 \text{EPS}_{it} + \beta_2 \text{Strength}_{it} +
 \beta_3 \text{WeightedClustering}_{it} + \beta_4 X_{it} + \alpha_i + \delta_t + u_{it}
 $$
 
-
-## Descriptive Statistics:
-
-Some plots

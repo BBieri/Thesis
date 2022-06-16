@@ -11,6 +11,10 @@ library(fixest) # Great package for multiple fixed effects estimations
 library(plm) # 2.6-1
 library(lme4) # 1.1-29
 library(lfe) # 2.8-8
+library(lmtest) # 0.9.40
+library(car) # 3.0.13
+library(corrplot) # 0.92
+library(Hmisc) # 4.7.0
 
 # Utilities
 data_path <- "data/CleanData/"
@@ -180,21 +184,71 @@ all_vars <- innovation %>%
   dplyr::full_join(Centrality_joined, by = mergeCols) %>%
   dplyr::full_join(EPS, by = mergeCols) %>%
   dplyr::full_join(WB, by = mergeCols) %>%
-  dplyr::select(-iso2c.x, -iso2c.y) %>%
-  dplyr::mutate(dplyr::across(where(is.numeric), ~na_if(., NaN)))
+  dplyr::select(-iso2c.x, -iso2c.y)
 
-#################### Subset Datasets to Considered Period ######################
+# Creating lags for policy variables. See theoretical explanation below.
 
+all_vars <- all_vars %>%
+  dplyr::mutate(
+    # No lags just logs
+    EPS_log = log(EPS),
+    Strength_FDSM_log = log(Strength_FDSM),
+    Transitivity_FDSM_log = log(Transitivity_FDSM + 1),
+    Strength_SDSM_log = log(Strength_SDSM),
+    Transitivity_SDSM_log = log(Transitivity_FDSM + 1),
+    # 1 Year lags
+    EPS_log_lag1 = log(Hmisc::Lag(EPS, 1)),
+    Strength_FDSM_log_lag1 = log(Hmisc::Lag(Strength_FDSM, 1)),
+    Transitivity_FDSM_log_lag1 = log(Hmisc::Lag(Transitivity_FDSM + 1, 1)),
+    Strength_SDSM_log_lag1 = log(Hmisc::Lag(Strength_SDSM, 1)),
+    Transitivity_SDSM_log_lag1 = log(Hmisc::Lag(Transitivity_SDSM + 1 + 1, 1)),
+    # 5 Year lags
+    EPS_log_lag5 = log(Hmisc::Lag(EPS, 5)),
+    Strength_FDSM_log_lag5 = log(Hmisc::Lag(Strength_FDSM, 5)),
+    Transitivity_FDSM_log_lag5 = log(Hmisc::Lag(Transitivity_FDSM + 1, 5)),
+    Strength_SDSM_log_lag5 = log(Hmisc::Lag(Strength_SDSM, 5)),
+    Transitivity_SDSM_log_lag5 = log(Hmisc::Lag(Transitivity_SDSM + 1, 5))) %>%
+  dplyr::mutate(dplyr::across(where(is.numeric), ~na_if(., NaN))) %>%
+  dplyr::mutate(dplyr::across(where(is.numeric), ~na_if(., -Inf))) %>%
+  dplyr::filter(Year <= 2015 & Year >= 1990)
+
+# Save full panel
+
+saveRDS(all_vars, file = paste0(data_path, "Panel.rds"))
 
 ############################ Panel Analysis ####################################
 
-# Set panel dimensions:
+# Set panel dimensions for {fixest} package:
 fixest::setFixest_estimation(panel.id = ~COU + Year)
+
+# Step 1: Is our panel balanced ? Yes. There are missing values though.
+
+all_vars %>%
+  select(Year, COU) %>%
+  table()
+plm::is.pbalanced(all_vars)
+
+# Step 2: Correlations
+correlations <- all_vars %>%
+  dplyr::select(
+    berd, goverd, TFP0, TFP1, TFP2,
+    EnvPat, triadic_patent,
+    EPS_log_lag1, EPS_log_lag5,
+    Transitivity_FDSM_log_lag1, Transitivity_FDSM_log_lag5,
+    Transitivity_SDSM_log_lag1, Transitivity_SDSM_log_lag5,
+    Strength_FDSM_log_lag1, Strength_FDSM_log_lag5,
+    Strength_SDSM_log_lag1, Strength_SDSM_log_lag5) %>%
+  cor(use = "complete.obs")
+
+correlations %>%
+  corrplot::corrplot(type = "lower", order = "original",
+                     tl.col = "black", tl.srt = 45)
+
 
 # A quick note on lags: we will use respectively 1 and 5 year lags of policy
 # stringency measures and the international environmental indexes. This follows
 # Lankoski, 2010, Martinez-Zarzoso et al. 2015 and is mentionned in the
-# litterature review by Lanoie et al. 2020
+# literature review by Lanoie et al. 2020
 # https://www.journals.uchicago.edu/doi/full/10.1093/reep/res016
 # This is mainly due to the fact that innovation takes time and that it arguably
 # does not make theoretical sense to compare contemporaneous policy stringency
@@ -207,23 +261,58 @@ fixest::setFixest_estimation(panel.id = ~COU + Year)
 # Proxies for innovation:
 
 #   - Business expenditures on R&D: berd
+
+######
 # POLS
+######
+
+# FDSM
 pols_berd_fdsm <- fixest::feols(fml = log(berd) ~ l(log(EPS), 5) +
                              l(log(Strength_FDSM), 5) + l(log(Transitivity_FDSM), 5) +
                              log(GDPCapita) +
                              log(ExportIntensity) +
                              log(ImportIntensity),
                            data = all_vars)
-
+pols_berd_fdsm <- fixest::feols(fml = log(berd) ~ l(log(EPS), 5) +
+                                  l(log(Strength_FDSM), 5) + l(log(Transitivity_FDSM+1), 5) +
+                                  log(GDPCapita) +
+                                  log(ExportIntensity) +
+                                  log(ImportIntensity),
+                                data = all_vars)
+pols_berd_fdsm_lm <- lm(log(berd) ~ lag(log(EPS), 5) +
+                            lag(log(Strength_FDSM), 5) + lag(log(Transitivity_FDSM + 1), 5) +
+                            log(GDPCapita) +
+                            log(ExportIntensity) +
+                            log(ImportIntensity),
+                         data = all_vars,
+                         na.action = na.exclude)
+summary(pols_berd_fdsm_lm)
+pols_berd_fdsm_plm <- plm(log(berd) ~ lag(log(EPS), 5) +
+                          lag(log(Strength_FDSM), 5) + lag(log(Transitivity_FDSM + 1), 5) +
+                          log(GDPCapita) +
+                          log(ExportIntensity) +
+                          log(ImportIntensity),
+                        data = dplyr::filter(all_vars, !(is.na(all_vars$Strength_FDSM) | is.na(all_vars$Transitivity_FDSM))))
+summary(pols_berd_fdsm_plm)
+# SDSM
 pols_berd_sdsm <- fixest::feols(fml = log(berd) ~ l(log(EPS), 5) +
+                                  l(log(Strength_SDSM, 5)) + l(log(Transitivity_SDSM, 5)) +
+                                  log(GDPCapita) +
+                                  log(ExportIntensity) +
+                                  log(ImportIntensity),
+                                data = all_vars)
+pols_berd_sdsm_plm <- fixest::feols(fml = log(berd) ~ l(log(EPS), 5) +
                                   l(log(Strength_SDSM), 5) + l(log(Transitivity_SDSM), 5) +
                                   log(GDPCapita) +
                                   log(ExportIntensity) +
                                   log(ImportIntensity),
                                 data = all_vars)
+#################################
 # Fixed effects: Country and Year
+#################################
+
 fe_berd_fdsm <- fixest::feols(fml = log(berd) ~ l(log(EPS), 5) +
-                           l(log(Strength_FDSM), 5) + l(log(Transitivity_FDSM), 5) +
+                           l(Strength_FDSM, 5) + l(Transitivity_FDSM, 5) +
                            log(GDPCapita) +
                            log(ExportIntensity) +
                            log(ImportIntensity) | Year + COU,
@@ -231,7 +320,7 @@ fe_berd_fdsm <- fixest::feols(fml = log(berd) ~ l(log(EPS), 5) +
                          vcov = "NW")
 
 fe_berd_sdsm <- fixest::feols(fml = log(berd) ~ l(log(EPS), 5) +
-                        l(log(Strength_SDSM), 5) + l(log(Transitivity_SDSM), 5) +
+                        l(Strength_SDSM, 5) + l(Transitivity_SDSM, 5) +
                         log(GDPCapita) +
                         log(ExportIntensity) +
                         log(ImportIntensity) | Year + COU,
@@ -240,28 +329,29 @@ fe_berd_sdsm <- fixest::feols(fml = log(berd) ~ l(log(EPS), 5) +
 
 
 #   - Triadic Patent counts: triadic_patent
+
+######
 # POLS
-pols_triadic_patents_frow <- fixest::feols(fml = log(triadic_patent) ~ l(log(EPS), 5) +
-                                  l(log(Strength), 3) + l(log(Eigenvector), 3) +
+######
+
+# FDSM
+pols_triadic_patents_fdsm <- fixest::feols(fml = log(triadic_patent) ~ l(log(EPS), 5) +
+                                  l(log(Strength_FDSM), 3) + l(log(Transitivity_FDSM), 3) +
                                   log(GDPCapita) +
                                   log(ExportIntensity) +
                                   log(ImportIntensity),
                                 data = panel_frow)
 
-# pols_triadic_patents_fdsm <- fixest::feols(fml = log(triadic_patent) ~ l(log(EPS), 5) +
-#                                   l(log(Strength), 5) + l(log(Eigenvector), 5) +
-#                                   log(GDPCapita) +
-#                                   log(ExportIntensity) +
-#                                   log(ImportIntensity),
-#                                 data = panel_fdsm)
-
-pols_triadic_patents_sdsm <- fixest::feols(fml = log(triadic_patent) ~ l(log(EPS), 5) +
+pols_triadic_patents_fdsm <- fixest::feols(fml = log(triadic_patent) ~ l(log(EPS), 5) +
                                   l(log(Strength), 5) + l(log(Eigenvector), 5) +
                                   log(GDPCapita) +
                                   log(ExportIntensity) +
                                   log(ImportIntensity),
                                 data = panel_sdsm)
+#################################
 # Fixed effects: Country and Year
+#################################
+
 fe_triadic_patents_frow <- fixest::feols(fml = log(triadic_patent) ~  l(log(EPS), 5) +
                                 l(log(Strength), 5) + l(log(Eigenvector), 5) +
                                 log(GDPCapita) +
@@ -288,14 +378,6 @@ fe_triadic_patents_sdsm <- fixest::feols(fml = log(triadic_patent) ~ l(log(EPS),
 
 
 ############################ Generate tables ###################################
-
-
-# Balancedness of the panel
-panel %>%
-  select(Year, COUSectorID) %>%
-  table()
-panel %>%
-  plm::is.pbalanced(Index = Year, COUSectorID)
 
 # Graphing panel time series:
 

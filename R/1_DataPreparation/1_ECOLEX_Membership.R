@@ -7,7 +7,7 @@
 # save(ECOLEX_mem, file = "data_raw/ECOLEX/Membership/ECOLEX_membership.rds")
 
 # Load Libraries
-library(tidyverse)
+library(tidyverse) # 1.3.1
 
 # Import Agreements from ECOLEX and join both:
 

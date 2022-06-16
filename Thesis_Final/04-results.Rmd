@@ -8,43 +8,23 @@ output: iheiddown::chapter_pdf
 ---
 
 \setcounter{chapter}{3}
-# Results {#results}
+# Results and Discussion {#results}
 
-## Descriptive Statistics:
+In this section, we will describe the results.
 
-Before diving into the analysis, let us briefly analyse the core variables
-of interest.
+## Results:
 
-### International Environmental Governance Metrics:
+### Weak Porter Hypothesis:
 
-As laid out in the previous section, we will focus on two core metrics of
-country embeddedness within the international environmental collaboration
-network; strength and transitivity. The former captures, the direct effects
-of embeddedness on inventive activity while the latter captures the
-indirect effects of inventive activity on innovation.
+#### Business Expenditures in R&D:
 
-#### Strength:
+#### Triadic Patent Counts:
 
-#### Weighted Clustering Coefficient:
+#### Environmental Patent Counts:
 
-### Domestic Environmental Governance:
+### Strong Porter Hypothesis:
 
-The level of domestic environmental governance is proxied by the Environmental
-Policy Stringency Index produced by the OECD
-[@bottaMeasuringEnvironmentalPolicy2014].^[A new index is currently under
-review but not yet available [@kruseMeasuringEnvironmentalPolicy2022].] The
-index measures the stringency of environmental policies in OECD countries
-from 1990 to 2015.
+#### Total Factor Productivity:
 
-### Innovation Measures:
-
-#### R&D Expenditures:
-
-#### Patent Counts:
-
-## Panel Estimations:
-
-
-
-
+## Discussion:
 

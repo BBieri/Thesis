@@ -188,7 +188,9 @@ for (i in seq(length(ecolex_lst_sdsm))) { # 71 years
 is.directed(ecolex_lst_onemode_sdsm_igraph[[70]]) # False as expected
 names(ecolex_lst_onemode_sdsm_igraph) <- as.character(1948:2018)
 
+################################
 # Save corrected network objects
+################################
 net_save_path <- "data/CleanData/OnemodeNetworks/"
 save_networks <- function(network_lst, type) {
   for (i in seq(length(names(network_lst)))) {
@@ -205,31 +207,48 @@ save_networks(ecolex_lst_onemode_fdsm_nonFDR_igraph, type = "FDSM_NonFDR") # Wit
 save_networks(ecolex_lst_onemode_frow_igraph, type = "FROW") # With FDR correction
 
 # Some intermediary plots to highlight the backbone extraction process:
-l <- layout.fruchterman.reingold(as.undirected(ecolex_lst_onemode_sdsm_igraph$`2010`))
+# To main component
+to_main_comp <- function(g){
+  components <- igraph::clusters(g, mode = "weak")
+  biggest_cluster_id <- which.max(components$csize)
+  vert_ids <- V(g)[components$membership == biggest_cluster_id]
+  igraph::induced_subgraph(g, vert_ids)
+}
+g1 <- to_main_comp(ecolex_lst_igraph_onemode$`2010`)
+g2 <- to_main_comp(ecolex_lst_onemode_frow_igraph$`2010`)
+g3 <- to_main_comp(ecolex_lst_onemode_sdsm_igraph$`2010`)
+g4 <- to_main_comp(ecolex_lst_onemode_fdsm_igraph$`2010`)
+
+# Layouts
+l1 <- layout.fruchterman.reingold(as.undirected(g1))
+l2 <- layout.fruchterman.reingold(as.undirected(g2))
+l3 <- layout.fruchterman.reingold(as.undirected(g3))
+l4 <- layout.fruchterman.reingold(as.undirected(g4))
+
 par(mfrow = c(2, 2))
-plot(ecolex_lst_igraph_onemode$`2010`,
+plot(g1,
      vertex.size = 1,
      edge.width = 0.5,
      vertex.label = NA,
-     layout = l,
+     layout = l1,
      main = "2010 Cooperation Network\nNaive")
-plot(as.undirected(ecolex_lst_onemode_frow_igraph$`2010`),
+plot(as.undirected(g2),
      vertex.size = 1,
      edge.width = 0.5,
      vertex.label = NA,
-     layout = l,
+     layout = l2,
      main = "2010 Cooperation Network\nFROW Corrected")
-plot(as.undirected(ecolex_lst_onemode_sdsm_igraph$`2010`),
+plot(as.undirected(g3),
      vertex.size = 1,
      edge.width = 0.5,
      vertex.label = NA,
-     layout = l,
+     layout = l3,
      main = "2010 Cooperation Network\nSDSM Corrected")
-plot(as.undirected(ecolex_lst_onemode_fdsm_igraph$`2010`),
+plot(as.undirected(g4),
      vertex.size = 1,
      edge.width = 0.5,
      vertex.label = NA,
-     layout = l,
+     layout = l4,
      main = "2010 Cooperation Network\nFDSM Corrected")
 dev.off()
 
@@ -258,6 +277,8 @@ dev.off()
 # For Fixed Row corrected projection
 ####################################
 
+# Not conisdered in the final paper due to high connectivity so not developed further
+
 # Degree (strength, since its a weighted network)
 ecolex_net_lst_onemode_strength_centrality_frow <- lapply(ecolex_lst_onemode_frow_igraph,
                                                      igraph::strength)
@@ -280,7 +301,7 @@ ecolex_net_lst_onemode_betweeness_centrality_frow <- lapply(ecolex_lst_onemode_f
 # Subgraph
 ecolex_net_lst_onemode_subgraph_centrality_frow <- lapply(ecolex_lst_onemode_frow_igraph,
                                                      igraph::subgraph.centrality)
-# Note that for theoretical reasons, we're interested in both the degree and the
+# Note that for theoretical reasons, we're interested in both the strength and the
 # eigenvector centrality measure since we would like to characterize its
 # embeddedness in the international governance network i.e. the propensity to be
 # connected to other "popular" nodes when corrected for own connections.
@@ -288,31 +309,41 @@ ecolex_net_lst_onemode_subgraph_centrality_frow <- lapply(ecolex_lst_onemode_fro
 # ###############################
 # # For FDSM corrected projection
 # ###############################
-#
-# # Degree (strength, since its a weighted network)
-# ecolex_net_lst_onemode_strength_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
-#                                                      igraph::strength)
-#
-# # Closeness --> 22 of the 26 years have disconnected components
-# ecolex_net_lst_onemode_closeness_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
-#                                                       igraph::closeness)
-#
-# # Eigenvector
-# ecolex_net_lst_onemode_eigenvector_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
-#                                                         igraph::eigen_centrality,
-#                                                         directed = FALSE,
-#                                                         scale = TRUE, # Max eigenvect = 1
-#                                                         weights = NULL) # weight attribute of igraph object is used
-# # Betweenness
-# ecolex_net_lst_onemode_betweeness_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
-#                                                        igraph::betweenness,
-#                                                        directed = FALSE,
-#                                                        weight = NULL) # weight attribute of igraph object is used
-# # Subgraph
-# ecolex_net_lst_onemode_subgraph_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
-#                                                    igraph::subgraph.centrality)
 
-# Note that for theoretical reasons, we're interested in both the degree and the
+# Degree (strength, since its a weighted network)
+ecolex_net_lst_onemode_strength_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
+                                                     igraph::strength)
+
+# Closeness --> 22 of the 26 years have disconnected components
+ecolex_net_lst_onemode_closeness_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
+                                                      igraph::closeness)
+
+# Eigenvector
+ecolex_net_lst_onemode_eigenvector_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
+                                                        igraph::eigen_centrality,
+                                                        directed = FALSE,
+                                                        scale = TRUE, # Max eigenvect = 1
+                                                        weights = NULL) # weight attribute of igraph object is used
+# Betweenness
+ecolex_net_lst_onemode_betweeness_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
+                                                       igraph::betweenness,
+                                                       directed = FALSE,
+                                                       weight = NULL) # weight attribute of igraph object is used
+# Subgraph
+ecolex_net_lst_onemode_subgraph_centrality_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
+                                                   igraph::subgraph.centrality)
+# Clustering coef. transitivity
+ecolex_net_lst_onemode_transitivity_fdsm <- lapply(ecolex_lst_onemode_fdsm_igraph,
+                                                   igraph::transitivity,
+                                                   type = "barrat",
+                                                   isolates = "NaN",
+                                                   weight = NULL) # Weight argument is automatically used when
+                                                                  # null
+# Add names to transitivity vector for sdsm and fdsm
+for (i in seq(length(ecolex_lst_onemode_fdsm_igraph))) {
+  names(ecolex_net_lst_onemode_transitivity_fdsm[[i]]) <- igraph::get.vertex.attribute(ecolex_lst_onemode_fdsm_igraph[[i]], "name")
+}
+# Note that for theoretical reasons, we're interested in both the strength and the
 # eigenvector centrality measure since we would like to characterize its
 # embeddedness in the international governance network i.e. the propensity to be
 # connected to other "popular" nodes when corrected for own connections.
@@ -343,7 +374,19 @@ ecolex_net_lst_onemode_betweeness_centrality_sdsm <- lapply(ecolex_lst_onemode_s
 # Subgraph
 ecolex_net_lst_onemode_subgraph_centrality_sdsm <- lapply(ecolex_lst_onemode_sdsm_igraph,
                                                       igraph::subgraph.centrality)
-# Note that for theoretical reasons, we're interested in both the degree and the
+# Clustering coef. transitivity
+ecolex_net_lst_onemode_transitivity_sdsm <- lapply(ecolex_lst_onemode_sdsm_igraph,
+                                                   igraph::transitivity,
+                                                   type = "barrat",
+                                                   isolates = "NaN",
+                                                   weight = NULL) # Weight argument is automatically used when
+                                                                  # null
+# Add names to transitivity vector for sdsm
+for (i in seq(length(ecolex_lst_onemode_fdsm_igraph))) {
+  names(ecolex_net_lst_onemode_transitivity_sdsm[[i]]) <-
+    igraph::get.vertex.attribute(ecolex_lst_igraph_onemode[[i]], "name")
+}
+# Note that for theoretical reasons, we're interested in both the strength and the
 # eigenvector centrality measure since we would like to characterize its
 # embeddedness in the international governance network i.e. the propensity to be
 # connected to other "popular" nodes when corrected for own connections.
@@ -401,11 +444,13 @@ ecolex_eigenvector_panel_fdsm <-
 ecolex_strength_panel_fdsm <-
   centralitylst_centralitypanel(ecolex_net_lst_onemode_strength_centrality_fdsm)
 ecolex_betweenness_panel_fdsm <-
-  centralitylst_centralitypanel(ecolex_net_lst_onemode_betweenness_centrality_fdsm)
+  centralitylst_centralitypanel(ecolex_net_lst_onemode_betweeness_centrality_fdsm)
 ecolex_closeness_panel_fdsm <-
   centralitylst_centralitypanel(ecolex_net_lst_onemode_closeness_centrality_fdsm)
 ecolex_subgraph_panel_fdsm <-
   centralitylst_centralitypanel(ecolex_net_lst_onemode_subgraph_centrality_fdsm)
+ecolex_transitivity_panel_fdsm <-
+  centralitylst_centralitypanel(ecolex_net_lst_onemode_transitivity_fdsm)
 
 # SDSM
 ecolex_eigenvector_panel_sdsm <-
@@ -418,6 +463,8 @@ ecolex_closeness_panel_sdsm <-
   centralitylst_centralitypanel(ecolex_net_lst_onemode_closeness_centrality_sdsm)
 ecolex_subgraph_panel_sdsm <-
   centralitylst_centralitypanel(ecolex_net_lst_onemode_subgraph_centrality_sdsm)
+ecolex_transitivity_panel_sdsm <-
+  centralitylst_centralitypanel(ecolex_net_lst_onemode_transitivity_sdsm)
 
 
 ############################ Subset OECD Countries #############################
@@ -439,6 +486,7 @@ ecolex_strength_OECD_fdsm <- ecolex_strength_panel_fdsm[ecolex_strength_panel_fd
 ecolex_closeness_OECD_fdsm <- ecolex_closeness_panel_fdsm[ecolex_closeness_panel_fdsm$Country %in% oecd$Code, ]
 ecolex_betweenness_OECD_fdsm <- ecolex_betweenness_panel_fdsm[ecolex_betweenness_panel_fdsm$Country %in% oecd$Code, ]
 ecolex_subgraph_OECD_fdsm <- ecolex_subgraph_panel_fdsm[ecolex_subgraph_panel_fdsm$Country %in% oecd$Code, ]
+ecolex_transitivity_OECD_fdsm <- ecolex_transitivity_panel_fdsm[ecolex_transitivity_panel_fdsm$Country %in% oecd$Code, ]
 
 # SDSM
 ecolex_eigen_OECD_sdsm <- ecolex_eigenvector_panel_sdsm[ecolex_eigenvector_panel_sdsm$Country %in% oecd$Code, ]
@@ -446,14 +494,15 @@ ecolex_strength_OECD_sdsm <- ecolex_strength_panel_sdsm[ecolex_strength_panel_sd
 ecolex_closeness_OECD_sdsm <- ecolex_closeness_panel_sdsm[ecolex_closeness_panel_sdsm$Country %in% oecd$Code, ]
 ecolex_betweenness_OECD_sdsm <- ecolex_betweenness_panel_sdsm[ecolex_betweenness_panel_sdsm$Country %in% oecd$Code, ]
 ecolex_subgraph_OECD_sdsm <- ecolex_subgraph_panel_sdsm[ecolex_subgraph_panel_sdsm$Country %in% oecd$Code, ]
+ecolex_transitivity_OECD_sdsm <- ecolex_transitivity_panel_sdsm[ecolex_transitivity_panel_sdsm$Country %in% oecd$Code, ]
 
 # Check that we have all OECD countries in our panel:
 all(c(nrow(ecolex_eigen_OECD_frow) == 38, nrow(ecolex_strength_OECD_frow) == 38,
   nrow(ecolex_closeness_OECD_frow) == 38, nrow(ecolex_betweenness_OECD_frow) == 38,
   nrow(ecolex_subgraph_OECD_frow) == 38)) # TRUE
-# all(c(nrow(ecolex_eigen_OECD_fdsm) == 38, nrow(ecolex_strength_OECD_fdsm) == 38,
-#       nrow(ecolex_closeness_OECD_fdsm) == 38, nrow(ecolex_betweenness_OECD_fdsm) == 38,
-#       nrow(ecolex_subgraph_OECD_fdsm) == 38)) # TRUE
+all(c(nrow(ecolex_eigen_OECD_fdsm) == 38, nrow(ecolex_strength_OECD_fdsm) == 38,
+      nrow(ecolex_closeness_OECD_fdsm) == 38, nrow(ecolex_betweenness_OECD_fdsm) == 38,
+      nrow(ecolex_subgraph_OECD_fdsm) == 38)) # TRUE
 all(c(nrow(ecolex_eigen_OECD_sdsm) == 38, nrow(ecolex_strength_OECD_sdsm) == 38,
       nrow(ecolex_closeness_OECD_sdsm) == 38, nrow(ecolex_betweenness_OECD_sdsm) == 38,
       nrow(ecolex_subgraph_OECD_sdsm) == 38)) # TRUE
@@ -472,7 +521,8 @@ ecolex_eigen_OECD_fdsm <- ecolex_eigen_OECD_fdsm[order(ecolex_eigen_OECD_fdsm$Co
 ecolex_strength_OECD_fdsm <- ecolex_strength_OECD_fdsm[order(ecolex_strength_OECD_fdsm$Country), ]
 ecolex_closeness_OECD_fdsm <- ecolex_closeness_OECD_fdsm[order(ecolex_closeness_OECD_fdsm$Country), ]
 ecolex_betweenness_OECD_fdsm <- ecolex_betweenness_OECD_fdsm[order(ecolex_betweenness_OECD_fdsm$Country), ]
-ecolex_subgraph_OECD <- ecolex_subgraph_OECD[order(ecolex_subgraph_OECD$Country), ]
+ecolex_subgraph_OECD_fdsm <- ecolex_subgraph_OECD_fdsm[order(ecolex_subgraph_OECD_fdsm$Country), ]
+ecolex_transitivity_OECD_fdsm <- ecolex_transitivity_OECD_fdsm[order(ecolex_transitivity_OECD_fdsm$Country), ]
 
 # SDSM
 ecolex_eigen_OECD_sdsm <- ecolex_eigen_OECD_sdsm[order(ecolex_eigen_OECD_sdsm$Country), ]
@@ -480,6 +530,7 @@ ecolex_strength_OECD_sdsm <- ecolex_strength_OECD_sdsm[order(ecolex_strength_OEC
 ecolex_closeness_OECD_sdsm <- ecolex_closeness_OECD_sdsm[order(ecolex_closeness_OECD_sdsm$Country), ]
 ecolex_betweenness_OECD_sdsm <- ecolex_betweenness_OECD_sdsm[order(ecolex_betweenness_OECD_sdsm$Country), ]
 ecolex_subgraph_OECD_sdsm <- ecolex_subgraph_OECD_sdsm[order(ecolex_subgraph_OECD_sdsm$Country), ]
+ecolex_transitivity_OECD_sdsm <- ecolex_transitivity_OECD_sdsm[order(ecolex_transitivity_OECD_sdsm$Country), ]
 
 
 # Pivot longer
@@ -488,10 +539,10 @@ OECD_centrality_frow <- list(ecolex_eigen_OECD_frow, ecolex_strength_OECD_frow,
                         ecolex_subgraph_OECD_frow)
 OECD_centrality_fdsm <- list(ecolex_eigen_OECD_fdsm, ecolex_strength_OECD_fdsm,
                              ecolex_closeness_OECD_fdsm, ecolex_betweenness_OECD_fdsm,
-                             ecolex_subgraph_OECD_fdsm)
+                             ecolex_subgraph_OECD_fdsm, ecolex_transitivity_OECD_fdsm)
 OECD_centrality_sdsm <- list(ecolex_eigen_OECD_sdsm, ecolex_strength_OECD_sdsm,
                              ecolex_closeness_OECD_sdsm, ecolex_betweenness_OECD_sdsm,
-                             ecolex_subgraph_OECD_sdsm)
+                             ecolex_subgraph_OECD_sdsm, ecolex_transitivity_OECD_sdsm)
 
 OECD_centrality_frow <- lapply(OECD_centrality_frow,
                           tidyr::pivot_longer,
@@ -518,12 +569,13 @@ panel_manipulations <- function(panel) {
                     "Strength",
                     "Closeness",
                     "Betweeness",
-                    "Subgraph")
+                    "Subgraph",
+                    "Transitivity")
   panel
 }
 # Apply the function
 OECD_centrality_frow <- panel_manipulations(panel = OECD_centrality_frow)
-# OECD_centrality_fdsm <- panel_manipulations(panel = OECD_centrality_fdsm)
+OECD_centrality_fdsm <- panel_manipulations(panel = OECD_centrality_fdsm)
 OECD_centrality_sdsm <- panel_manipulations(panel = OECD_centrality_sdsm)
 
 ####################### Save each panel separately #############################
@@ -532,13 +584,13 @@ saving_lists <- function(panel){
   for (i in seq(length(names(panel)))) {
     saved <- panel[[i]]
     type <- sub(".*_", "", deparse(substitute(panel)))
-    save(saved, file = paste0(save_path, "/Centrality/OECD_Panel_",
+    saveRDS(saved, file = paste0(save_path, "/Centrality/OECD_Panel_",
                               names(panel)[[i]], "_", type, ".rds"))
   }
 }
 # Apply the function
 saving_lists(OECD_centrality_frow)
-# saving_lists(OECD_centrality_fdsm)
+saving_lists(OECD_centrality_fdsm)
 saving_lists(OECD_centrality_sdsm)
 
 ######################### Descriptive plots centrality #########################
@@ -608,58 +660,68 @@ ggsave(filename = "graphs/Descriptive/SubgraphCentrality_frow.jpeg")
 # ############################
 
 # Plot Eigenvector centrality:
-# eigen_plot <- ggplot2::ggplot(OECD_centrality_fdsm$Eigenvector, aes(x = Year, y = value,
-#                                                                     group = Country, color = Country)) +
-#   ggplot2::geom_line() +
-#   labs(title = "Eigenvector Centrality Score of One-Mode Network over time")
-#
-# eigen_plotly <- plotly::ggplotly(eigen_plot)
-#
-# ggsave(filename = "graphs/Descriptive/EigenvectorCentrality_fdsm.jpeg")
-#
-#
-# # Plot Strength centrality:
-# strength_plot <- ggplot2::ggplot(OECD_centrality_fdsm$Strength, aes(x = Year, y = value,
-#                                                                     group = Country, color = Country)) +
-#   ggplot2::geom_line() +
-#   labs(title = "Strength Centrality Score of One-Mode Network over time")
-#
-# strength_plotly <- plotly::ggplotly(strength_plot)
-#
-# ggsave(filename = "graphs/Descriptive/StrengthCentrality_fdsm.jpeg")
-#
-#
-# # Plot Closeness centrality:
-# close_plot <- ggplot2::ggplot(OECD_centrality$Closeness, aes(x = Year, y = value,
-#                                                              group = Country, color = Country)) +
-#   ggplot2::geom_line() +
-#   labs(title = "Closeness Centrality Score of One-Mode Network over time")
-#
-# close_plotly <- plotly::ggplotly(close_plot)
-#
-# ggsave(filename = "graphs/Descriptive/ClosenessCentrality_fdsm.jpeg")
-#
-#
-# # Plot Betweeness centrality:
-# between_plot <- ggplot2::ggplot(OECD_centrality_fdsm$Betweeness, aes(x = Year, y = value,
-#                                                                      group = Country, color = Country)) +
-#   ggplot2::geom_line() +
-#   labs(title = "Betweenness Centrality Score of One-Mode Network over time")
-#
-# between_plotly <- plotly::ggplotly(between_plot)
-#
-# ggsave(filename = "graphs/Descriptive/BetweennessCentrality_fdsm.jpeg")
-#
-#
-# # Plot Subgraph centrality:
-# subgraph_plot <- ggplot2::ggplot(OECD_centrality_fdsm$Subgraph, aes(x = Year, y = value,
-#                                                                     group = Country, color = Country)) +
-#   ggplot2::geom_line() +
-#   labs(title = "Subgraph Centrality Score of One-Mode Network over time")
-#
-# subgraph_plotly <- plotly::ggplotly(subgraph_plot)
-#
-# ggsave(filename = "graphs/Descriptive/SubgraphCentrality_fdsm.jpeg")
+eigen_plot <- ggplot2::ggplot(OECD_centrality_fdsm$Eigenvector, aes(x = Year, y = value,
+                                                                    group = Country, color = Country)) +
+  ggplot2::geom_line() +
+  labs(title = "Eigenvector Centrality Score of One-Mode Network over time")
+
+eigen_plotly <- plotly::ggplotly(eigen_plot)
+
+ggsave(filename = "graphs/Descriptive/EigenvectorCentrality_fdsm.jpeg")
+
+
+# Plot Strength centrality:
+strength_plot <- ggplot2::ggplot(OECD_centrality_fdsm$Strength, aes(x = Year, y = value,
+                                                                    group = Country, color = Country)) +
+  ggplot2::geom_line() +
+  labs(title = "Strength Centrality Score of One-Mode Network over time")
+
+strength_plotly <- plotly::ggplotly(strength_plot)
+
+ggsave(filename = "graphs/Descriptive/StrengthCentrality_fdsm.jpeg")
+
+
+# Plot Closeness centrality:
+close_plot <- ggplot2::ggplot(OECD_centrality$Closeness, aes(x = Year, y = value,
+                                                             group = Country, color = Country)) +
+  ggplot2::geom_line() +
+  labs(title = "Closeness Centrality Score of One-Mode Network over time")
+
+close_plotly <- plotly::ggplotly(close_plot)
+
+ggsave(filename = "graphs/Descriptive/ClosenessCentrality_fdsm.jpeg")
+
+
+# Plot Betweeness centrality:
+between_plot <- ggplot2::ggplot(OECD_centrality_fdsm$Betweeness, aes(x = Year, y = value,
+                                                                     group = Country, color = Country)) +
+  ggplot2::geom_line() +
+  labs(title = "Betweenness Centrality Score of One-Mode Network over time")
+
+between_plotly <- plotly::ggplotly(between_plot)
+
+ggsave(filename = "graphs/Descriptive/BetweennessCentrality_fdsm.jpeg")
+
+
+# Plot Subgraph centrality:
+subgraph_plot <- ggplot2::ggplot(OECD_centrality_fdsm$Subgraph, aes(x = Year, y = value,
+                                                                    group = Country, color = Country)) +
+  ggplot2::geom_line() +
+  labs(title = "Subgraph Centrality Score of One-Mode Network over time")
+
+subgraph_plotly <- plotly::ggplotly(subgraph_plot)
+
+ggsave(filename = "graphs/Descriptive/SubgraphCentrality_fdsm.jpeg")
+
+# Plot transitivity:
+transitivity_plot <- ggplot2::ggplot(OECD_centrality_fdsm$Transitivity, aes(x = Year, y = value,
+                                                                    group = Country, color = Country)) +
+  ggplot2::geom_line() +
+  labs(title = "Transitivity Score of One-Mode Network over time")
+
+transitivity_plotly <- plotly::ggplotly(transitivity_plot)
+
+ggsave(filename = "graphs/Descriptive/transitivity_fdsm.jpeg")
 
 # ############################
 # Let's use the SDSM algorithm
@@ -718,3 +780,13 @@ subgraph_plot_sdsm <- ggplot2::ggplot(OECD_centrality_sdsm$Subgraph, aes(x = Yea
 subgraph_plotly_sdsm <- plotly::ggplotly(subgraph_plot_sdsm)
 
 ggsave(filename = "graphs/Descriptive/SubgraphCentrality_sdsm.jpeg")
+
+# Plot Barrat transitivity
+Transitivity_plot_sdsm <- ggplot2::ggplot(OECD_centrality_sdsm$Transitivity, aes(x = Year, y = value,
+                                                                         group = Country, color = Country)) +
+  ggplot2::geom_line() +
+  labs(title = "Transitivity Centrality Score of One-Mode Network over time")
+
+Transitivity_plotly_sdsm <- plotly::ggplotly(Transitivity_plot_sdsm)
+
+ggsave(filename = "graphs/Descriptive/TransitivityCentrality_sdsm.jpeg")

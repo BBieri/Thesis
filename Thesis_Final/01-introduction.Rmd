@@ -16,4 +16,13 @@ output: iheiddown::chapter_pdf
 
 
 
-
+In section 2, we review the existing literature on Porter's Hypothesis and
+the effect of policy certainty on innovation, and the emerging literature
+on the network analysis of the global environmental governance complex. In
+section 3, we define the computation of the two environmental governance
+network metrics that will proxy the effect of international policymaking
+on innovation. Furthermore, we will define our empirical strategy and
+provide the reader with descriptive statistics of the main variables of interest.
+In section 4, we present and discuss the results stemming from our empirical
+estimation. Finally, we wrap up in section 5 and provide pathways for
+further studies in this up-and-coming field.

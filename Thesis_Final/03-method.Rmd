@@ -46,28 +46,43 @@ statistically validate this projection by comparing the resulting observed
 one cooperation network with a null model. This process is also commonly
 known as *backbone extraction*. Finally, we describe the computation of
 two centrality indices that will proxy the intensity and the certainty of
-international policy. Let us start by defining the empirical panel model that
+international policy as well as all other variables of interest.
+Let us however start by defining the empirical panel model that
 we will estimate in the next section before detailing the construction of
-the various estimated coefficients.
+its various coefficients.
 
 ## The Empirical Model:
 
-We define a panel model and consider all OECD countries (as of 2021)
-over the time period between 1990 and 2015.
+We define the following general panel model and consider
+all OECD countries over the time period between 1990 and 2015.
 
 $$
-y_{it} = \beta_1 \text{EPS}_{it} + \beta_2 \text{Strength}_{it} +
-\beta_3 \text{WeightedClustering}_{it} + \beta_4 X_{it} + \alpha_i + \delta_t + u_{it}
+y_{it} = \beta_1 \text{EPS}_{i,\ t-k} + \beta_2 \text{Strength}_{i,\ t-k}^{M} +
+\beta_3 \text{Transitivity}_{i,\ t-k}^{M} + \beta_4 X_{it} + \alpha_i + \delta_t + u_{it}
 $$
 
+Where $\text{EPS}_{i,\ t-k}$ is a proxy for national environmental policy
+stringency over the time period between 1990 and 2015 for OECD countries.
+$\text{Strength}_{it}^{M}$ and $\text{Transitivity}_{it}^{M}$ are indexes characterizing
+the international policy network on the environment we compute by using
+different *backbone extraction* methods $M$ to ensure the robustness of our
+results. $X_{it}$ is a vector of control variables including GDP per capita
+measures from the World Bank and import/export intensity measures to account
+for the economic integration in the global trade network. Finally, we add
+both country $\alpha_i$ and 
 
+We will begin by defining the construction of the  $\text{Strength}_{it}$ and the
+$\text{Transitivity}_{it}$ measures of international governance before turning
+to the $\text{EPS}_{it}$ indicator and the various dependent variables of
+innovation and productivity we use to test the different versions of Porter's
+Hypothesis.
 
 ## Constructing international environmental cooperation centrality measures:
 
 We leverage the ECOLEX dataset to construct country level measures of
 embeddedness in the international environmental cooperation network
 [@unepiucnfaoECOLEXGatewayEnvironmental2022]^[To be more specific, we use a 
-pre-scraped version included in the `{manyenviron}` package 
+scraped version included in the `{manyenviron}` package 
 [@hollwayManyenvironEnvironmentalAgreements2021] which was originally used in
 @sommerGlobalGovernanceForestry2020]. This dataset lists
 environmental agreements between two or more parties and the related
@@ -560,7 +575,7 @@ stringent environmental policies.
 ```{r EPSdesc, echo=FALSE, fig.cap="Environmental Policy Stringency 1990-2015", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   ggplot2::ggplot(aes(x = Year, y = EPS)) +
-  ggplot2::geom_line(aes(color = COU), size = 0.6) +
+  ggplot2::geom_line(aes(color = Country), size = 0.6) +
   ggplot2::guides(color = guide_legend(title = "Country")) +
   ggplot2::labs(caption = "OECD, 2015") +
   iheiddown::theme_iheid()
@@ -568,61 +583,102 @@ readRDS(paste0(clean_data_path, "Panel.rds")) %>%
 
 ### Innovation Measures:
 
-We measure innovation in two main ways. First, we consider the business
-expenditures on R&D to capture the input side of the innovation process
-by using the 
-
+We measure innovation, the first of our dependent variables, in two main ways. 
+First, we consider the Business Expenditures on R&D (BERD) to capture the input 
+side of the innovation process by using data from the OECD 
+[@oecdMainScienceTechnology2022]. We complement the insight from this analysis
+by using Triadic Patent Family (TFP) counts and Environmental Patent (EnvPat) 
+counts to proxy *the outcome* of the research process
+[@oecdOECDTriadicPatent2022; @oecdPatentsEnvironmentTechnologies2022].
+Both insights are complementary as Business Expenditures on R&D 
+give a good approximation of the importance placed on the R&D process by firms 
+while Triadic Family Patent counts and the country-level share of environmental
+patents allows us to examine the effect of environmental policy on *outcomes*
+of inventive activity @poppEnvironmentalPolicyInnovation2019. In conclusion,
+these innovation proxies will allow us to assess the *Weak Porter Hypothesis*.
 
 #### Business Expenditures in R&D:
 
-```{r BERDdesc, echo=FALSE, fig.cap="Business Expenditures in R&D 1990-2015", warning=FALSE, message=FALSE}
+We see an overall upward trend in the logged BERD indicating an increase
+of the level of expenditures on R&D across all countries. In addition,
+we note a considerable country-level heterogeneity with the top 3 countries
+being the United States, Japan and Germany.
+
+```{r BERDdesc, echo=FALSE, fig.cap="Business Expenditures in R\\&D 1990-2015", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   ggplot2::ggplot(aes(x = Year, y = log(berd))) +
-  ggplot2::geom_line(aes(color = COU), size = 0.6) +
+  ggplot2::geom_line(aes(color = Country), size = 0.6) +
   ggplot2::guides(color = guide_legend(title = "Country")) +
-  ggplot2::labs(caption = "OECD, 2021",
+  ggplot2::labs(caption = "OECD, 2022",
                 y = "log(BERD)") +
   iheiddown::theme_iheid()
 ```
 
-#### Triadic Patent Counts:
+#### Triadic Family Patent Counts:
+
+Triadic Family Patent counts show a similar pattern with respect to the country
+level heterogeneity. The top three countries are once again Japan, the United
+States and Germany. Note that while some countries, such as Japan and the US
+saw a marked increase in the yearly patent counts, most countries' counts
+remained relatively constant over time.
 
 ```{r TPFdesc, echo=FALSE, fig.cap="Triadic Patent Counts 1990-2015", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
-  ggplot2::ggplot(aes(x = Year, y = triadic_patent)) +
-  ggplot2::geom_line(aes(color = COU), size = 0.6) +
-  ggplot2::guides(color = guide_legend(title = "Country")) +
-  ggplot2::labs(caption = "OECD, 2021",
-                y = "Triadic Patent Count") +
-  iheiddown::theme_iheid()
+                     ggplot2::ggplot(aes(x = Year, y = triadic_patent)) +
+                     ggplot2::geom_line(aes(color = Country), size = 0.6) +
+                     ggplot2::guides(color = guide_legend(title = "Country")) +
+                     ggplot2::labs(caption = "OECD, 2022",
+                                   y = "Triadic Patent Count") +
+                     iheiddown::theme_iheid()
 ```
 
 #### Environmental Patent Counts:
 
-```{r TPFdesc, echo=FALSE, fig.cap="Triadic Patent Counts 1990-2015", warning=FALSE, message=FALSE}
+Taking into account the share of *environmental* patents with respect to
+total patents allows us to refine our analysis by matching environmental
+policy to environmental patents. This link is key since environmental innovative
+activity should arguably be more strongly affected by environmental policy
+than other technologies. Using such an alternative estimation allows us
+to somewhat shield us from p-hacking claims as they are laid out by
+@brunsFlexibilitySelectionPatent2020 in the case of solar energy policies and 
+patents.
+
+```{r EnvPatdesc, echo=FALSE, fig.cap="Environmental Patent Share 1990-2015", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
-  ggplot2::ggplot(aes(x = Year, y = EnvPat)) +
-  ggplot2::geom_point(aes(color = COU), size = 1) +
+  ggplot2::ggplot(aes(x = Year, y = EnvPatShare)) +
+  ggplot2::geom_line(aes(color = Country)) +
   ggplot2::guides(color = guide_legend(title = "Country")) +
-  ggplot2::labs(caption = "OECD, 2021",
-                y = "Environmental Patent Count") +
+  ggplot2::labs(caption = "OECD, 2022",
+                y = "Environmental Patent Share %") +
   iheiddown::theme_iheid()
 ```
 
-### Productivity Measures:
+### Total Factor Productivity:
 
-#### Total Factor Productivity:
-
-https://euklems.eu/
+The *Strong Porter Hypothesis* we laid out in the previous chapter links
+environmental policy stringency and productivity or profits. We test this
+hypothesis by regressing total factor productivity on the dependent domestic
+and international policy variables. To that effect, we will use the
+Total Factor Productivity index developed by the Vienna Institute
+for International Economic Studies [@stehrerWiiwGrowthProductivity2022].
+We will follow @martinez-zarzosoDoesEnvironmentalPolicy2019 and use the
+"TFP0" decomposition of GDP based on capital stocks and hours worked only
+as defined below. Note that we use TFP growth rates instead of levels in this
+instance.
 
 $$
 \Delta \ln Y=\Delta \ln T F P 0+\bar{s}_{C} \Delta \ln K+\bar{s}_{L} \Delta \ln H
 $$
 
+Two features are sailient from the graph below. First and foremost, we observe
+a form of growth rate convergence among OECD countries over the considered time
+period around $0\%$ to $2.5\%$ . A second prominent feature is the impact of
+the 2008 financial crisis which hit Greece particularly hard.
+
 ```{r TFP0desc, echo=FALSE, fig.cap="Total Factor Productivity 1990-2015", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   ggplot2::ggplot(aes(x = Year, y = TFP0)) +
-  ggplot2::geom_line(aes(color = COU), size = 0.6) +
+  ggplot2::geom_line(aes(color = Country), size = 0.6) +
   ggplot2::guides(color = guide_legend(title = "Country")) +
   ggplot2::labs(caption = "EU KLEMS, 2022",
                 y = "Total Factor Productivity\n(growth rate %)") +
@@ -631,14 +687,25 @@ readRDS(paste0(clean_data_path, "Panel.rds")) %>%
 ```
 
 
-### Other Control Variables:
-
-GDP per capita, Import intensity, Export intensity
-
 ## Correlations:
 
 Before moving on to the results, let us consider the correlations between
-our variables of interest.
+our variables of interest. The first four columns in of the correlogram
+\@ref(fig:correlations) correspond to the correlations between the four
+dependent variables and the domestic and international policy variables.
+We examine the correlations of different lags and different specifications
+of the independent policy variables to ensure that our results are consistent
+across all specifications. We namely see that the business expenditure variable
+on R&D is positively correlated with all policy variables, both domestic and
+international as well as across lags and FDSM/SDSM specifications. Concurringly,
+the other innovation outcome proxies, Triadic Family Patent counts and the share
+of environmental patents, are also positively correlated with all policy measures.
+This evidence therefore seems to confirm the *Weak Porter Hypothesis*. On the other
+hand we see that the growth rate of total factor productivity (*TFP0*) seems to be
+weakly negatively correlated to our policy measures which indicates that
+the *Strong Porter Hypothesis* may not be verified in our case. Let us now
+move to the estimation of the empirical model defined in the beginning of this
+section in the next chapter to further investigate these correlations.
 
 ```{r correlations, echo=FALSE, fig.cap="Correlations"}
 knitr::include_graphics("figures/Correlations.png")

@@ -1,0 +1,1428 @@
+---
+####################
+## Metadata       ##
+####################
+doctitle: |
+  The Impact of Global Environmental Governance on Firm-level Innovation;
+  Revisiting the Porter Hypothesis at the International Level.
+firstnames: Bernhard
+lastnames: Bieri
+thesisno: 12345
+phd: false # Or: false for Masters
+department: Master of International Economics
+degreedate: September 2022
+supervisor: Prof. Joëlle Noailly
+secondreader: Prof. James Hollway
+# This is the YAML (YAML Ain't Markup Language) header that includes 
+# metadata used to produce the document. 
+# Be careful with spacing in this header!
+# Two spaces at the start of the line create indentation,
+# which embeds the parameter in a hierarchy.
+
+####################
+## Front Matter   ##
+####################
+# dedication: For you #If you'd prefer to not include a Dedication, for example, simply delete the section entirely, or silence them (add # before each line). 
+resume: | # otherwise known as the abstract
+  `r paste(readLines("front-matter/_abstract.Rmd"), collapse = '\n  ')`
+acknowledgements: |
+  `r paste(readLines("front-matter/_acknowledgements.Rmd"), collapse = '\n  ')`
+# abbreviations: "front-matter/abbreviations" # path to .tex file with abbreviations
+toc-depth: 2 # depth of heading to include in table of contents
+lof: true # list of figures in front matter?
+lot: true # list of tables in front matter?
+mini-toc: false  # mini-table of contents at start of each chapter? (this just prepares it; you must also add \minitoc after the chapter titles)
+mini-lot: false  # mini-list of tables by start of each chapter?
+mini-lof: false  # mini-list of figures by start of each chapter?
+
+####################
+## Bibliography   ##
+####################
+bibliography: bib/references.bib #Set your bibliography file here.
+bibliography-heading-in-pdf: References
+bib-style: authoryear # See https://www.overleaf.com/learn/latex/biblatex_citation_styles for a list of the commonly used built-in citations styles of biblatex.
+bib-sorting: nyt #See https://www.overleaf.com/learn/latex/Articles/Getting_started_with_BibLaTeX for different bibliography sorting options.
+citeall: true #Set this to true if you want all elements in your .bib file to appear in your bibliography (i.e. all R-packages you used).
+
+#####################
+## PDF Formatting  ##
+#####################
+draft: false # add DRAFT mark in the footer and line numbering?
+page-layout: oneside #'oneside' for PDF output (equal margins), 
+# or 'twoside' for two-sided binding (mirror margins and blank pages) 
+hidelinks: false #if false, the PDF output highlights clickable links with a colored border 
+# you will probably want to set this to true for PDF version you wish to physically print
+knit: iheiddown::thesis_pdf
+#####################
+## Output Options  ##
+#####################
+output: iheiddown::thesis_pdf
+link-citations: true
+documentclass: book
+---
+
+<!-- 
+The {.unnumbered} option here means that the introduction will be 
+"Chapter 0." You can also use {-} for no numbers on chapters.
+# Preface {.unnumbered}
+-->
+
+<!-- This chunk creates automatically a .bib file to cite the loaded packages in the bibliography. Do not forget to set "citeall" to true in the bibliography section of the YAML header if you want all packages to be cited even if you did not mention them in the body of the text.-->
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(
+  comment = '',
+  echo = FALSE,
+  fig.align = 'center',
+  out.width = "\\textwidth",
+  message = FALSE,
+  warning = FALSE
+)
+# Load fonts
+library(extrafont)
+extrafont::loadfonts(quiet = T)
+```
+
+```{r, include=FALSE}
+knitr::write_bib(c(.packages(), "bookdown"), "bib/packages.bib")
+```
+
+<!--chapter:end:index.Rmd-->
+
+---
+title: Introduction
+# author: Author
+chapter: 1
+in_context: True
+knit: iheiddown::chapter_pdf
+# abstract: |
+#   In this chapter, I'll introduce how to write basic text using markdown.
+#   It is super simple, as you will see. You just write normal text,
+#   but then indicate where you want certain formatting with some very basic 'markup'.
+output: iheiddown::chapter_pdf
+---
+
+\setcounter{chapter}{0}
+# Introduction {#intro}
+
+
+
+In section 2, we review the existing literature on Porter's Hypothesis and
+the effect of policy certainty on innovation, and the emerging literature
+on the network analysis of the global environmental governance complex. In
+section 3, we define the computation of the two environmental governance
+network metrics that will proxy the effect of international policymaking
+on innovation. Furthermore, we will define our empirical strategy and
+provide the reader with descriptive statistics of the main variables of interest.
+In section 4, we present and discuss the results stemming from our empirical
+estimation. Finally, we wrap up in section 5 and provide pathways for
+further studies in this up-and-coming field.
+
+<!--chapter:end:01-introduction.Rmd-->
+
+---
+title: Litterature Review
+# author: Author
+chapter: 2
+in_context: False
+knit: iheiddown::chapter_pdf
+output: iheiddown::chapter_pdf
+---
+
+\setcounter{chapter}{1}
+# Litterature Review {#litreview}
+
+The present paper draws from three distinct but complementary strands of
+the literature on environmental policy. First and foremost, we ought to
+characterize what is known in the literature as the *Porter Hypothesis* and
+distinguish the different versions that have been devised over the years.
+We will thus strive to understand the impact of increased environmental regulations
+on both innovative activity of firms and on overall firm performance before
+completing the analysis by highlighting works that looked at the impact of the
+nature of environmental policy on firm-level innovation.
+The next strand of the literature relates to the concept of *policy certainty*
+which highlights the importance of designing policies that 
+Finally, and most central to our contribution, lies the
+literature on *International Environmental Governance* and the related methodological
+advances to understand it within a network framework.
+
+## The Porter Hypothesis
+
+Over three decades ago, the Porter Hypothesis (PH) challenged the conventional
+Panglossian economic thinking that enhanced environmental regulation would
+lead to a decrease in economic performance of firms due to the increased
+constraints imposed on the firm [@michael1991america]. The main intuition behind the
+Panglossian doxa is that if it were profitable for firms to follow a more
+sustainable production path, they would do so in the absence of regulations.
+On the basis of case studies, Porter however argues that well designed,
+market-based, pollution preventing policies would lead firms to create products
+that are more resource efficient and thus competitive on the international
+market. An example of the latter could be the implementation of more stringent
+fuel consumption standards for cars. Porter thus advances that this
+increase in environmental stringency, would force domestic automobile
+companies to make more fuel efficient cars which in turn would increase
+the competitiveness of domestic cars in the world market. 
+
+Porter and Von der Linde later formalize his initial criticism in 
+@porterNewConceptionEnvironmentCompetitiveness1995 where they outline six main
+causal links between increased environmental regulations and innovation or
+firm performance. First, they contend that "regulation signals companies about
+likely resource inefficiencies and potential technological improvements.
+Second, they argue that "regulation focused on information gathering
+can achieve major benefits [in terms of environmental performance and
+economic performance] by raising corporate awareness". Third, they
+mention that "environmental regulation reduces the "uncertainty that
+investments to address the environment will be valuable". Fourth,
+they advance that outside pressure, which includes the regulatory framework
+firms have to comply with, is able to overcome organizational inertia and
+motivate innovation. The fifth reason put forward by the authors is that
+"regulation levels the transitional playing field" in the sense that regulation
+ensures that companies do not gain an unfair advantage until new and improved
+technologies are proven. The sixth and final argument pertains to an important
+nuance between the effect of regulation on innovation and competitiveness of
+firms in that compliance costs arising from environmental regulations might not
+always be offset by benefits brought by product innovations. Crucially, Porter
+and Van der Linde contend that most benefits occurring from increased innovation
+will arise in the medium to the long term due to the required time span for the
+innovation to bear fruits. Hence the existence of a lag between the implementation
+of an environmental regulation and a signal on innovation or economic performance
+metrics of firms is to be expected.
+
+Due to its unorthodox nature, the Porter Hypothesis generated a strong debate 
+among economists during the late 1990's and the early 2000's
+[@jaffeEnvironmentalRegulationCompetitiveness1995].
+@ambecPorterHypothesis202013 provide a clear overview of the various arguments
+proponents used to defend the *PH*. They define a first set of studies which
+underlines the fact that firms are driven by individuals who might not
+satisfy the assumptions of rationality required for firms to be deemed
+profit-maximizers. Indeed, managerial risk-aversion, resistance to change
+[@aghionCorporateGovernanceCompetition1997], and
+a combination of lacking information and the cognitive capabilities to
+process the latter [@gabel2001firm] may cause a mismatch between the utility
+maximizing behaviors of the management and the firm as a whole. Akin to this
+principal agent issue, @ambecTheoreticalFoundationPorter2002 argue that managers
+may exhibit rent-seeking behavior by retaining private information on
+the true costs of technological innovations that would improve productivity
+and the environmental performance of the firm. This essentially
+follows the organizational inertia and learning effects put forward by
+@porterNewConceptionEnvironmentCompetitiveness1995 and outlined above.
+
+A second strand of the theoretical literature explore the role of market
+failures beyond the pure environmental externalities generated by pollution
+and how increased environmental regulations could overcome them.
+Examples of this strand include situations where firms are first movers
+within international markets characterized by imperfect competition where
+domestic production may increase as a result of more stringent environmental
+regulation [@simpsonTaxingVariableCost1996]. Another common market failure
+that could lead to the coexistence of the *PH* alongside profit-maximizing firms
+are information asymmetries between households and firms.
+The main idea here is that by setting industry standards or labels, firms
+are able to credibly communicate the environmental benefits of their products
+and overcome the asymmetry [@ambecSurvolFondementsTheoriques2007].
+Finally, the non-exclusive nature of R&D may lead to spillovers from the
+innovating firm to other firms in the industry. This may lead the economy
+to be in a bad equilibrium where firms invest too little in environmental
+technologies. If this is indeed the case, then regulations can level the playing
+field among firms and lead to a move to the higher, more R&D intensive
+equilibrium [@mohrTechnicalChangeExternal2002].
+
+On the empirical front, much has been written to reinforce the initially very
+theoretical debate surrounding the Porter Hypothesis.
+To facilitate its analysis, @jaffeEnvironmentalRegulationInnovation1997
+divided the original hypothesis into three distinct ones. What is known as
+the "Strong Porter Hypothesis" (*SPH*) links environmental regulation to firm
+competitiveness. The "Weak Porter Hypothesis" (*WPH*) links regulation to innovation,
+and the "Narrow Porter Hypothesis" argues that flexible market-based
+regulations are more effective in generating innovation than stricter
+command-and-control policies^[Since we will focus on the former two
+two hypotheses, we will not elaborate on the "narrow" hypothesis in this
+literature review.].
+
+The empirical literature analyzing the weak version of the Porter Hypothesis
+usually operationalizes innovation as R&D expenditures or through
+(aggregate or sector specific) patent counts. When instead analysing the
+strong version of the *PH* studies usually rely on firm profits.
+On the right hand side, the
+independent variable, environmental policy stringency, was initially proxied
+by pollution abatement costs [@jaffeEnvironmentalRegulationInnovation1997] or 
+energy prices [@newellInducedInnovationHypothesis1999] before being more
+holistically estimated via the use of indicators such as the Environmental Policy Stringency (*EPS*) indicator
+developed by the OECD [@kruseMeasuringEnvironmentalPolicy2022] or national
+firm-level surveys such as the Community Innovation Survey^[See
+@cohenImpactEnvironmentalRegulation2018 for a recent meta-analysis of
+the Porter Hypothesis and an outline of the different measures used.] [@eurostatCommunityInnovationSurvey2022].
+As we will outline more in detail in section 3 of the paper, we will take
+the modern approach and use the EPS index to proxy for environmental regulation
+stringency at the domestic level and patent counts and business R&D
+expenditures to proxy inventive activity of firms.
+The weak version of the Porter Hypothesis is found to be the most consistently
+verified hypothesis among the three as outlined in the meta-analysis by @cohenImpactEnvironmentalRegulation2018. The authors of the meta-analysis
+namely highlight the following points:
+
+- Early studies tend to find a negative relationship between environmental
+stringency and innovation/competitiveness. More recent studies find a
+positive relationship between the two variables.
+- Cross-country studies are more likely to find a positive link than
+firm-level studies. One possible reason for this can be found in the fact that 
+innovative activity of upstream equipment manufacturers or new entrants may also 
+respond to changes in the regulatory frameworks within an industry [@noaillyDirectingTechnicalChange2015; @sanyalProductMarketCompetition2013]^[Furthermore, 
+@cohenImpactEnvironmentalRegulation2018 note
+that "[t]o the extent that the Porter Hypothesis as originally 
+formulated focused on the competitiveness of nations, this finding is of
+particular interest [...]". In other words, since the original *PH* focused
+on nations as the unit of analysis, it is natural to take this unit of
+analysis when empirically testing it.].
+- Studies incorporating a temporal lag between the change in regulation
+stringency and inventive or profitability outcomes are more likely to
+find a positive relationship. This echoes once again the original formulation
+of the Porter Hypothesis which states that while regulation may hurt short
+term competitiveness and productivity, the long term effects would be positive.
+
+These findings will guide us in the elaboration of a panel model
+that will be outlined in more detail in section 3. Let us now turn our
+attention to the second strand of literature use to guide our empirical strategy
+and examine the impact of policy (un-)certainty on innovation.
+
+## The Role of Policy Certainty on the Innovative Behavior of Firms
+
+While the empirical literature on the impact of policy certainty on innovation
+is more
+recent and less abundant than the one on the Porter Hypothesis,
+a number of papers have investigated it.
+The literature of the impact of policy certainty on innovative
+activity was derived from the one that links policy uncertainty and investments
+in tangible assets. Early theoretical contributions outline that non-reversible
+investments are often delayed or scrapped if firms experience regulatory
+uncertainty via an increase in the utility derived from the status-quo^[See
+@bernankeIrreversibilityUncertaintyCyclical1983 and
+@bloomTradeInducedTechnical2016 for respectively a seminal and a
+recent theoretical model.].
+On the empirical front, @alesinaIncomeDistributionPolitical1996 were the first
+to investigate this link with a cross-section analysis of over 70 countries.
+More specifically, they find that more unequal countries are more likely to
+be politically unstable and political instability in itself has an adverse
+effect on investments in tangible assets. Additional empirical evidence
+highlighting the negative effect of policy uncertainty was provided by
+@bloomUncertaintyInvestmentDynamics2007 who extend the analysis to a panel model,
+@julioPoliticalUncertaintyCorporate2012 who highlight a negative impact of being
+in an election year on firm investments, and
+@gulenPolicyUncertaintyCorporate2016 who leverage the Economic Policy
+Uncertainty index developed by @bakerMeasuringEconomicPolicy2016 to
+describe a similar effect within a panel analysis.
+
+This negative effect between policy uncertainty and tangible asset
+investments need not hold for intangible investments in R&D
+since the latter are different and are namely characterized by
+a long-term horizon and a fat tailed risk
+distribution^[This characteristic is a product of the trial and
+error nature of the R&D process where only a small subset of research
+endeavors are successful and profitable.]. Nevertheless, a growing game
+theoretical literature argues that short-term agreements are less conducive to 
+investments in green R&D than long-term agreements due to the comparatively
+higher hold-up phenomenon when renegotiations are frequent
+[@harstadDynamicsClimateAgreements2016]. This phenomenon is mainly explained by
+the fact that countries that are more efficient in mitigating or abating
+emissions due to previous investments in the related technology will be asked
+to leverage their competitive advantage and bear the brunt of the emission
+reduction in negotiations.
+@bhattacharyaWhatAffectsInnovation2017 were the
+first to investigate the effect of policy uncertainty on innovation outcomes (i.e. 
+patent quantities and citations) empirically. They extend the theoretical
+model proposed by @edmansBlockholderTradingMarket2009 on managerial myopia
+by adding economic uncertainty, a measure of policy state and a measure of
+policy uncertainty. Using this theoretical framework, they test whether
+the pure effect of country level policy orientation, as proxied by the Database
+of Political Institutions, and policy uncertainty, as proxied by
+the occurrence of election events, have an impact on firm-level innovation
+[@keefer2012database]. Crucially, they are able to show that innovation
+is more affected by policy uncertainty than by policy itself. This leads
+to the conclusion that a politically stable environment is beneficial to
+R&D investments and confirms the findings of the game theoretical literature
+[@beccherleRegionalInitiativesCost2011; @harstadDynamicsClimateAgreements2016].
+
+These studies are looking at the aggregate level effect between policy
+certainty and innovation.
+More recently however, newspaper indices on both climate policy uncertainty
+[@gavriilidisMeasuringClimatePolicy2021] and on
+climate policy salience became available [@noaillyHeardNewsEnvironmental2021].
+These indexes are both built by programmatically analyzing US newspaper
+articles over a given period to detect the co-occurrence of a given set of
+words^[Both follow the methodology outlined in the Economic Policy
+Uncertainty index developed by @bakerMeasuringEconomicPolicy2016 and apply
+different keywords to the programmatic analysis of US newspapers.].
+@gavriilidisMeasuringClimatePolicy2021 used his index to show that
+increased policy uncertainty lead to a reduction of CO2 emissions.
+He further argues that, this might be due to either a decrease in energy
+consumption and a reduction in non-essential transport or an increase in
+the demand for renewable energy consumption and an associated increase in
+climate-friendly innovations.
+On the other hand@noailly2021heard were able to leverage their policy salience
+index to
+demonstrate a positive link between policy salience and the probability
+of cleantech startups receiving venture capital funding.
+While these indices are able to inform research on the link between
+environmental policy uncertainty/salience and innovative inputs and outcomes
+for the US, they cannot yet be used within a panel framework. Furthermore,
+these indices are symptomatic in that they capture perceptions of an aggregate
+policy environment. As both papers outline the aggregate sentiment as proxied
+by newspaper articles, they do not consider the root causes of this uncertainty
+or salience.
+
+This underlines the importance of considering the potential variables which 
+influence domestic
+environmental policy certainty and may reinforce innovative activity.
+This leads us to hypothesis that international commitments, in the form of the 
+the participation in international environmental agreements, may reinforce
+the credibility of domestic environmental policy and thus increase the effect
+of environmental policy stringency on innovation. We will refer to this effect
+as the *indirect effect* of international environmental governance on
+environmental innovation. The complementary *direct effects* of international
+environmental policy have been outlined in comparative studies within the 
+international relations and political science literatures and will analyzed in
+more detail in the next subsection. 
+
+## Assessing the Formation and the Effectiveness of International Environmental Governance
+
+While the literature on global environmental governance
+does not specifically address the link between the participation rate of a 
+country
+in the international governance complex and the rate of innovation
+of its firms, it offers insights in two main ways. First, an important strand
+investigates the drivers motivating countries in participating in
+international environmental treaties. A second complementary strand  
+explores the effect of international proximity and cooperation on
+environmental performance. We will analyse each
+strand in turn and focus on deriving the *direct effects* between the 
+embeddedness of a country in the international environmental governance network
+and the innovation process to motivate our theoretical approach presented in 
+the next chapter. The first strand of this literature leverages game 
+theoretical or social network analysis methodologies 
+to understand the formation of cooperative ties in the environmental governance 
+network. The latter methodologies are of a particular relevance in our case
+since they acknowledge the interdependence of the cooperative tie formation 
+process.
+
+The initial methodological lens through which international environmental
+cooperation has been assessed is game theory. The main unit of analysis in early
+papers was often a single agreement such as the Montreal Protocol 
+[@barrettSelfEnforcingInternationalEnvironmental1994]. More recent theoretical
+advances in the literature consider the participation in IEAs as a static or a 
+dynamic game with repeated interactions between countries 
+[beccherleRegionalInitiativesCost2011; harstadDynamicsClimateAgreements2016;
+@battagliniParticipationDurationEnvironmental2016].^[The majority of the
+empirical evidence within the game theoretic literature comes from experimental
+economics. See e.g. @tavoniInequalityCommunicationAvoidance2011 and 
+@barrettClimateNegotiationsScientific2012]
+The main conclusion of this strand that is of a particular interest to us is
+that long term agreements create a more certain policy environment and help
+reduce the uncertainty that surrounds investment in green R&D.
+However, although dynamic in nature,
+the aim of these models is to devise the characteristics of an effective
+prototypical international environmental agreement. In other words, it does
+not consider the emergence of a *international environmental governance network*.
+This underlines the necessity of adopting a polycentric approach in
+the analysis of the *network* of environmental governance where agents interact
+at different levels [@ostromPolycentricApproachCoping2009;
+@jordanGoverningClimateChange2018] in a dynamic context. Social network analysis
+methods have thus been employed to understand the drivers of international
+cooperation within such a framework. The main benefits of using
+such an approach to analyse the emergence of cooperative ties is that these
+depend on both the *characteristics* of the agents that form them and the
+*structure* of the network they exist in. @kinneNetworkDynamicsEvolution2013
+underlined that states are more likely to form bilateral cooperation ties if
+they share agreements with third parties^[This confirms
+the triadic closure phenomenon highlighted by Granovetter 
+@granovetterStrengthWeakTies1973].], if they sign more agreements overall, and
+if they exhibit similar characteristics with their bilateral partners. While
+Kinne examines a unimodal network of bilateral agreements between the end of the
+Second World War and 1980 due to data availability,
+@hollwayMultilevelEmbeddednessCase2016 further his analysis by examining the
+bipartite structure of network and highlight the importance of multilateral
+agreements in the process of triadic closure.
+While this first strand of the literature on the formation of environmental
+cooperation does not have a direct impact on the rates of innovation of countries,
+it is useful to understand the relevance of social network analysis
+as a mean to study the concurrent effects of the position of an agent in a network
+and their characteristics as opposed to the previously discussed game theoretical
+approach. Moving forward, we will therefore see the environmental governance
+complex as a network and highlight the effects of the topological attributes of
+countries on innovative inputs and outcomes.
+
+The second strand of the literature on environmental governance
+grew from the fact that domestic
+policy is affected by *both* domestic and international factors
+[@dreznerAllPoliticsGlobal2008; @haysGlobalizationNewPolitics2009; @jahnPoliticsEnvironmentalPerformance2016].
+As such, it investigates the *effects* of
+international environmental cooperation on country level variables such as
+environmental performance and innovation. This specific strand is surprisingly
+understudied and most evidence presented below either theoretical or
+qualitative. To our knowledge, the only attempt to investigate the link
+between the intensity of participation in the environmental governance complex 
+quantitatively was provided by @jahnPoliticsEnvironmentalPerformance2016 and
+is discussed below, after underlining a number of qualitative stylized facts
+on environmental cooperation.
+
+The Stern review provides initial theoretical and qualitative insights into the
+ways increased international cooperation may facilitate eco-innovation
+(@sternEconomicsClimateChange2007, chapters 16 & 24). The main lens the review
+considers the link between international cooperation is one of portfolio
+management where cooperation is motivated by knowledge sharing^[To
+namely overcome the developed/developing divide and ensure a fair
+transition for developing countries where climate targets are met but not at
+the expense of the growth of developing countries.], efficiency gains
+through the coordination of R&D portfolios and finally the pooling of
+risks which are a characteristic of the innovation process. In addition
+to this portfolio approach, they underline the importance of setting
+of international environmental standards which may reinforce domestic 
+environmental regulation (@sternEconomicsClimateChange2007, chapter 24.6).
+In other words, Stern argues that international co-ordination on performance
+standards leads to larger markets being affected than if countries were to
+act in isolation which may lead the market to tip from one equilibirium to
+another due to a combination of network feedback effects, economies of
+scale or technological lock-in effects
+(See @barrettIncreasingParticipationCompliance2003 for a discussion).
+These qualitative insights on R&D cooperation and international standard setting
+are not the only channels in which international environmental policy may affect
+innovation and environmental performance as we have outlined above in the
+previous subsection. 
+
+@jahnPoliticsEnvironmentalPerformance2016 complements these insights with
+an analysis of the effect of supra-national factors such as the
+membership in international organizations, the membership in international
+treaties as well as more general effects such as globalization on multiple
+indices of environmental
+performance of OECD countries he constructed^[Other comparative analyses
+complement his findings: see e.g. @holzingerEnvironmentalPolicyConvergence2008
+and @bauer2014conceptual.].
+While Jahn's dependent variable is environmental performance, his central
+argument on the relevance of the *combination* of both national an
+international policy factors is nevertheless valuable
+in the context of this study as it highlights the rise of international
+environmental policymaking. The rising importance of international environmental
+cooperation has further been highlighted by @carattiniWhatDoesNetwork2021
+who illustrate it by using a network analysis approach to analyse the ECOLEX
+dataset[@unepiucnfaoECOLEXGatewayEnvironmental2022]. The aim of their paper
+is to derive a set of stylized facts on the intertemporal evolution of
+the network of international agreements by constructing a "cooperation network"
+between states.^[Section 3 provides the reader with more detail about the
+construction of such a cooperation network and in particular the theoretical
+implications associated with such a measure.] After constructing this cooperation
+network, Carattini et. al describe the evolution of the position of states within
+this network. They narrow down their observations to the following four stylized
+facts:
+
+1. "Meaningful environmental cooperation emerged in the late 1970's."
+1. "Environmental cooperation has become closer, denser and more cohesive."
+1. "The environmental cooperation network, while global has a noticeable European
+imprint."
+1. International environmental cooperation started with fisheries agreements
+but the contemporary focus has shifted towards the management of waste and
+hazardous substances.
+
+These stylized facts empirically confirm observations from the theoretical
+literature on international environmental agreements that highlight their
+growing importance [@jordanGoverningClimateChange2018; @ostromPolycentricApproachCoping2009]. 
+
+In conjunction with the literature on policy certainty shown in the previous section,
+the increased importance of international environmental politics leads us
+to draw a model that investigates the concurrent effects of national and international
+environmental policies on the innovative behavior of firms. The aim of our
+paper is therefore to investigate whether or not the relative
+position^[In a topological sense.] of a country
+in the global environmental governance network affects the different versions
+of the Porter Hypothesis. Now that the theoretical motivation of our study is
+set, let us outline our empirical strategy in the methodology section.
+
+<!--chapter:end:02-theory.Rmd-->
+
+---
+title: Methods
+author: Author
+chapter: 3
+in_context: False
+knit: iheiddown::chapter_pdf
+output: iheiddown::chapter_pdf
+---
+
+```{r intialize, echo=FALSE}
+# Setting chunk opts
+
+# Libraries
+library(skimr)
+library(tidyverse)
+library(gridExtra)
+library(kableExtra)
+library(tidygraph)
+library(ggraph)
+
+# Set paths
+project_path <- substr(getwd(), 1, 56)
+graph_path <- paste0(project_path, "/graphs/")
+ecolex_path <- paste0(project_path, "/data/ECOLEX/Membership/ECOLEX_Membership.rds")
+onemodenetpath <- paste0(project_path, "/data/CleanData/OnemodeNetworks/")
+clean_data_path <- paste0(project_path, "/data/CleanData/")
+```
+
+\setcounter{chapter}{2}
+# Methodology and Data {#methodsdata}
+
+This section will outline the computation of a novel set of centrality measures
+which will be used in the subsequent analysis to proxy the relative importance
+of countries within the international environmental governance complex and
+account for the increasing importance of international policy to tackle
+environmental challenges. In what follows, we will describe the construction
+of the bipartite membership network of international agreements^[Note that we
+interchangeably use bimodal and bipartite as adjectives to qualify the nature
+of the original membership network. The original network is both bimodal,
+since it has two different types of agreements, and bipartite since it does
+not have links between two nodes of the same type.
+[@borgatti20092]] and the
+extraction of a monopartite cooperation network which defines links between countries
+as the number of agreements that have been signed in common. We then
+statistically validate this projection by comparing the resulting observed
+one cooperation network with a null model. This process is also commonly
+known as *backbone extraction*. Finally, we describe the computation of
+two centrality indices that will proxy the intensity and the certainty of
+international policy as well as all other variables of interest.
+Let us however start by defining the empirical panel model that
+we will estimate in the next section before detailing the construction of
+its various coefficients.
+
+## The Empirical Model:
+
+We define the following general panel model and consider
+all OECD countries over the time period between 1990 and 2015.
+
+$$
+y_{it} = \beta_1 \text{EPS}_{i,\ t-k} + \beta_2 \text{Strength}_{i,\ t-k}^{M} +
+\beta_3 \text{Transitivity}_{i,\ t-k}^{M} + \beta_4 X_{it} + \alpha_i + \delta_t + u_{it}
+$$
+
+Where $\text{EPS}_{i,\ t-k}$ is a proxy for national environmental policy
+stringency over the time period between 1990 and 2015 for OECD countries.
+$\text{Strength}_{it}^{M}$ and $\text{Transitivity}_{it}^{M}$ are indexes characterizing
+the international policy network on the environment we compute by using
+different *backbone extraction* methods $M$ to ensure the robustness of our
+results. $X_{it}$ is a vector of control variables including GDP per capita
+measures from the World Bank and import/export intensity measures to account
+for the economic integration in the global trade network. Finally, we add
+both country $\alpha_i$ and 
+
+We will begin by defining the construction of the  $\text{Strength}_{it}$ and the
+$\text{Transitivity}_{it}$ measures of international governance before turning
+to the $\text{EPS}_{it}$ indicator and the various dependent variables of
+innovation and productivity we use to test the different versions of Porter's
+Hypothesis.
+
+## Constructing international environmental cooperation centrality measures:
+
+We leverage the ECOLEX dataset to construct country level measures of
+embeddedness in the international environmental cooperation network
+[@unepiucnfaoECOLEXGatewayEnvironmental2022]^[To be more specific, we use a 
+scraped version included in the `{manyenviron}` package 
+[@hollwayManyenvironEnvironmentalAgreements2021] which was originally used in
+@sommerGlobalGovernanceForestry2020]. This dataset lists
+environmental agreements between two or more parties and the related
+membership actions over the period between 1868 and 2018 and contains over
+25000 individual membership actions.^[See Table \@ref(tab:ECOLEX) describing
+the structure of the dataset and displaying the first few observations.]
+We follow @carattiniWhatDoesNetwork2021
+and retain agreements that were signed in the Post-war period starting in
+1948. We retain 21270 individual membership actions after filtering out
+agreements signed before 1948. After further cleaning the data by excluding
+observations on which we do not have identifying information such as the date of
+the ratification of the agreement and the date of entry into force or the
+country which is the subject of the membership action, we retain 18878
+individual membership actions that describe 521 individual international
+environmental agreements.
+
+```{r ECOLEX, echo=FALSE, results='asis', fig.pos = 'h'}
+load(ecolex_path)
+# Remove unsigned
+ECOLEX_mems <- ECOLEX_mems %>%
+  dplyr::filter(!is.na(Force)) %>%
+  dplyr::select(ecolexID, treatyID, CountryID, Title, Beg, End,
+                SignatureCountry, Rat, Force, DocType, GeogArea, Subject)
+# Create table
+kableExtra::kbl(head(ECOLEX_mems, 20),
+                caption = "ECOLEX Dataset Head",
+                booktabs = T) %>%
+  kableExtra::kable_styling(latex_options = c("striped", "scale_down")) %>%
+  kableExtra::landscape()
+```
+
+### From a Bipartite Membership Network:
+
+The ECOLEX dataset presented above in \@ref(tab:ECOLEX) can be visualized as
+an annual series of undirected, unweighted, bipartite/bimodal networks.
+This can be done in the form of a yearly incidence matrix $I_{C \times A}^t$ where each row
+corresponds to a country (an agent) and each column to a treaty (an artifact)
+[@latapyBasicNotionsAnalysis2008]. The main theoretical difference between the
+two sets of nodes is that the former has agency over the links while the latter
+does not.^[This distinction will inform the choice of the backbone extraction
+algorithm as outlined below.] $i_{ik}^t$ equals $1$
+if country $i$ has ratified agreement $k$ which entered into force during or before year
+$t$ and $0$ otherwise. A country can only be a member of a treaty once which implies
+that $i_{ik}^t \in \{0,1\}$.
+
+```{=latex}
+\begin{equation*}
+  \begin{rcases}\displaystyle
+    I_{ik}^t = \overbrace{\begin{pmatrix}
+    i_{1,1}     & i_{1,2}     & i_{1,3}     & \dots     & i_{1,A}           \\
+    i_{2,1}     & i_{2,2}     & i_{2,3}     & \dots     & i_{2,A}           \\
+    i_{3,1}     & i_{3,2}     & i_{3,3}     & \dots     & i_{3,A}           \\
+    \vdots      & \vdots      & \vdots      & \ddots    & \vdots      \\
+    i_{C,1}     & i_{C,2}     & i_{C,3}     & \dots     & i_{C,A}
+  \end{pmatrix}}^{\text{Agreements}}
+  \end{rcases}
+    \text{Countries}
+\end{equation*}
+```
+
+We can also visualize the bipartite/bimodal membership network directly and
+distinguish agreements from countries.
+The network is depicted in \@ref(fig:ECOLEX_bipartite_network)
+represents the membership network with all agreements that entered into force
+respectively during the period of 1948 and 1978 and 1948 and 2018. This shows
+that the network grew denser as agreements were signed, ratified and entered
+into force over time. To explore the intertemporal evolution of
+the structure of the network, we will divide this network and construct
+yearly snapshots of the membership graph whose incidence matrix we define as
+$I_{C \times A}^t$ which is one of the two standard methods used in social network
+analysis to account for the intertemporal evolution of a network
+[@everettDualprojectionApproachTwomode2013].
+
+```{r ECOLEX_bipartite_network, echo=FALSE, fig.pos = 'h'}
+ECOLEX_mems_net1 <- ECOLEX_mems %>%
+  dplyr::mutate(Year = as.numeric(format(ECOLEX_mems$Force, format = "%Y"))) %>%
+  dplyr::filter(Year <= 1978) %>%
+  dplyr::select(ecolexID, CountryID) %>%
+  migraph::as_tidygraph(twomode = T) %>%
+  dplyr::mutate(Type = ifelse(type, "Country", "Agreement"))
+ECOLEX_mems_net2 <- ECOLEX_mems %>%
+  dplyr::mutate(Year = as.numeric(format(ECOLEX_mems$Force, format = "%Y"))) %>%
+  dplyr::select(ecolexID, CountryID) %>%
+  migraph::as_tidygraph(twomode = T) %>%
+  dplyr::mutate(Type = ifelse(type, "Country", "Agreement"))
+# Graph things
+layout_bi1 <- ggraph::create_layout(ECOLEX_mems_net1, layout = "igraph",
+                                algorithm = "bipartite")
+layout_bi2 <- ggraph::create_layout(ECOLEX_mems_net2, layout = "igraph",
+                                algorithm = "bipartite")
+plot1 <- ggraph::ggraph(ECOLEX_mems_net1, layout = layout_bi1) +
+  ggraph::geom_edge_link(alpha = 0.01) +
+  ggraph::geom_node_point(aes(shape = Type, color = Type)) +
+  ggplot2::labs(title = "Membership Network 1948-1978") +
+  ggplot2::theme_void() +
+  theme(legend.position = 'bottom')
+plot2 <- ggraph::ggraph(ECOLEX_mems_net2, layout = layout_bi2) +
+  ggraph::geom_edge_link(alpha = 0.01) +
+  ggraph::geom_node_point(aes(shape = Type, color = Type)) +
+  ggplot2::labs(title = "Membership Network 1948-2018") +
+  ggplot2::theme_void() +
+  theme(legend.position = 'bottom')
+# Combine plots
+gridExtra::grid.arrange(plot1, plot2, ncol = 2)
+```
+
+### To a Monopartite Cooperation Network:
+
+While we could further analyze this
+network directly, we will transform it into a more easily interpretable
+one mode network by using a projection and retaining only significant edges
+through a backbone extraction algorithm. We will thus broadly follow
+@carattiniWhatDoesNetwork2021 while ensuring that our results are not contingent
+on the backbone extraction algorithm since the theoretical underpinnings of
+the latter are still somewhat unclear in empirical social network analysis
+[@nealComparingAlternativesFixed2021].
+
+We begin by creating a naive projection of the membership network. To perform
+this naive projection we multiply the yearly incidence matrix $I_{c \times a}^t$
+defined above by its transposed $I_{A \times C}^t$ as follows:
+
+$$
+I_{C \times A}^t I_{A \times C}^t = Adj_{C\times C}^t
+$$
+Where $Adj_{c\times c}^t$ is the adjacency matrix of the projected cooperation network in
+which $Adj_{ij}^t$ is the number of observed co-signed agreements between the two countries
+that entered into force in the interval $[1948; t]$. These weights capture
+the intensity of the environmental cooperation between two countries much like
+@newmanScientificCollaborationNetworks2001 captured collaboration within a
+bipartite network of scientific collaboration. Concurrently,
+it implies that bilateral treaties, ceteris paribus, carry a greater weight
+in the cooperation network than multilateral treaties. This is consistent with
+the heterogeneous role both play within the environmental governance network.
+As highlighted by @hollwayMultilevelEmbeddednessCase2016, bilateral treaties
+are akin to contracts between two parties while multilateral treaties serve
+"normative [...] law-making tools". While both types may act as policy stringency
+signals, bilateral treaties carry more weight through their specific contractual nature
+hence developing a greater policy stringency signal for firms. 
+
+We cannot, however, directly analyze this cooperation network as the resulting
+*naive* monopartite network, depicted in the first panel of
+\@ref(fig:ECOLEX_monopartite), still suffers from two issues. First, nodes
+with larger degrees in the original bipartite membership network
+(e.g. agreements with a larger number signatories or
+countries having signed a larger number of agreements) will bear stronger
+edges in the projected network. In other words,
+if *country A* and *country B* are bound by the same 5 agreements and have
+each signed 5 agreements in total, they are conceptually "closer" than
+*country C* and *country D* who share the membership in 10 agreements but
+have each signed a total of 50 agreements
+[@borgatti2011analyzing; @latapyBasicNotionsAnalysis2008;
+@nealBackboneBipartiteProjections2014;
+@saraccoInferringMonopartiteProjections2017]. However in the resulting one-mode
+projection, the latter will be weighted more than the former.
+The second issue relates to the fact that *naive* projections may lead to the
+emergence of spurious cliques in the projection that are due to a node with a
+single connection to the opposite layer in the original bipartite network 
+[@saraccoInferringMonopartiteProjections2017]. To solve these two common issues,
+we leverage what is known as a backbone extraction algorithm to retain only the
+statistically significant edges from the naive projection e.g. the edges
+that appear more frequently in the projection than expected by a given null
+model.
+
+### Correcting the Monopartite Cooperation Network:
+
+We will use the following three distinct backbone extraction methods to ensure
+that our results are not the product of the choice of a particular extraction
+method alone. This is especially crucial since we do not have a "ground truth"
+or a counterfactual monoparite cooperation network to compare the corrected
+projection to. All three considered algorithms follow the same process in that they
+impose a constraint $M$ on the original bipartite
+network and reshuffle the values of the incidence matrix $I_{C \times A}$.^[We
+broadly follow the notation used in @nealComparingAlternativesFixed2021
+where each backbone extraction method is described in more detail.
+Furthermore, we abstract from superscript $t$ to indicate the time period of the network as
+we apply the backbone extraction method to each temporal snapshot of the network.]
+In other words, we consider the set of all possible permutations of the original
+incidence matrix $I_{c \times a}^t$ containing the same countries and treaties
+and satisfying the constraint $M$. We call this set $\mathcal{I}^M$
+which is consists of the individual permutated matrices $I^*$. The algorithm
+then constructs the one-mode projection of $I^*$ as follows: $P^* = I^*\times [I^*]^T$
+Recall that when performing the naive projection, we defined $p_{ij}$ as the observed
+number of co-signed treaties between country $i$ and country $j$.
+To decide whether an edge between $i$ and $j$ should be included in the
+backbone of the projected network, the algorithm compares the observed value $p_{ij}^t$
+to the simulated one in $P^*$ which we call $p_{ij}^*$. We therefore define
+the following two-sided hypothesis test to characterize the presence (or absence)
+of a tie $p_{i j}^{B}$ in the backbone $P^B$ based on a significance level $\alpha$.
+
+$$
+p_{i j}^{B}=
+\begin{cases}1 & \text { if } \operatorname{Pr}\left(p_{i j}^{*} \geq p_{i j}\right)<\frac{\alpha}{2} \\
+0 & \text { else }\end{cases}
+$$
+
+As described in @nealComparingAlternativesFixed2021, we use a two-tailed test
+since we would like to filter out both uncommonly small *and* uncommonly large
+collaborative ties in the projection. @nealBackbonePackageExtract2022 point
+out that since we perform this hypothesis test for every non-null edge, we
+will inflate the Type-I error i.e. include too many false positives in our
+corrected graph. ^[The significance level $\alpha$ defines the probability
+that a given edge is included in the backbone. Since we run this test over
+$e$ edges, the probability that we detect at least one such false positive across our
+test equals $1-(1-\alpha)^e$ which is strictly increasing in the number of tests
+$e$.] Following @nealBackbonePackageExtract2022, we therefore leverage the
+False Discovery Rate multiple test correction
+method which sorts the observed p-values in an increasing order before retaining
+all edges with a p-value satisfying $\text{P-value}_{d}\leq \frac{d}{m} \alpha$
+where $d \in \{1,\dots, e\}$ for all backbone extraction methods
+[@benjaminiControllingFalseDiscovery1995].
+
+Finally, this hypothesis test yields a binary correction
+matrix which informs us whether to keep a tie in the naive projection or not and
+thereby solves both issues of the naive projection described above.
+Now that we have a general understanding of the process
+of a backbone extraction algorithm, we turn to the following three subsections
+which will focus on the differences between the
+different algorithms that lie in the nature of the constraint they
+impose on the simulated networks. We will thus consider in turn the
+Fixed Row Model, the Fixed Degree Sequence Model, and the Stochastic Degree
+Sequence Model.
+
+#### Fixed Degree Sequence Model:
+
+The Fixed Degree Sequence Model (FDSM) is a microcanonical backbone extraction
+method in that the constraint that it imposes on the set of possible permutations
+$\mathcal{I}^{FDSM}$ is satisfied *exactly*.^[This stands in opposition to
+canonical extraction algorithm that impose the constraint only *on average*.]
+More specifically, the FDSM algorithm sets the degrees of each agent and
+each artifact to be equal to the degree sequences of the observed network.
+In our context, it implies that the row and column sums of the simulated $I_{ik}^*$
+are to be equal to those of the observed network $I_{ik}$ under the FDSM algorithm. 
+
+$$
+  I_{ik}^* = 
+\begin{blockarray}{cccccc}
+\begin{block}{(ccccc)c}
+  1 & 1 & 1 & \dots & 1 & \sum_{k = 1}^{A} i_{1k} \\
+  0 & 1 & 0 & \dots & 1 & \sum_{k = 1}^{A} i_{2k} \\
+  0 & 0 & 1 & \dots & 1 & \sum_{k = 1}^{A} i_{3k} \\
+  0 & 1 & 0 & \dots & 1 & \sum_{k = 1}^{A} i_{4k} \\
+  \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+  0 & 1 & 0 & \dots & 1 & \sum_{k = 1}^{A} i_{Ck} \\
+\end{block}
+\sum_{i = 1}^{C} i_{i1} & \sum_{i = 1}^{C} i_{i2} & \sum_{i = 1}^{C} i_{i3} & \dots & \sum_{i = 1}^{C} i_{iA} \\
+\end{blockarray}
+$$
+
+As @nealComparingAlternativesFixed2021 point out, the main advantage of this
+method is that it is able to alleviate the two issues plaguing our *naive projection* outlined
+above by controlling for the vector of degrees. Intuitively,
+we retain the cooperative edges that occur more often than expected by the
+null model in the observed projection.^[@vasquesfilhoTransitivityDegreeAssortativity2020,
+degree sequences of the bipartite
+network are chiefly responsive for the structure of its monopartite projection.]
+The main disadvantage of such an algorithm is that it is ill suited for large
+bipartite networks due the computational complexity of the algorithm
+[@nealComparingAlternativesFixed2021]. A set of alternative models has been developed
+to alleviate this computational issue, among which are the Fixed Row Model
+and the Stochastic Degree Sequence Model which we define below.
+
+#### Fixed Row Model:
+
+Like the FDSM, the Fixed Row Model (FRM) is also a microcanonical algorithm.
+However, the main difference is that it imposes the degree sequence constraint
+on the row sums of the incidence matrix only.^[E.g.
+$$
+\forall_{i \in \{1,...,C\}} \sum_{k = 1}^{A} i_{ik} = \forall_{i \in \{1,...,C\}} \sum_{k = 1}^{A} 
+i_{ik}^*
+$$
+]
+^[The FRM model is also sometimes referred to as the hypergeometric
+model [@tumminelloStatisticallyValidatedNetworks2011].]
+That is, the degree of every *agent*/country is strictly controlled for, which
+implies that in all simulated networks, a country will be bound by the same
+number of agreements than in the observed network. However, an agreement
+is free to have a different number of total signatories. This leads us to the
+reason why we are not considering the Fixed Column Model: agency. Recall that
+we previously defined two distinct sets of nodes depending on whether or not
+the nodes posses agency over the links they would like to create or dissolve.
+Since agreements do not have agency and are constructed through the will
+of countries, we constrain the latter's degree only.
+@carattiniWhatDoesNetwork2021 applied the Bipartite Partial Configuration Model
+which is the canonical version of the FRM algorithm, to their membership network
+[@saraccoInferringMonopartiteProjections2017].
+This implies that the restriction imposed on the degree sequence of countries
+is only satisfied *on average* over all simulations.
+Since our membership network is small enough to
+be corrected by applying the more computationally intensive FRM algorithm, we
+follow the latter as it carries more information about the structure of the
+original bipartite network than the BiPCM algorithm
+[@saraccoInferringMonopartiteProjections2017].
+
+#### Stochastic Degree Sequence Model:
+
+The Stochastic Degree Sequence Model (SDSM) is a canonical algorithm that
+imposes a constraint on both the degree sequence of countries and on the
+degree sequence of agreements like the FDSM extraction method. However,
+the set of simulated networks satisfy this constraint only *on average*.
+In our case, this implies that the average number of member countries
+in a given international agreement $k$ in the set of simulated networks is equal
+to the number of countries in the observed membership network. Conversely,
+it also implies that the average number of agreements signed by a given country
+$i$ in the set of simulated networks is equal to the average number of agreements
+signed by country $i$ in the observed network. Several methods exist to
+simulate networks satisfying this constraint which are compared in terms of
+accuracy and computational speed in @nealComparingAlternativesFixed2021.
+The authors show that the Bipartite Configuration Model (BICM) is both the
+fastest and most accurate method to generate simulated network satisfying
+the average condition [@saraccoInferringMonopartiteProjections2017]. We thus
+leverage it as our third and last backbone extraction model.
+
+#### Comparing the Projections:
+
+Before moving on to the definition of the various centrality measures we
+will use to measure the level of international embeddedness of countries
+within the network of international environmental agreements, we will compare
+the resulting corrected projections. We namely see that the correction
+of performed by the FROW backbone extraction process retains about 90 percent of the
+edges of the naive projection which leads to an overly dense network. We
+will therefore not consider it in the further analysis as it does not solve
+the two issues which we try to correct. This is consistent with Carattini et al.
+who mention that their BiPCM-corrected cooperation network's density is so high that
+almost every node is connected to each other [@carattiniWhatDoesNetwork2021].
+On the other hand, both the
+SDSM and the FDSM retain on average about 15 percent of the most significant
+edges present in the naive projection. This ensures that we capture the true
+cooperative network and not a statistical artifact caused by the two issues
+we are trying to correct for. We will therefore compute the centrality scores
+on the basis of the latter two corrected networks.
+
+```{r ComparingBackbones}
+# Load different networks 2015
+Naive <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, 
+                                                "Onemode_Network_Naive_2010.rds")))
+FDSM <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, 
+                                               "Onemode_Network_FDSM_NonFDR_2010.rds")))
+FROW <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, 
+                                               "Onemode_Network_FROW_2010.rds")))
+SDSM <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, 
+                                               "Onemode_Network_SDSM_2010.rds")))
+
+# Graph things
+layout_naive <- ggraph::create_layout(Naive, layout = "igraph",
+                                algorithm = "lgl")
+layout_FROW <- ggraph::create_layout(FROW, layout = "igraph",
+                                algorithm = "lgl")
+layout_SDSM <- ggraph::create_layout(SDSM, layout = "igraph",
+                                algorithm = "lgl")
+layout_FDSM <- ggraph::create_layout(FDSM, layout = "igraph",
+                                algorithm = "lgl")
+Naive_plot <- ggraph::ggraph(Naive, layout = layout_naive) +
+  ggraph::geom_edge_link(alpha = 0.01) +
+  # ggraph::geom_node_label(aes(label = name), repel = T) +
+  ggplot2::labs(title = "Cooperation Network Naive",
+                caption = "ECOLEX, 1948-2010") +
+  ggplot2::theme_void()
+FROW_plot <- ggraph::ggraph(FROW, layout = layout_FROW) +
+  ggraph::geom_edge_link(alpha = 0.01) +
+  # ggraph::geom_node_label(aes(label = name), repel = T) +
+  ggplot2::labs(title = "Cooperation Network FROW",
+                caption = "ECOLEX, 1948-2010") +
+  ggplot2::theme_void()
+SDSM_plot <- ggraph::ggraph(SDSM, layout = layout_SDSM) +
+  ggraph::geom_edge_link(alpha = 0.01) + 
+  # ggraph::geom_node_label(aes(label = name), repel = T) +
+  ggplot2::labs(title = "Cooperation Network SDSM",
+                caption = "ECOLEX, 1948-2010") +
+  ggplot2::theme_void()
+FDSM_plot <- ggraph::ggraph(FDSM, layout = layout_FDSM) +
+  ggraph::geom_edge_link(alpha = 0.01) +
+  ggplot2::labs(title = "Cooperation Network FDSM",
+                caption = "ECOLEX, 1948-2010") +
+  ggplot2::theme_void() +
+  theme(legend.position = 'bottom')
+# Combine plots
+gridExtra::grid.arrange(Naive_plot, FROW_plot,
+                        SDSM_plot, FDSM_plot,
+                        ncol = 2)
+```
+
+### Selecting and Computing Network Centrality Measures:
+
+Now that we constructed and corrected the monopartite cooperation networks,
+we can characterize the topological position of a given country within the
+network and construct proxies for the *embeddedness* of a country in the
+international environmental governance complex. While there exist a multitude
+of centrality indices to characterize the position of a country
+and no unifying theoretical framework for defining it, we will
+consider the commonly used strength centrality measure and the
+eigenvector centrality measure which we will theoretically justify in turn.
+
+#### Strength Centrality:
+
+The strength of a node in an undirected and unweighted network measures the
+number of ties emanating from a node and weights them by their respective
+weights as follows:
+
+$$
+s_{i}=\sum_{j=1}^{N} a_{i j} w_{i j}
+$$
+Strength centrality echoes the proxy @jahnPoliticsEnvironmentalPerformance2016
+used to measure embeddedness in the
+international governance complex in that it captures the sum of
+cooperative ties of a given country within the weighted network of ties. Hence
+we expect that a country with a higher level of strength, ceteris paribus,
+will be more embedded in the international environmental agreement network.
+As stated in the previous chapter, we expect that this increased embeddedness
+leads to an increase in environmental innovation through both direct effects
+of the international policy framework and the indirect effects of a greater
+policy certainty. While we cannot distinguish both channels in this study,
+we expect that the node strength captures a relatively greater share of 
+the direct effects of the increased embeddedness on innovation as
+it measures the quantity of agreement a country is bound by. The opposite
+can be said of the eigenvector centrality measure we define below.
+
+#### Transitivity:
+
+The weighted clustering coefficient extends the notion of embeddedness by
+computing the weighted proportion of triangles over connected triples
+that are centered on a given node [@barratArchitectureComplexWeighted2004].
+On the illustration below, we see that
+the figure on the right is an open triple from the point of view of the orange
+node but not a triangle as opposed to the figure on the right. If we abstract
+from the weights, it is easy to see that the clustering coefficient,
+also known as transitivity, of the orange node on the left figure is
+equal to 1 while the transitivity of the orange node on the right hand side figure
+is 0.
+
+```{r transitivitygraph, echo=FALSE, fig.cap = "Transitivity"}
+knitr::include_graphics("figures/Transitivity.png")
+```
+
+Mathematically, @barratArchitectureComplexWeighted2004 define the weighted index as follows
+where $w_{i j}$ is the weight of the link between node $i$ and node $j$,
+$a_{ij}$ is a binary variable indicating the presence of an edge between $i$ and $j$,
+$s_i$ is the strength of node $i$, and $k_i$ is the node's degree.
+
+$$
+c_{i}^{w}=\frac{1}{s_{i}\left(k_{i}-1\right)} \sum_{j, h} \frac{\left(w_{i j}+w_{i h}\right)}{2} a_{i j} a_{i h} a_{j h} \in [0;1]
+$$
+
+In our international cooperation network, we can interpret this coefficient
+as the local empirical reflection of closure which is a characteristic of
+a network where agents have a low level of information asymmetry with regards
+of the actions undertaken by each node over time [@colemanSocialCapitalCreation1988].
+This facilitated monitoring favors the application of sanctions if an agent defects
+as well as the emergence of a virtuous cycle of trust and further cooperation
+[@burtNetworkStructureSocial2000].
+This virtuous cycle echoes both arguments in sociology by
+@granovetterEconomicActionSocial1985 who posits that the cost of breaking a
+friends trust and therefore the friendship is greater when both agents have a
+friend in common since the betrayal may also affect one's relationship with the
+latter. This argument has been made concurrently in the field of economics and
+especially within the game theoretical analysis of repeated games
+[@tullockAdamSmithPrisoners1985] and within the empirical analysis of
+reputation in medieval trading [@greifReputationCoalitionsMedieval1989].
+The main insight in our case of international cooperation is therefore
+that countries with a higher transitivity index will have a higher cost of
+defecting. This in turn leads to a higher level of trust within the network,
+and crucially in our case, a higher level of economic policy certainty which
+we hypothesize is favorable to the process of green innovation.
+
+## Other variables:
+
+### Environmental Policy Stringency Index:
+
+The Environmental Policy Stringency Index (EPS) is an index created by the OECD
+which measures the stringency of environmental policy at the country level
+during the period of 1990 to 2015 [@bottaMeasuringEnvironmentalPolicy2014].
+As pointed out in the literature on environmental policy and innovation by
+@poppEnvironmentalPolicyInnovation2019, the  
+index is often used as an empirical proxy to measure environmental policy in
+the literature including in studies examining Porter's Hypothesis
+[@galeottiMeasuringEnvironmentalPolicy2020;
+@martinez-zarzosoDoesEnvironmentalPolicy2019]. While we refer the reader
+to the original paper by @bottaMeasuringEnvironmentalPolicy2014 for a detailed
+description of the construction of the index, we can summarize it as follows.
+The basis of the EPS index are individual indices of policy stringency such
+as emission taxes, trading schemes, environmental standards, and governmental
+R&D subsidies. These individual policy categories are then given a ranking
+on a Lickert scale between 0 and 6 before being aggregated into market and
+non-market based policies. These two subsets are then once again equally
+aggregated into the composite EPS index with equal weights which provides us
+with a reliable country level measure of aggregate domestic environmental policy.
+Overall, one can discern a positive trend in the stringency level over the
+considered period for every country indicating the implementation of more
+stringent environmental policies.
+
+```{r EPSdesc, echo=FALSE, fig.cap="Environmental Policy Stringency 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+  ggplot2::ggplot(aes(x = Year, y = EPS)) +
+  ggplot2::geom_line(aes(color = Country), size = 0.6) +
+  ggplot2::guides(color = guide_legend(title = "Country")) +
+  ggplot2::labs(caption = "OECD, 2015") +
+  iheiddown::theme_iheid()
+```
+
+### Innovation Measures:
+
+We measure innovation, the first of our dependent variables, in two main ways. 
+First, we consider the Business Expenditures on R&D (BERD) to capture the input 
+side of the innovation process by using data from the OECD 
+[@oecdMainScienceTechnology2022]. We complement the insight from this analysis
+by using Triadic Patent Family (TFP) counts and Environmental Patent (EnvPat) 
+counts to proxy *the outcome* of the research process
+[@oecdOECDTriadicPatent2022; @oecdPatentsEnvironmentTechnologies2022].
+Both insights are complementary as Business Expenditures on R&D 
+give a good approximation of the importance placed on the R&D process by firms 
+while Triadic Family Patent counts and the country-level share of environmental
+patents allows us to examine the effect of environmental policy on *outcomes*
+of inventive activity @poppEnvironmentalPolicyInnovation2019. In conclusion,
+these innovation proxies will allow us to assess the *Weak Porter Hypothesis*.
+
+#### Business Expenditures in R&D:
+
+We see an overall upward trend in the logged BERD indicating an increase
+of the level of expenditures on R&D across all countries. In addition,
+we note a considerable country-level heterogeneity with the top 3 countries
+being the United States, Japan and Germany.
+
+```{r BERDdesc, echo=FALSE, fig.cap="Business Expenditures in R\\&D 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+  ggplot2::ggplot(aes(x = Year, y = log(berd))) +
+  ggplot2::geom_line(aes(color = Country), size = 0.6) +
+  ggplot2::guides(color = guide_legend(title = "Country")) +
+  ggplot2::labs(caption = "OECD, 2022",
+                y = "log(BERD)") +
+  iheiddown::theme_iheid()
+```
+
+#### Triadic Family Patent Counts:
+
+Triadic Family Patent counts show a similar pattern with respect to the country
+level heterogeneity. The top three countries are once again Japan, the United
+States and Germany. Note that while some countries, such as Japan and the US
+saw a marked increase in the yearly patent counts, most countries' counts
+remained relatively constant over time.
+
+```{r TPFdesc, echo=FALSE, fig.cap="Triadic Patent Counts 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+                     ggplot2::ggplot(aes(x = Year, y = triadic_patent)) +
+                     ggplot2::geom_line(aes(color = Country), size = 0.6) +
+                     ggplot2::guides(color = guide_legend(title = "Country")) +
+                     ggplot2::labs(caption = "OECD, 2022",
+                                   y = "Triadic Patent Count") +
+                     iheiddown::theme_iheid()
+```
+
+#### Environmental Patent Counts:
+
+Taking into account the share of *environmental* patents with respect to
+total patents allows us to refine our analysis by matching environmental
+policy to environmental patents. This link is key since environmental innovative
+activity should arguably be more strongly affected by environmental policy
+than other technologies. Using such an alternative estimation allows us
+to somewhat shield us from p-hacking claims as they are laid out by
+@brunsFlexibilitySelectionPatent2020 in the case of solar energy policies and 
+patents.
+
+```{r EnvPatdesc, echo=FALSE, fig.cap="Environmental Patent Share 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+  ggplot2::ggplot(aes(x = Year, y = EnvPatShare)) +
+  ggplot2::geom_line(aes(color = Country)) +
+  ggplot2::guides(color = guide_legend(title = "Country")) +
+  ggplot2::labs(caption = "OECD, 2022",
+                y = "Environmental Patent Share %") +
+  iheiddown::theme_iheid()
+```
+
+### Total Factor Productivity:
+
+The *Strong Porter Hypothesis* we laid out in the previous chapter links
+environmental policy stringency and productivity or profits. We test this
+hypothesis by regressing total factor productivity on the dependent domestic
+and international policy variables. To that effect, we will use the
+Total Factor Productivity index developed by the Vienna Institute
+for International Economic Studies [@stehrerWiiwGrowthProductivity2022].
+We will follow @martinez-zarzosoDoesEnvironmentalPolicy2019 and use the
+"TFP0" decomposition of GDP based on capital stocks and hours worked only
+as defined below. Note that we use TFP growth rates instead of levels in this
+instance.
+
+$$
+\Delta \ln Y=\Delta \ln T F P 0+\bar{s}_{C} \Delta \ln K+\bar{s}_{L} \Delta \ln H
+$$
+
+Two features are sailient from the graph below. First and foremost, we observe
+a form of growth rate convergence among OECD countries over the considered time
+period around $0\%$ to $2.5\%$ . A second prominent feature is the impact of
+the 2008 financial crisis which hit Greece particularly hard.
+
+```{r TFP0desc, echo=FALSE, fig.cap="Total Factor Productivity 1990-2015", warning=FALSE, message=FALSE}
+readRDS(paste0(clean_data_path, "Panel.rds")) %>%
+  ggplot2::ggplot(aes(x = Year, y = TFP0)) +
+  ggplot2::geom_line(aes(color = Country), size = 0.6) +
+  ggplot2::guides(color = guide_legend(title = "Country")) +
+  ggplot2::labs(caption = "EU KLEMS, 2022",
+                y = "Total Factor Productivity\n(growth rate %)") +
+  ggplot2::xlim(1995, 2015) +
+  iheiddown::theme_iheid()
+```
+
+
+## Correlations:
+
+Before moving on to the results, let us consider the correlations between
+our variables of interest. The first four columns in of the correlogram
+\@ref(fig:correlations) correspond to the correlations between the four
+dependent variables and the domestic and international policy variables.
+We examine the correlations of different lags and different specifications
+of the independent policy variables to ensure that our results are consistent
+across all specifications. We namely see that the business expenditure variable
+on R&D is positively correlated with all policy variables, both domestic and
+international as well as across lags and FDSM/SDSM specifications. Concurringly,
+the other innovation outcome proxies, Triadic Family Patent counts and the share
+of environmental patents, are also positively correlated with all policy measures.
+This evidence therefore seems to confirm the *Weak Porter Hypothesis*. On the other
+hand we see that the growth rate of total factor productivity (*TFP0*) seems to be
+weakly negatively correlated to our policy measures which indicates that
+the *Strong Porter Hypothesis* may not be verified in our case. Let us now
+move to the estimation of the empirical model defined in the beginning of this
+section in the next chapter to further investigate these correlations.
+
+```{r correlations, echo=FALSE, fig.cap="Correlations"}
+knitr::include_graphics("figures/Correlations.png")
+```
+
+<!--chapter:end:03-method.Rmd-->
+
+---
+title: Results
+author: Bieri
+chapter: 4
+in_context: False
+knit: iheiddown::chapter_pdf
+output: iheiddown::chapter_pdf
+---
+
+```{r intializeresults, echo=FALSE}
+# Set paths
+project_path <- substr(getwd(), 1, 56)
+graph_path <- paste0(project_path, "/graphs/")
+ecolex_path <- paste0(project_path, "/data/ECOLEX/Membership/ECOLEX_Membership.rds")
+onemodenetpath <- paste0(project_path, "/data/CleanData/OnemodeNetworks/")
+clean_data_path <- paste0(project_path, "/data/CleanData/")
+regressiontablepath_rmd <- "figures/RegressionTables/"
+```
+
+\setcounter{chapter}{3}
+# Results and Discussion {#results}
+
+In this section, we will estimate the empirical model defined in the previous
+section across its multiple specifications while accounting for the backbone
+extraction method used. We start by presenting the results from the Stochastic
+Degree Sequence Model (SDSM) and discussing each Porter Hypothesis in turn
+before complementing the analysis with the network measures computed on the
+more stringent Fixed Degree Sequence Model to confirm our results. Furthermore,
+we will conduct various robustness checks before discussing the results and
+their policy implications.
+
+```{=latex}
+\begingroup
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\begin{tabular}{lccc|ccc}
+   \toprule
+       & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
+    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
+                          & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
+                          &  OLS          & OLS           & Fractional Logit & OLS           & OLS           & Fractional Logit\\  
+   \midrule 
+   ln EPS (t-1)           & 0.009         & 0.02          & -0.12$^{**}$           & -0.02         & -0.01         & -0.13$^{*}$\\   
+                          & (0.06)        & (0.10)        & (0.05)                 & (0.06)        & (0.11)        & (0.06)\\   
+   ln Strength (t-1)      & -0.01         & 0.09          & -0.17$^{***}$          & 0.10          & 0.15$^{*}$    & -0.10$^{*}$\\   
+                          & (0.10)        & (0.09)        & (0.04)                 & (0.07)        & (0.08)        & (0.05)\\   
+   ln Transitivity (t-1)  & -0.08         & 0.43          & -0.41$^{**}$           & 0.32          & 0.40$^{**}$   & -0.12\\   
+                          &               &               &                        & (0.20)        & (0.18)        & (0.14)\\    
+   ln GDP/cap.         & 0.65$^{*}$    & 2.0$^{***}$   & 0.05                   & 0.43          & 2.1$^{***}$   & 0.09\\   
+                          & (0.32)        & (0.34)        & (0.21)                 & (0.35)        & (0.36)        & (0.22)\\   
+   ln ExportIntensity   & -0.03         & 0.66$^{***}$  & -0.10                  & 0.003         & 0.69$^{***}$  & -0.28$^{*}$\\   
+                          & (0.14)        & (0.16)        & (0.13)                 & (0.17)        & (0.17)        & (0.14)\\   
+   ln ImportIntensity   & 0.38$^{*}$    & -0.84$^{***}$ & -0.23                  & 0.25          & -1.1$^{***}$  & -0.09\\   
+                          & (0.20)        & (0.27)        & (0.18)                 & (0.24)        & (0.32)        & (0.21)\\   
+    \\
+   Observations           & 551           & 550           & 550                    & 466           & 466           & 466\\  
+   Within R$^2$           & 0.0692        & 0.2285        &                        & 0.0640        & 0.2740        & \\  
+   F-test                 & 204.4         & 207.8         &                        & 203.1         & 240.9         & \\  
+    \\
+   Year fixed effects     & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
+   Country fixed effects  & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
+   \bottomrule
+\end{tabular}
+\end{adjustbox}
+\par \raggedright 
+\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\par\endgroup
+```
+
+```{=latex}
+\begingroup
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\begin{tabular}{lccc|ccc}
+   \toprule
+       & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
+    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
+                          & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
+                          &  OLS          & OLS           & Fractional Logit       & OLS           & OLS           & Fractional Logit\\  
+\midrule 
+   ln EPS (t-5)          & 0.17$^{***}$  & -0.11         & $2.3\times 10^{-5}$    & 0.18$^{***}$  & -0.15$^{**}$  & 0.05\\   
+                         & (0.06)        & (0.07)        & (0.06)                 & (0.06)        & (0.07)        & (0.06)\\   
+   ln Strength (t-5)     & -0.11$^{*}$   & -0.03         & -0.07$^{*}$            & -0.12$^{**}$  & -0.009        & -0.01\\   
+                         & (0.07)        & (0.07)        & (0.03)                 & (0.05)        & (0.06)        & (0.04)\\   
+   ln Transitivity (t-5) & 0.37          & 0.04          & -0.35                  & 0.28$^{*}$    & 0.61$^{***}$  & -0.18\\   
+                         & (0.24)        & (0.28)        & (0.29)                 & (0.14)        & (0.17)        & (0.12)\\   
+   log(GDPCapita)        & 0.41          & 2.3$^{***}$   & -0.03                  & 0.24          & 2.1$^{***}$   & 0.30\\   
+                         & (0.35)        & (0.34)        & (0.20)                 & (0.36)        & (0.36)        & (0.20)\\   
+   log(ExportIntensity)  & 0.19          & 0.70$^{***}$  & -0.12                  & 0.25          & 0.74$^{***}$  & -0.40$^{**}$\\   
+                         & (0.16)        & (0.18)        & (0.15)                 & (0.17)        & (0.23)        & (0.19)\\   
+   log(ImportIntensity)  & 0.29          & -1.1$^{***}$  & -0.33$^{*}$            & 0.18          & -1.0$^{***}$  & -0.29\\   
+                         & (0.24)        & (0.26)        & (0.18)                 & (0.27)        & (0.28)        & (0.20)\\   
+    \\
+   Observations          & 513           & 512           & 510                    & 422           & 421           & 419\\  
+   Within R$^2$          & 0.0985        & 0.2580        &                        & 0.0999        & 0.2858        & \\  
+   F-test                & 220.1         & 226.3         &                        & 236.9         & 242.2         & \\  
+    \\
+   Year fixed effects    & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
+   Country fixed effects & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\    
+   \bottomrule
+\end{tabular}
+\end{adjustbox}
+\par \raggedright 
+\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\par\endgroup
+```
+
+
+## Robustness Checks:
+
+### Multicolinearity:
+
+### Removing the US, Japan, and Germany:
+
+## Discussion:
+
+
+<!--chapter:end:04-results.Rmd-->
+
+---
+title: Conclusion
+# author: Author
+chapter: 5
+in_context: False
+knit: iheiddown::chapter_pdf
+output: iheiddown::chapter_pdf
+---
+
+\setcounter{chapter}{4}
+# Conclusion {#conclusion}
+
+
+
+<!--chapter:end:05-conclusion.Rmd-->
+
+# Appendix: {-}
+
+```{=latex}
+\markboth{Appendix}{Appendix}
+```
+
+Additional resources as well as all code files to replicate the present
+work can be found on its
+[GitHub repository](https://github.com/BBieri/Thesis). The repository
+is currently private but feel free to reach out via
+[email](mailto:bernhard.bieri@graduateinstitute.ch) to get access.
+
+All code files are located in the R/ folder and are labeled according to the
+order in which they should be executed. I.e. the first file to run would be the
+`0_Setup.R` file followed by the files in the `1_DataPreparation` folder.
+
+When executing the scripts, you might need to install/load particular versions
+of the loaded packages. These are indicated in comments next to the
+corresponding `library()` call in the corresponding file.
+
+If you have any specific questions regarding the replication of the thesis,
+please also feel free to reach out via
+[email](mailto:bernhard.bieri@graduateinstitute.ch)
+
+<!--chapter:end:98-appendices.Rmd-->
+
+`r if(!knitr:::is_latex_output()) '# References {-}'`
+
+<!-- 
+You don't really need to alter this chapter unless you want to change the name of the bibliography section 
+to 'Bibliography', 'Literature', or something similar.
+Any references included in the chapters will be printed here automatically.
+-->
+
+<!-- This quiet code chunk serves as a custom style for the reference section and adds a custom header. Don't change it unless you really want to. -->
+```{=latex}
+\markboth{References}{References}
+```
+
+<!--chapter:end:99-references.Rmd-->
+

@@ -1,30 +1,165 @@
 ---
 title: Results
-author: Author
+author: Bieri
 chapter: 4
 in_context: False
 knit: iheiddown::chapter_pdf
 output: iheiddown::chapter_pdf
 ---
 
+```{r intializeresults, echo=FALSE}
+# Set paths
+project_path <- substr(getwd(), 1, 56)
+graph_path <- paste0(project_path, "/graphs/")
+ecolex_path <- paste0(project_path, "/data/ECOLEX/Membership/ECOLEX_Membership.rds")
+onemodenetpath <- paste0(project_path, "/data/CleanData/OnemodeNetworks/")
+clean_data_path <- paste0(project_path, "/data/CleanData/")
+regressiontablepath_rmd <- "figures/RegressionTables/"
+```
+
 \setcounter{chapter}{3}
 # Results and Discussion {#results}
 
-In this section, we will describe the results.
+In this section, we will estimate the empirical model defined in the previous
+section across its multiple specifications while accounting for the backbone
+extraction method used. We start by presenting the results from the Stochastic
+Degree Sequence Model (SDSM) and discussing each Porter Hypothesis in turn
+before complementing the analysis with the network measures computed on the
+more stringent Fixed Degree Sequence Model to confirm our results. Furthermore,
+we will conduct various robustness checks before discussing the results and
+their policy implications.
 
-## Results:
+## Weak Porter Hypothesis:
 
-### Weak Porter Hypothesis:
+### One Year Lag:
 
-#### Business Expenditures in R&D:
+```{=latex}
+\begingroup
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\begin{tabular}{lccc|ccc}
+   \toprule
+       & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
+    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
+                          & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
+                          &  OLS          & OLS           & Fractional Logit & OLS           & OLS           & Fractional Logit\\  
+   \midrule 
+   ln EPS (t-1)           & 0.009         & 0.02          & -0.12$^{**}$           & -0.02         & -0.01         & -0.13$^{*}$\\   
+                          & (0.06)        & (0.10)        & (0.05)                 & (0.06)        & (0.11)        & (0.06)\\   
+   ln Strength (t-1)      & -0.01         & 0.09          & -0.17$^{***}$          & 0.10          & 0.15$^{*}$    & -0.10$^{*}$\\   
+                          & (0.10)        & (0.09)        & (0.04)                 & (0.07)        & (0.08)        & (0.05)\\   
+   ln Transitivity (t-1)  & -0.08         & 0.43          & -0.41$^{**}$           & 0.32          & 0.40$^{**}$   & -0.12\\   
+                          &               &               &                        & (0.20)        & (0.18)        & (0.14)\\    
+   ln GDP/cap.         & 0.65$^{*}$    & 2.0$^{***}$   & 0.05                   & 0.43          & 2.1$^{***}$   & 0.09\\   
+                          & (0.32)        & (0.34)        & (0.21)                 & (0.35)        & (0.36)        & (0.22)\\   
+   ln ExportIntensity   & -0.03         & 0.66$^{***}$  & -0.10                  & 0.003         & 0.69$^{***}$  & -0.28$^{*}$\\   
+                          & (0.14)        & (0.16)        & (0.13)                 & (0.17)        & (0.17)        & (0.14)\\   
+   ln ImportIntensity   & 0.38$^{*}$    & -0.84$^{***}$ & -0.23                  & 0.25          & -1.1$^{***}$  & -0.09\\   
+                          & (0.20)        & (0.27)        & (0.18)                 & (0.24)        & (0.32)        & (0.21)\\   
+    \\
+   Observations           & 551           & 550           & 550                    & 466           & 466           & 466\\  
+   Within R$^2$           & 0.0692        & 0.2285        &                        & 0.0640        & 0.2740        & \\  
+   F-test                 & 204.4         & 207.8         &                        & 203.1         & 240.9         & \\  
+    \\
+   Year fixed effects     & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
+   Country fixed effects  & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
+   \bottomrule
+\end{tabular}
+\end{adjustbox}
+\par \raggedright 
+\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\par\endgroup
+```
 
-#### Triadic Patent Counts:
+### Five Year Lag:
 
-#### Environmental Patent Counts:
 
-### Strong Porter Hypothesis:
+```{=latex}
+\begingroup
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\begin{tabular}{lccc|ccc}
+   \toprule
+       & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
+    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
+                          & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
+                          &  OLS          & OLS           & Fractional Logit       & OLS           & OLS           & Fractional Logit\\  
+\midrule 
+   ln EPS (t-5)          & 0.17$^{***}$  & -0.11         & $2.3\times 10^{-5}$    & 0.18$^{***}$  & -0.15$^{**}$  & 0.05\\   
+                         & (0.06)        & (0.07)        & (0.06)                 & (0.06)        & (0.07)        & (0.06)\\   
+   ln Strength (t-5)     & -0.11$^{*}$   & -0.03         & -0.07$^{*}$            & -0.12$^{**}$  & -0.009        & -0.01\\   
+                         & (0.07)        & (0.07)        & (0.03)                 & (0.05)        & (0.06)        & (0.04)\\   
+   ln Transitivity (t-5) & 0.37          & 0.04          & -0.35                  & 0.28$^{*}$    & 0.61$^{***}$  & -0.18\\   
+                         & (0.24)        & (0.28)        & (0.29)                 & (0.14)        & (0.17)        & (0.12)\\   
+   log(GDPCapita)        & 0.41          & 2.3$^{***}$   & -0.03                  & 0.24          & 2.1$^{***}$   & 0.30\\   
+                         & (0.35)        & (0.34)        & (0.20)                 & (0.36)        & (0.36)        & (0.20)\\   
+   log(ExportIntensity)  & 0.19          & 0.70$^{***}$  & -0.12                  & 0.25          & 0.74$^{***}$  & -0.40$^{**}$\\   
+                         & (0.16)        & (0.18)        & (0.15)                 & (0.17)        & (0.23)        & (0.19)\\   
+   log(ImportIntensity)  & 0.29          & -1.1$^{***}$  & -0.33$^{*}$            & 0.18          & -1.0$^{***}$  & -0.29\\   
+                         & (0.24)        & (0.26)        & (0.18)                 & (0.27)        & (0.28)        & (0.20)\\   
+    \\
+   Observations          & 513           & 512           & 510                    & 422           & 421           & 419\\  
+   Within R$^2$          & 0.0985        & 0.2580        &                        & 0.0999        & 0.2858        & \\  
+   F-test                & 220.1         & 226.3         &                        & 236.9         & 242.2         & \\  
+    \\
+   Year fixed effects    & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
+   Country fixed effects & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\    
+   \bottomrule
+\end{tabular}
+\end{adjustbox}
+\par \raggedright 
+\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\par\endgroup
+```
 
-#### Total Factor Productivity:
+### Removing the USA, Japan and Germany:
+
+These three countries are the main drivers of global innovation and have both
+the largest levels of business expenditures on R&D as well as the largest
+patent counts. To ensure that our results are not driven by these three countries
+we rerun the models specified above without the three countries.
+
+## Strong Porter Hypothesis:
+
+```{=latex}
+\begingroup
+\centering
+\begin{adjustbox}{width=1\textwidth}
+\begin{tabular}{lccc|ccc}
+   \toprule
+       & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
+    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
+                          & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
+                          &  OLS          & OLS           & Fractional Logit       & OLS           & OLS           & Fractional Logit\\  
+\midrule 
+   ln EPS (t-5)          & 0.17$^{***}$  & -0.11         & $2.3\times 10^{-5}$    & 0.18$^{***}$  & -0.15$^{**}$  & 0.05\\   
+                         & (0.06)        & (0.07)        & (0.06)                 & (0.06)        & (0.07)        & (0.06)\\   
+   ln Strength (t-5)     & -0.11$^{*}$   & -0.03         & -0.07$^{*}$            & -0.12$^{**}$  & -0.009        & -0.01\\   
+                         & (0.07)        & (0.07)        & (0.03)                 & (0.05)        & (0.06)        & (0.04)\\   
+   ln Transitivity (t-5) & 0.37          & 0.04          & -0.35                  & 0.28$^{*}$    & 0.61$^{***}$  & -0.18\\   
+                         & (0.24)        & (0.28)        & (0.29)                 & (0.14)        & (0.17)        & (0.12)\\   
+   log(GDPCapita)        & 0.41          & 2.3$^{***}$   & -0.03                  & 0.24          & 2.1$^{***}$   & 0.30\\   
+                         & (0.35)        & (0.34)        & (0.20)                 & (0.36)        & (0.36)        & (0.20)\\   
+   log(ExportIntensity)  & 0.19          & 0.70$^{***}$  & -0.12                  & 0.25          & 0.74$^{***}$  & -0.40$^{**}$\\   
+                         & (0.16)        & (0.18)        & (0.15)                 & (0.17)        & (0.23)        & (0.19)\\   
+   log(ImportIntensity)  & 0.29          & -1.1$^{***}$  & -0.33$^{*}$            & 0.18          & -1.0$^{***}$  & -0.29\\   
+                         & (0.24)        & (0.26)        & (0.18)                 & (0.27)        & (0.28)        & (0.20)\\   
+    \\
+   Observations          & 513           & 512           & 510                    & 422           & 421           & 419\\  
+   Within R$^2$          & 0.0985        & 0.2580        &                        & 0.0999        & 0.2858        & \\  
+   F-test                & 220.1         & 226.3         &                        & 236.9         & 242.2         & \\  
+    \\
+   Year fixed effects    & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
+   Country fixed effects & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\    
+   \bottomrule
+\end{tabular}
+\end{adjustbox}
+\par \raggedright 
+\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\par\endgroup
+```
+
+
 
 ## Discussion:
 

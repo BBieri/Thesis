@@ -3,14 +3,14 @@
 ## Metadata       ##
 ####################
 doctitle: |
-  The Impact of Global Environmental Governance on Firm Innovation;
+  The Impact of Global Environmental Governance on Firm-level Innovation;
   Revisiting the Porter Hypothesis at the International Level.
 firstnames: Bernhard
 lastnames: Bieri
 thesisno: 12345
 phd: false # Or: false for Masters
 department: Master of International Economics
-degreedate: June 2022
+degreedate: September 2022
 supervisor: Prof. Joëlle Noailly
 secondreader: Prof. James Hollway
 # This is the YAML (YAML Ain't Markup Language) header that includes 

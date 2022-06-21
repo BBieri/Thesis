@@ -9,7 +9,7 @@ which allowed me to continuously refine my programming skills and discover
 the social network analysis methodology which lies at the core of the present
 work.
 Finally, I would like to thank my friends and my family without whose support,
-feedback, and advice this work would not have been possible.
+feedback, and precious advice this work would not have been possible.
 
 \begin{flushright}
 Bernhard Bieri \\

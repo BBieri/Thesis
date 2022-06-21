@@ -183,7 +183,17 @@ saveRDS(tpf_inventor_country, file = paste0(save_path,
 # per country per year. 1990, then every 5 years until 2015, then yearly until
 # 2019.
 
-EnvPat <- read.csv("data_raw/OECD/Env_Patents/PAT_DEV_22052022.csv") %>%
+EnvPat <- read.csv("data_raw/OECD/EnvironmentalPatents/PAT_DEV.csv") %>%
   dplyr::filter(SIZE == "TWO" & DOM == "TOT")
 
 saveRDS(EnvPat, file = paste0(save_path, "EnvPat.rds"))
+
+EnvPatShare <- dplyr::tibble(read.csv("data_raw/OECD/EnvironmentalPatents/DP_LIVE.csv")) %>%
+  dplyr::rename(COU = LOCATION,
+                Year = TIME,
+                EnvPatShare = Value) %>%
+  dplyr::select(COU, Year, EnvPatShare) %>%
+  dplyr::filter(Year >= 1985 & Year <= 2015) %>%
+  dplyr::mutate(EnvPatShare = EnvPatShare/100) # Convert percentage data
+
+saveRDS(EnvPatShare, file = paste0(save_path, "EnvPatShare.rds"))

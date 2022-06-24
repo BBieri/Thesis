@@ -16,6 +16,7 @@ library(car) # 3.0.13
 library(corrplot) # 0.92 Correlation plots
 library(Hmisc) # 4.7.0 Utilities for data science
 library(pander) # 0.6.5 For regression tables
+library(margins) # 0.3.26 Computing marginal effects of fractional logit models
 
 # Utilities
 data_path <- "data/CleanData/"
@@ -617,10 +618,6 @@ fe_berd_sdsm_lag5_Country_Time <- fixest::feols(fml = BERD_log ~ EPS_log_lag5 +
                       vcov = "NW")
 fe_berd_sdsm_lag5_Country_Time
 
-# Robustness Checks: Are time dummies required? -> Joint F-test. Yes if rejected.
-
-# fixest::fitstat(fe_berd_sdsm_lag5_Country_Time, type = "wald")
-
 # Exporting regression tables:
 # Set labels for estimated varibles
 regression_table_berd_sdsm <- fixest::etable(fe_berd_sdsm_lag1_Country_Time,
@@ -649,6 +646,60 @@ regression_table_berd_fdsm <- fixest::etable(fe_berd_fdsm_lag1_Country_Time,
 
 saveRDS(regression_table_berd_sdsm, file = paste0(regressiontablepath, "BerdSDSM.rds"))
 saveRDS(regression_table_berd_fdsm, file = paste0(regressiontablepath, "BerdFDSM.rds"))
+
+
+# Robustness Check: Are results the same without USA, Japan, Germany ?
+fe_berd_fdsm_lag1_Country_Time_robcheck <- fixest::feols(fml = BERD_log ~ EPS_log_lag1 +
+                                                  Strength_FDSM_log_lag1 + Transitivity_FDSM_log_lag1 +
+                                                  log(GDPCapita) +
+                                                  log(ExportIntensity) +
+                                                  log(ImportIntensity) | Year + Country,
+                                                data = all_vars[all_vars$Country != "USA" &
+                                                                  all_vars$Country != "DEU" &
+                                                                  all_vars$Country != "JPN",],
+                                                vcov = "NW")
+fe_berd_fdsm_lag1_Country_Time_robcheck
+
+# SDSM
+fe_berd_sdsm_lag1_Country_Time_robcheck <- fixest::feols(fml = BERD_log ~ EPS_log_lag1 +
+                                                  Strength_SDSM_log_lag1 + Transitivity_SDSM_log_lag1 +
+                                                  log(GDPCapita) +
+                                                  log(ExportIntensity) +
+                                                  log(ImportIntensity) | Year + Country,
+                                                data = all_vars[all_vars$Country != "USA" &
+                                                                  all_vars$Country != "DEU" &
+                                                                  all_vars$Country != "JPN",],
+                                                vcov = "NW")
+fe_berd_sdsm_lag1_Country_Time_robcheck
+
+
+# LAG 5: #######################################################################
+
+# FDSM
+fe_berd_fdsm_lag5_Country_Time_robcheck <- fixest::feols(fml = BERD_log ~ EPS_log_lag5 +
+                                                  Strength_FDSM_log_lag5 + Transitivity_FDSM_log_lag5 +
+                                                  log(GDPCapita) +
+                                                  log(ExportIntensity) +
+                                                  log(ImportIntensity) | Year + Country,
+                                                data = all_vars[all_vars$Country != "USA" &
+                                                                  all_vars$Country != "DEU" &
+                                                                  all_vars$Country != "JPN",],
+                                                vcov = "NW")
+fe_berd_fdsm_lag1_Country_Time_robcheck
+# SDSM
+fe_berd_sdsm_lag5_Country_Time_robcheck <-
+  fixest::feols(fml = BERD_log ~ EPS_log_lag5 +
+                  Strength_SDSM_log_lag5 +
+                  Transitivity_SDSM_log_lag5 +
+                  log(GDPCapita) +
+                  log(ExportIntensity) +
+                  log(ImportIntensity) | Year + Country,
+                data = all_vars[all_vars$Country != "USA" &
+                                  all_vars$Country != "DEU" &
+                                  all_vars$Country != "JPN",],
+                                                vcov = "NW")
+fe_berd_fdsm_lag1_Country_Time_robcheck
+
 
 #   - Triadic Patent counts: triadic_patent ----
 
@@ -899,6 +950,63 @@ regression_table_TPF_fdsm <- fixest::etable(fe_TPF_fdsm_lag1_Country_Time,
 saveRDS(regression_table_TPF_sdsm, file = paste0(regressiontablepath, "TPF_SDSM.rds"))
 saveRDS(regression_table_TPF_fdsm, file = paste0(regressiontablepath, "TPF_FDSM.rds"))
 
+# Robustness check without Germany, Japan, USA
+
+# LAG 1: #######################################################################
+
+# FDSM
+fe_TPF_fdsm_lag1_Country_Time_robcheck <- fixest::feols(fml = Triadic_Patents_log ~ EPS_log_lag1 +
+                                                 Strength_FDSM_log_lag1 +
+                                                 Transitivity_FDSM_log_lag1 +
+                                                 log(GDPCapita) +
+                                                 log(ExportIntensity) +
+                                                 log(ImportIntensity) | Year + Country,
+                                               data = all_vars[all_vars$Country != "USA" &
+                                                                 all_vars$Country != "DEU" &
+                                                                 all_vars$Country != "JPN",],
+                                               vcov = "NW")
+fe_TPF_fdsm_lag1_Country_Time_robcheck
+
+# SDSM
+fe_TPF_sdsm_lag1_Country_Time_robcheck <- fixest::feols(fml = Triadic_Patents_log ~ EPS_log_lag1 +
+                                                 Strength_SDSM_log_lag1 +
+                                                 Transitivity_SDSM_log_lag1 +
+                                                 log(GDPCapita) +
+                                                 log(ExportIntensity) +
+                                                 log(ImportIntensity) | Year + Country,
+                                               data = all_vars[all_vars$Country != "USA" &
+                                                                 all_vars$Country != "DEU" &
+                                                                 all_vars$Country != "JPN",],
+                                               vcov = "NW")
+fe_TPF_sdsm_lag1_Country_Time_robcheck
+
+# LAG 5: #######################################################################
+
+fe_TPF_fdsm_lag5_Country_Time_robcheck <- fixest::feols(fml = Triadic_Patents_log ~ EPS_log_lag5 +
+                                                 Strength_FDSM_log_lag5 +
+                                                 Transitivity_FDSM_log_lag5 +
+                                                 log(GDPCapita) +
+                                                 log(ExportIntensity) +
+                                                 log(ImportIntensity) | Year + Country,
+                                               panel.id = ~Country+Year,
+                                               data = all_vars[all_vars$Country != "USA" &
+                                                                 all_vars$Country != "DEU" &
+                                                                 all_vars$Country != "JPN",],
+                                               vcov = "NW")
+fe_TPF_fdsm_lag5_Country_Time_robcheck
+
+fe_TPF_sdsm_lag5_Country_Time_robcheck <- fixest::feols(fml = Triadic_Patents_log ~ EPS_log_lag5 +
+                                                 Strength_SDSM_log_lag5 +
+                                                 Transitivity_SDSM_log_lag5 +
+                                                 log(GDPCapita) +
+                                                 log(ExportIntensity) +
+                                                 log(ImportIntensity) | Year + Country,
+                                               data = all_vars[all_vars$Country != "USA" &
+                                                                 all_vars$Country != "DEU" &
+                                                                 all_vars$Country != "JPN",],
+                                               panel.id = ~Country+Year,
+                                               vcov = "NW")
+fe_TPF_sdsm_lag5_Country_Time_robcheck
 
 #   - Environmental Patent counts: EnvPatShare ----
 
@@ -972,11 +1080,29 @@ fe_EnvPat_fdsm_lag1_Country_Time <- fixest::feglm(fml = EnvPatShare ~ EPS_log_la
                                                  Transitivity_FDSM_log_lag1 +
                                                 log(GDPCapita) +
                                                 log(ExportIntensity) +
-                                                log(ImportIntensity),
+                                                log(ImportIntensity)| Year + Country,
                                                data = all_vars,
                                                family = "quasibinomial",
                                                vcov = "NW")
 fe_EnvPat_fdsm_lag1_Country_Time
+# Estimating the magnitude of the coefficients
+magnitude_FDSM_1 <- glm(EnvPatShare ~ EPS_log_lag1 +
+                          Strength_FDSM_log_lag1 +
+                          Transitivity_FDSM_log_lag1 +
+                          log(GDPCapita) +
+                          log(ExportIntensity) +
+                          log(ImportIntensity) + factor(Country) + factor(Year),
+           data = all_vars,
+           family = quasibinomial())
+margins::margins(magnitude_FDSM_1,
+                 variable = c("EPS_log_lag1",
+                              "Strength_FDSM_log_lag1",
+                              "Transitivity_FDSM_log_lag1"),
+                 type = "response",
+                 vcov = sandwich::NeweyWest(magnitude_FDSM_1,
+                                            lag = 2,
+                                            prewhite = F))
+
 # SDSM
 fe_EnvPat_sdsm_lag1_Country_Time <- fixest::feglm(fml = EnvPatShare ~ EPS_log_lag1 +
                                                  Strength_SDSM_log_lag1 +
@@ -988,6 +1114,23 @@ fe_EnvPat_sdsm_lag1_Country_Time <- fixest::feglm(fml = EnvPatShare ~ EPS_log_la
                                                family = "quasibinomial",
                                                vcov = "NW")
 fe_EnvPat_sdsm_lag1_Country_Time
+# Estimating the magnitude of the coefficients
+magnitude_SDSM_1 <- glm(EnvPatShare ~ EPS_log_lag1 +
+                          Strength_SDSM_log_lag1 +
+                          Transitivity_SDSM_log_lag1 +
+                          log(GDPCapita) +
+                          log(ExportIntensity) +
+                          log(ImportIntensity) + factor(Country) + factor(Year),
+           data = all_vars,
+           family = quasibinomial())
+margins::margins(magnitude_SDSM_1,
+                 variable = c("EPS_log_lag1",
+                              "Strength_SDSM_log_lag1",
+                              "Transitivity_SDSM_log_lag1"),
+                 type = "response",
+                 vcov = sandwich::NeweyWest(magnitude_SDSM_1,
+                                            lag = 2,
+                                            prewhite = F))
 
 # LAG 5: #######################################################################
 
@@ -1002,6 +1145,23 @@ fe_EnvPat_fdsm_lag5_Country_Time <- fixest::feglm(fml = EnvPatShare ~ EPS_log_la
                                                family = "quasibinomial",
                                                vcov = "NW")
 fe_EnvPat_fdsm_lag5_Country_Time
+# Estimating the magnitude of the coefficients
+magnitude_FDSM_5 <- glm(EnvPatShare ~ EPS_log_lag5 +
+             Strength_FDSM_log_lag5 +
+             Transitivity_FDSM_log_lag5 +
+             log(GDPCapita) +
+             log(ExportIntensity) +
+             log(ImportIntensity) + factor(Country) + factor(Year),
+           data = all_vars,
+           family = quasibinomial())
+margins::margins(magnitude_FDSM_5,
+                 variable = c("EPS_log_lag5",
+                              "Strength_FDSM_log_lag5",
+                              "Transitivity_FDSM_log_lag5"),
+                 type = "response",
+                 vcov = sandwich::NeweyWest(magnitude_FDSM_5,
+                                            lag = 2,
+                                            prewhite = F))
 # SDSM
 fe_EnvPat_sdsm_lag5_Country_Time <- fixest::feglm(fml = EnvPatShare ~ EPS_log_lag5 +
                                                     Strength_SDSM_log_lag5 +
@@ -1013,6 +1173,23 @@ fe_EnvPat_sdsm_lag5_Country_Time <- fixest::feglm(fml = EnvPatShare ~ EPS_log_la
                                                data = all_vars,
                                                family = "quasibinomial",
                                                vcov = "NW")
+magnitude_SDSM_5 <- glm(EnvPatShare ~ EPS_log_lag5 +
+             Strength_SDSM_log_lag5 +
+             Transitivity_SDSM_log_lag5 +
+             log(GDPCapita) +
+             log(ExportIntensity) +
+             log(ImportIntensity) + factor(Country) + factor(Year),
+           data = all_vars,
+           family = quasibinomial())
+margins::margins(magnitude_SDSM_5,
+                 variable = c("EPS_log_lag5",
+                              "Strength_SDSM_log_lag5",
+                              "Transitivity_SDSM_log_lag5"),
+                 type = "response",
+                 vcov = sandwich::NeweyWest(magnitude_SDSM_5,
+                                            lag = 2,
+                                            prewhite = F))
+# # Same results
 fe_EnvPat_sdsm_lag5_Country_Time
 # Exporting regression tables:
 # Set labels for estimated varibles
@@ -1330,7 +1507,43 @@ pFtest(plm::plm(BERD_log ~
                 model = "within")
 )
 
+# Building additional regression table without outlier countries:
 
+regression_table_lag1_robcheck <- fixest::etable(fe_berd_fdsm_lag1_Country_Time_robcheck,
+                                        fe_TPF_fdsm_lag1_Country_Time_robcheck,
+                                        fe_berd_sdsm_lag1_Country_Time_robcheck,
+                                        fe_TPF_sdsm_lag1_Country_Time_robcheck,
+                                        digits = 2,
+                                        digits.stats = 4,
+                                        signif.code = c("***" = 0.01,
+                                                        "**" = 0.05,
+                                                        "*" = 0.10),
+                                        order = c("EPS",
+                                                  "Strength",
+                                                  "Transitivity"),
+                                        tex = TRUE,
+                                        headers = list(Model = c("FDSM"=2, "SDSM"=2)),
+                                        fitstat=c('n', 'wr2', "f"),
+                                        notes = "Newey West corrected standard
+                                             errors.* significant 10%, ** significant 5%, *** significant 1%.")
+
+regression_table_lag5_robcheck <- fixest::etable(fe_berd_fdsm_lag5_Country_Time_robcheck,
+                                        fe_TPF_fdsm_lag5_Country_Time_robcheck,
+                                        fe_berd_sdsm_lag5_Country_Time_robcheck,
+                                        fe_TPF_sdsm_lag5_Country_Time_robcheck,
+                                        digits = 2,
+                                        digits.stats = 4,
+                                        signif.code = c("***" = 0.01,
+                                                        "**" = 0.05,
+                                                        "*" = 0.10),
+                                        order = c("EPS",
+                                                  "Strength",
+                                                  "Transitivity"),
+                                        tex = TRUE,
+                                        headers = list(Model = c("FDSM"=2, "SDSM"=2)),
+                                        fitstat=c('n', 'wr2', "f"),
+                                        notes = "Newey West corrected standard
+                                             errors.* significant 10%, ** significant 5%, *** significant 1%.")
 
 
 ################################################################################
@@ -1649,7 +1862,6 @@ pFtest(plm::plm(TFP0 ~
                 data = all_vars,
                 index = c("Country", "Year"),
                 model = "within")
-)
 )
 # FDSM lag 5
 pFtest(plm::plm(TFP0 ~

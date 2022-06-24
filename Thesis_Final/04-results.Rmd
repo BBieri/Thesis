@@ -22,16 +22,140 @@ regressiontablepath_rmd <- "figures/RegressionTables/"
 
 In this section, we will estimate the empirical model defined in the previous
 section across its multiple specifications while accounting for the backbone
-extraction method used. We start by presenting the results from the Stochastic
-Degree Sequence Model (SDSM) and discussing each Porter Hypothesis in turn
-before complementing the analysis with the network measures computed on the
-more stringent Fixed Degree Sequence Model to confirm our results. Furthermore,
-we will conduct various robustness checks before discussing the results and
-their policy implications.
+extraction method used as well as the lag structure of our policy variables.
+We will in turn describe and discuss the implications of our results for the
+*Weak Porter Hypothesis* and the *Strong Porter Hypothesis* before conducting
+various robustness checks.
 
 ## Weak Porter Hypothesis:
 
+Recall that the *WPH* links environmental policy stringency and innovation
+inputs and outcomes. We operationalized the former with BERD and Triadic Patent
+Counts and the share of environmental patents. We estimate the first two
+regressions with OLS while including fixed effects to account of unobserved
+country and time heterogeneity^[Patent counts may intuitively call for a Poisson
+regression. We follow @martinez-zarzosoDoesEnvironmentalPolicy2019 who use
+a standard OLS regression model since no observation bears the value $0$.
+Hence, although our dependent variable is right tailed, we do not experience
+a "pure" zero inflation and transforming the data by log-linearizing it is
+sufficient.]. The third regression which uses the share of environmental patents
+as a dependent variable is estimated by using a fractional logit approach (QMLE)
+[@papkeEconometricMethodsFractional1996] and complements the analysis of the
+*WPH* by linking environmental regulation and environmental innovation.
+
 ### One Year Lag:
+
+Let us analyse the models including a one year lag of our policy variables
+by looking first at the first, second, fourth and fifth models which are
+testing the *WPH* for one year lagged policy variables. We will then examine
+the somewhat surprising results we observe with our environmental patent share
+models.
+A one year lag is a relatively short period of time for policy stringency
+to take effect and translate into innovative outcomes. It is therefore
+unsurprising if we do not observe significant effects of domestic policy
+stringency on R&D investments and on patent counts in either of the two
+backbone extraction specifications.
+$Strength_{i,\ t-1}$, our first international policy variable,
+which measures the number of international agreements a country has signed at
+$t-1$ after undergoing the backbone extraction process $M \in \{FDSM; SDSM\}$
+exhibits consistent point estimates across backbone extraction specifications.
+In model (5), we see that a 1 percent increase in the strength centrality of a
+country in the environmental cooperation network translates into a $0.15\%$
+increase in the number of triadic patents.
+$Transitivity_{i,\ t-1}$ which proxies the social capital of a given country
+within the environmental cooperation network also shows consistent positive point
+estimates in the second and fifth model investigating patents. The result in the
+fifth model shows that a $1\%$ increase in the transitivity score will result
+in a $0.4\%$ increase in subsequent triadic patenting activity. The crucial
+observation in these model is that the international policy variables supplant
+the the national index which shows the relevance of the international environmental
+governance network. Furthermore, transitivity or the building of closely
+knit triads of countries plays a relatively more important role than strength
+centrality in encouraging innovative output.
+On the innovation input side however, we do not observe significant effects
+of either international policy variable. Additionally the point estimates are
+not consistent across backbone extraction procedures and standard errors are
+relatively high. One additional observation we can derive from the comparison
+between the results of backbone extraction methods is that the standard errors
+are systematically bigger in the FDSM models for our international policy
+variables. This is mainly due to the fact that the stringency of the conditions
+imposed by the backbone extraction algorithm is greater in the FDSM case than in
+the SDSM case where more edges are statistically validated and retained in the
+corrected one-mode cooperation network. Overall, the point estimates found
+by @martinez-zarzosoDoesEnvironmentalPolicy2019 for the R&D expenditure model
+and the patent count model lie within the $95\%$ confidence interval of our estimated
+coefficients which shows that our results are consistent with theirs although
+less precise.
+Moving on to the interpretation of the surprising results of the complementary
+analysis of the patent share of environmental technologies with respect to
+total patent counts, we find that all three policy variables exhibit a consistent
+negative effect on the share of environmental patents. These coefficients
+cannot however be interpreted as the previous double log models due to their
+non-linear nature. The average marginal effects in model 3 (FDSM) are:
+`EPS_FDSM_log_lag1`: $-0.01012$,  `Strength_SDSM_log_lag1`: $-0.01491$, 
+`Transitivity_SDSM_log_lag1` $-0.03541$ respectively. For model 5 (SDSM), they
+amount to: `EPS_SDSM_log_lag1`: $ -0.0114$, `Strength_SDSM_log_lag1`: $-0.008402$,
+`Transitivity_SDSM_log_lag1`: $-0.01083$. These marginal effects can be interpreted
+as the average marginal change of a $1\%$ change in the policy variable on the
+share of environmental patents over total patents in a given country in a given
+year. The estimates for the domestic policy stringency indicator and the strength
+centrality are consistent across backbone extraction specifications and show a
+small negative effect. This is however not the case for our transitivity measure
+where the version computed on the FDSM-corrected network is larger than the
+one under the SDSM network. One possible explanation for this pattern can
+be found in the fact that the FDSM correction process is more likely to produce
+a high leverage transitivity scores since it retains fewer cooperative edges
+than the less restrictive SDSM correction. Overall we can however see that
+increased stringency, whether national or international seems to have a negative
+effect on the share of environmental patents.
+We also observe a large positive effect of GDP per capita under all specifications
+for both R&D expenditures, overall patent counts as well as environmental patents
+although the results are significant only in the first, second and fifth model.
+This is not surprising given that high value added processes such as R&D
+require both specialized human and physical capital which is found in wealthier
+countries.
+Curiously, @martinez-zarzosoDoesEnvironmentalPolicy2019 do not control for
+the GDP level but only for the level of international competitiveness.
+They proxy it by regressing the innovation metrics on export
+and import intensity^[The level of exports or imports over GDP in a given
+country and year.]. We find that export intensity does not have a significant
+impact on R&D investments although it has a significant positive effect on the
+patent count. This partially shows a "learning-by-exporting" effect and echoes
+the argument put forward by @brunnermeierDeterminantsEnvironmentalInnovation2003
+who argue that internationally competitive industries are more likely to innovate
+if foreign markets are already internationally competitive^[While their analysis
+focuses on sectoral innovation, we observe comparable effects that have been
+aggregated at the country level.]. The impact of the ratio of import intensity
+on innovative activity is ambiguous across our specifications. This result
+illustrates the continued theoretical debate on the effect of market concentration on
+innovative activity[@levinAppropriabilityOpportunityMarket1985; @schumpeter1943capitalism].
+This debate is further illustrated by the divergence between the results
+obtained by @rubashkinaEnvironmentalRegulationCompetitiveness2015 and
+@martinez-zarzosoDoesEnvironmentalPolicy2019. The latter argue that
+the source of this divergence may be linked with the set of countries that are
+analyzed. In our case as well as in @rubashkinaEnvironmentalRegulationCompetitiveness2015,
+the sample of considered countries is wider, more heterogeneous and less EU-centric
+and may thus lead to different conclusions on the impact of import and export
+intensity on innovative activity. Further empirical research is therefore
+needed to precisely assess the role of these two variables on innovative activity.
+
+Overall, one can draw three main conclusions from the analysis of these one-year
+lagged policy measures.
+First, we cannot confirm the *WPH* on the basis of these
+results as the environmental policy stringency index which is not significant
+in either the R&D expenditure or the patent count model. This result is
+broadly consistent with @martinez-zarzosoDoesEnvironmentalPolicy2019.
+Second, we observe
+a positive effect of our international governance measures on patent counts.
+The point estimates are similar across backbone extraction process while being
+less precise in the FDSM case.
+Third, we observe somewhat heterogeneous
+results across backbone extraction specifications which shows the need of
+ensuring that our results are robust to the method used. This third observation
+shows that studies relying solely on one of method without being guided by theoretical
+considerations or computational barriers risk making wrong inferences with the
+resulting centrality indices. Let us now turn to the analysis of the models
+including the five year lagged policy variables.
 
 ```{=latex}
 \begingroup
@@ -40,26 +164,26 @@ their policy implications.
 \begin{tabular}{lccc|ccc}
    \toprule
        & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
-    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
+    & R\&D & Patents & Environmental Patents ($\%$) & R\&D & Patents & Environmental Patents ($\%$)\\
                           & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
-                          &  OLS          & OLS           & Fractional Logit & OLS           & OLS           & Fractional Logit\\  
+                          &  OLS          & OLS           & QMLE                   & OLS           & OLS           & QMLE\\  
    \midrule 
    ln EPS (t-1)           & 0.009         & 0.02          & -0.12$^{**}$           & -0.02         & -0.01         & -0.13$^{*}$\\   
                           & (0.06)        & (0.10)        & (0.05)                 & (0.06)        & (0.11)        & (0.06)\\   
    ln Strength (t-1)      & -0.01         & 0.09          & -0.17$^{***}$          & 0.10          & 0.15$^{*}$    & -0.10$^{*}$\\   
                           & (0.10)        & (0.09)        & (0.04)                 & (0.07)        & (0.08)        & (0.05)\\   
    ln Transitivity (t-1)  & -0.08         & 0.43          & -0.41$^{**}$           & 0.32          & 0.40$^{**}$   & -0.12\\   
-                          &               &               &                        & (0.20)        & (0.18)        & (0.14)\\    
-   ln GDP/cap.         & 0.65$^{*}$    & 2.0$^{***}$   & 0.05                   & 0.43          & 2.1$^{***}$   & 0.09\\   
+                          & (0.21)        & (0.35)        & (0.17)                 & (0.20)        & (0.18)        & (0.14)\\    
+   ln GDP/cap.            & 0.65$^{*}$    & 2.0$^{***}$   & 0.05                   & 0.43          & 2.1$^{***}$   & 0.09\\   
                           & (0.32)        & (0.34)        & (0.21)                 & (0.35)        & (0.36)        & (0.22)\\   
-   ln ExportIntensity   & -0.03         & 0.66$^{***}$  & -0.10                  & 0.003         & 0.69$^{***}$  & -0.28$^{*}$\\   
+   ln ExportIntensity     & -0.03         & 0.66$^{***}$  & -0.10                  & 0.003         & 0.69$^{***}$  & -0.28$^{*}$\\   
                           & (0.14)        & (0.16)        & (0.13)                 & (0.17)        & (0.17)        & (0.14)\\   
-   ln ImportIntensity   & 0.38$^{*}$    & -0.84$^{***}$ & -0.23                  & 0.25          & -1.1$^{***}$  & -0.09\\   
+   ln ImportIntensity     & 0.38$^{*}$    & -0.84$^{***}$ & -0.23                  & 0.25          & -1.1$^{***}$  & -0.09\\   
                           & (0.20)        & (0.27)        & (0.18)                 & (0.24)        & (0.32)        & (0.21)\\   
     \\
    Observations           & 551           & 550           & 550                    & 466           & 466           & 466\\  
-   Within R$^2$           & 0.0692        & 0.2285        &                        & 0.0640        & 0.2740        & \\  
-   F-test                 & 204.4         & 207.8         &                        & 203.1         & 240.9         & \\  
+   Within R$^2$           & 0.0692        & 0.2285        &  -                     & 0.0640        & 0.2740        & - \\  
+   F-test                 & 204.4         & 207.8         &  -                     & 203.1         & 240.9         & - \\  
     \\
    Year fixed effects     & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
    Country fixed effects  & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
@@ -67,12 +191,94 @@ their policy implications.
 \end{tabular}
 \end{adjustbox}
 \par \raggedright 
-\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\footnotesize{Newey West corrected standard errors in parentheses. * significant 10\%, ** significant 5\%, *** significant 1\%.
+Within $R^2$ and overall F-Test are not availiable for the QMLE estimation due to software limitations.}
 \par\endgroup
 ```
 
 ### Five Year Lag:
 
+Much like in our analysis of the one year lag results presented in the previous
+subsection, we subset our analysis in two parts. We first consider the
+models describing the *WPH* before turning our attention to the complementary
+environmental patent share regressions.
+
+Contrary to the results of the previous section with one year lags, we observe
+a positive and highly significant effect of our domestic environmental policy stringency
+index on R&D expenditures in both models. Since all policy variables are
+log-linearized, these coefficients are to be interpreted as the effect in percentage
+points of a $1\%$ change in the independent variable. Thus, a $1%$ increase
+in the EPS index will lead to a $0.17\%$ or $0.18\%$ increase in business
+expenditures on R&D. These results are also in line with
+@martinez-zarzosoDoesEnvironmentalPolicy2019 who find a $0.13%$ point estimate
+in their study. On the other hand, unlike them, we do not find a positive effect of
+five-year lagged EPS when considering the specification with triadic patent counts
+as a dependent variable. Two facts may explain this divergence. First,
+@martinez-zarzosoDoesEnvironmentalPolicy2019 observe an effect of EPS that is
+one order of magnitude lower in the patent count specification
+than when considering R&D expenditures as a dependent variable and lies just outside
+the $95\%$ confidence interval of our effect. A second cause for this inverse
+relationship could be due to larger set of countries that are considered in our
+study as well as the longer time frame. For these reasons, we find evidence for
+the *WPH* when considering the R&D expenditure model only and
+not our patent count specification.
+On the international policy side, we find that lagged strength centrality
+negatively affects R&D expenditures. This finding refutes our hypothesis
+that increased participation in environmental treaties would make the
+national policy environment more stringent. This result is robust
+across backbone extraction specifications and may be due to the lag selection
+process. Indeed, by taking the same lags than for domestic policy stringency, we
+implicitly make the hypothesis that these international policy signals operate
+in the same lag structure which may not be the case.
+Transitivity which can be interpreted as an indicator of policy
+certainty or international commitment shows positive point estimates across both
+specifications. While it is estimated more precisely and therefore significant
+in the SDSM setting only, we observe that increased transitivity increases R&D
+expenditures as well as patent counts. Crucially in this instance is that
+transitivity has a larger impact than the pure effect of lagged environmental
+policy stringency on R&D investments. This highlights the importance of a
+predictable policy environment when firms undertake innovation investments that
+are inherently risky and underlines the importance of meaningful international
+environmental cooperation to spur innovation.
+Our economic variables, although all positive, do no longer have a significant
+effect on R&D expenditures due to the reduction in point estimates rather than
+an increase in standard errors when compared to the results with the one-year
+lagged policy variables. On the other hand, the impact of all three
+economic variables is highly significant when we consider the number of triadic
+patent filings. We observe a similar pattern of results than under the previous
+one-year lagged specification in that GDP per capita positively impacts
+innovation outcomes like our proxy of international competitiveness; export
+intensity. We also see a negative effect of increased home competition on
+triadic patent counts which reinforces the Schumpeterian view that increased
+market concentration i.e. lower import penetration has a positive effect on
+innovation since the investment environment becomes less uncertain^[As mentioned
+in the previous section, this result requires further research as we do not
+find concurring signs across the innovation input model (R&D expenditures) and
+the innovation output model (patents).].
+
+The models on the share of environmental patents complement this analysis allows
+us to test whether increased environmental policy stringency has had a relatively
+stronger impact on environmental innovation than aggregate innovation. Since we
+none of the policy coefficients are significant, we cannot conclude
+that five year lagged environmental policy increased the share of environmental
+patents with respect to total patents. Note that although our some coefficients
+are weakly significant, they are not consistently estimated across backbone model
+specifications and therefore cannot be interpreted safely. 
+
+We can once again derive three key insights from the regression of the innovation
+variables on the five-year lags of our policy variables. First, we see that
+the role of domestic environmental policy stringency as proxied by the EPS index
+has a higher effect than when we consider one year lags. This observation is
+consistent with @martinez-zarzosoDoesEnvironmentalPolicy2019 and verifies the
+*WPH* in the case of R&D expenditures. Second, we show that transitivity has a
+positive effect across all specifications and whose point estimates are larger
+than the pure effect of policy stringency. This shows the importance of having
+a stable policy environment to reduce the policy risk associated with innovative
+investments which are already inherently risky. And finally, the third observation
+we highlight is that environmental innovation is affected in the same way as
+aggregate innovation by our policy variables since none is significant under both
+backbone extraction specifications. Let us now move on to the analysis of the
+*Strong Porter Hypothesis*.
 
 ```{=latex}
 \begingroup
@@ -81,9 +287,9 @@ their policy implications.
 \begin{tabular}{lccc|ccc}
    \toprule
        & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
-    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
+    & R\&D & Patents & Environmental Patents ($\%$) & R\&D & Patents & Environmental Patents ($\%$)\\
                           & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
-                          &  OLS          & OLS           & Fractional Logit       & OLS           & OLS           & Fractional Logit\\  
+                          &  OLS          & OLS           & QMLE                  & OLS           & OLS           & QMLE\\  
 \midrule 
    ln EPS (t-5)          & 0.17$^{***}$  & -0.11         & $2.3\times 10^{-5}$    & 0.18$^{***}$  & -0.15$^{**}$  & 0.05\\   
                          & (0.06)        & (0.07)        & (0.06)                 & (0.06)        & (0.07)        & (0.06)\\   
@@ -99,8 +305,8 @@ their policy implications.
                          & (0.24)        & (0.26)        & (0.18)                 & (0.27)        & (0.28)        & (0.20)\\   
     \\
    Observations          & 513           & 512           & 510                    & 422           & 421           & 419\\  
-   Within R$^2$          & 0.0985        & 0.2580        &                        & 0.0999        & 0.2858        & \\  
-   F-test                & 220.1         & 226.3         &                        & 236.9         & 242.2         & \\  
+   Within R$^2$          & 0.0985        & 0.2580        &  -                     & 0.0999        & 0.2858        & - \\  
+   F-test                & 220.1         & 226.3         &  -                     & 236.9         & 242.2         & - \\  
     \\
    Year fixed effects    & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
    Country fixed effects & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\    
@@ -108,58 +314,106 @@ their policy implications.
 \end{tabular}
 \end{adjustbox}
 \par \raggedright 
-\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\footnotesize{Newey West corrected standard errors in parentheses. * significant 10\%, ** significant 5\%, *** significant 1\%.
+Within $R^2$ is not availiable for the QMLE estimation due to software limitations.}
 \par\endgroup
 ```
-
-### Removing the USA, Japan and Germany:
-
-These three countries are the main drivers of global innovation and have both
-the largest levels of business expenditures on R&D as well as the largest
-patent counts. To ensure that our results are not driven by these three countries
-we rerun the models specified above without the three countries.
 
 ## Strong Porter Hypothesis:
 
+The *Strong Porter Hypothesis* assumes a positive link between environmental
+policy stringency and firm productivity as a direct result of the increased
+rates of innovation. We test this hypothesis by regressing the total factor
+productivity growth rate onto our policy proxies as well as our economic variables
+in the same lag and backbone extraction structures. Since the dependent variable
+is a growth rate and that our covariates are all log-linearized, the model
+can be interpreted in a similar way than the ones testing the *WPH* i.e. as the
+effect of a $1\%$ change in growth rate percentage points.
+We draw two main conclusions from these models. First, we see that the one-year
+lag of the environmental policy stringency index has a positive and a significant
+effect on the growth rate of total factor productivity. Although seemingly confirming
+the strong version of the Porter Hypothesis, we should interpret these results
+with care as they are relatively large. While they cannot be directly compared to the
+results @martinez-zarzosoDoesEnvironmentalPolicy2019 found due to the fact that
+their results considered an old *level* index of TFP of the EU KLEMS dataset
+[@stehrerWiiwGrowthProductivity2022] and excluded the aftermath of the global
+financial crisis from their sample^[As one can see on the descriptive graph
+in chapter 3, the former was heavily impacted by the global financial crisis
+which reflects its sensitivity to business cycles
+[@vanbeverenTotalFactorProductivity2012]. We estimated all models with time
+fixed effects to account for these.].
+
 ```{=latex}
 \begingroup
 \centering
-\begin{adjustbox}{width=1\textwidth}
-\begin{tabular}{lccc|ccc}
+\begin{adjustbox}{width=0.7\textwidth, height = 0.2\textheight}
+\begin{tabular}{lcc|cc}
    \toprule
-       & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
-    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
-                          & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
-                          &  OLS          & OLS           & Fractional Logit       & OLS           & OLS           & Fractional Logit\\  
-\midrule 
-   ln EPS (t-5)          & 0.17$^{***}$  & -0.11         & $2.3\times 10^{-5}$    & 0.18$^{***}$  & -0.15$^{**}$  & 0.05\\   
-                         & (0.06)        & (0.07)        & (0.06)                 & (0.06)        & (0.07)        & (0.06)\\   
-   ln Strength (t-5)     & -0.11$^{*}$   & -0.03         & -0.07$^{*}$            & -0.12$^{**}$  & -0.009        & -0.01\\   
-                         & (0.07)        & (0.07)        & (0.03)                 & (0.05)        & (0.06)        & (0.04)\\   
-   ln Transitivity (t-5) & 0.37          & 0.04          & -0.35                  & 0.28$^{*}$    & 0.61$^{***}$  & -0.18\\   
-                         & (0.24)        & (0.28)        & (0.29)                 & (0.14)        & (0.17)        & (0.12)\\   
-   log(GDPCapita)        & 0.41          & 2.3$^{***}$   & -0.03                  & 0.24          & 2.1$^{***}$   & 0.30\\   
-                         & (0.35)        & (0.34)        & (0.20)                 & (0.36)        & (0.36)        & (0.20)\\   
-   log(ExportIntensity)  & 0.19          & 0.70$^{***}$  & -0.12                  & 0.25          & 0.74$^{***}$  & -0.40$^{**}$\\   
-                         & (0.16)        & (0.18)        & (0.15)                 & (0.17)        & (0.23)        & (0.19)\\   
-   log(ImportIntensity)  & 0.29          & -1.1$^{***}$  & -0.33$^{*}$            & 0.18          & -1.0$^{***}$  & -0.29\\   
-                         & (0.24)        & (0.26)        & (0.18)                 & (0.27)        & (0.28)        & (0.20)\\   
+    & \multicolumn{4}{c}{TFP growth}\\
+   Lag & \multicolumn{2}{c}{lag = 1} & \multicolumn{2}{c}{lag = 5} \\ 
+   Model                 & FDSM          & SDSM          & FDSM          & SDSM \\   
+                         & (1)           & (2)           & (3)           & (4)\\  
+   \midrule 
+   ln EPS                & 1.2$^{**}$    & 1.1$^{**}$    & -0.53         & -0.75\\   
+                         & (0.43)        & (0.46)        & (0.55)        & (0.45)\\ 
+   ln Strength           & -0.48         & 0.57          & -0.69         & -0.65$^{**}$\\   
+                         & (0.74)        & (1.1)         & (0.42)        & (0.29)\\   
+   ln Transitivity       & -3.0          & -0.46         & -0.83         & -1.7\\ 
+                         & (2.7)         & (2.2)         & (0.78)        & (1.1)\\ 
+   ln GDP per cap.       & -5.8$^{**}$   & -6.2$^{***}$  & -2.9$^{*}$    & -3.3$^{**}$\\   
+                         & (2.2)         & (1.9)         & (1.5)         & (1.3)\\   
+   ln ExportIntensity    & -2.8          & -3.5          & -1.7          & -1.6\\   
+                         & (2.3)         & (2.1)         & (1.6)         & (1.5)\\   
+   ln ImportIntensity    & 5.4$^{*}$     & 5.9$^{**}$    & 3.0           & 4.4$^{**}$\\   
+                         & (2.8)         & (2.7)         & (2.0)         & (1.9)\\   
     \\
-   Observations          & 513           & 512           & 510                    & 422           & 421           & 419\\  
-   Within R$^2$          & 0.0985        & 0.2580        &                        & 0.0999        & 0.2858        & \\  
-   F-test                & 220.1         & 226.3         &                        & 236.9         & 242.2         & \\  
+   Observations          & 304           & 306           & 299           & 329\\  
+   Within R$^2$          & 0.1059        & 0.1021        & 0.0837        & 0.1189\\  
+   F-test                & 5.736         & 5.713         & 4.843         & 5.162\\  
     \\
-   Year fixed effects    & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
-   Country fixed effects & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\    
+   Year fixed effects    & $\checkmark$  & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
+   Country fixed effects & $\checkmark$  & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
    \bottomrule
 \end{tabular}
 \end{adjustbox}
-\par \raggedright 
-\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\par \raggedright
+\footnotesize{Newey West corrected standard errors in parentheses. * significant 10\%, ** significant 5\%, *** significant 1\%.}
 \par\endgroup
 ```
 
+## Robustness Checks:
 
+The first and most important robustness check we performed was to compute our network centrality
+indices following different backbone extraction methods to ensure that our results
+are not contingent on its choice as there exist no precise theoretical foundation
+that would motivate the choice of one backbone extraction method over another.
+This leads us to caution against the use of a *single* backbone extraction process
+to correct our bipartite networks as its choice may have consequences on the
+subsequent inferential process. This stands in contrast to
+@carattiniWhatDoesNetwork2021 who derive stylized facts on the evolution of
+environmental cooperation by using a single BiPCM backbone extraction
+algorithm in their analysis. We therefore recommend both the elaboration of a
+theoretical justification for the selection the backbone extraction method as
+well as the use of various extraction methods to show the robustness of one's
+results^[Recall that we excluded the fixed-column model from the backbone
+extraction model selection process due to the fact that agreements do not
+posses agency over how many countries join them. Therefore, it did not make
+theoretical sense to constrain their degree sequence.].
 
-## Discussion:
+More standard econometric checks were performed as well.
+Multicolinearity of our regressors was assessed by computing the VIF of
+each model. Non-spherical errors and autocorrelation were dealt with by using
+Newey-West corrected errors. Additionally, one might argue for the presence
+simultaneity issues whereby firms in less innovative countries may successfully
+dismantle environmental legislation^[The opposite lobbying effect may equally
+be true.]. Studies with lagged policy variables such as
+@rubashkinaEnvironmentalRegulationCompetitiveness2015 ,
+@martinez-zarzosoDoesEnvironmentalPolicy2019 and ours assuage these fears by
+pointing out that future firms cannot influence past environmental stringency
+states whether domestic or international.
 
+Finally, we reestimated the models analyzing the
+*WPH* to ensure that our results were not solely driven by outlier countries.
+The US, Japan and Germany are the main drivers of global innovation and have both
+the largest levels of business expenditures on R&D as well as the largest
+patent counts^[Results are presented in the appendix.].

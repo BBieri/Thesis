@@ -51,33 +51,75 @@ Let us however start by defining the empirical panel model that
 we will estimate in the next section before detailing the construction of
 its various coefficients.
 
-## The Empirical Model:
+## The Empirical Models:
 
-We define the following general panel model and consider
-all OECD countries over the time period between 1990 and 2015.
+To analyse our unbalanced panel of OECD countries over the period of 1990 to
+2015, we define the following regressions to investigate the *Weak Porter Hypothesis*.
+
+```[=latex]
+\begin{align}
+ln(BERD_{it}) = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) +
+\beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
+\\
+ln(TPF_{it}) = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) +
+\beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
+\\
+EnvPatShare_{it} = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) +
+\beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
+\end{align}
+```
+
+Where our three dependent variables are $BERD_{it}$, the business expenditures
+on R&D[@oecdMainScienceTechnology2022].
+This measures the *input* into the R&D process. $TPF_{it}$ is the count
+of triadic family patents i.e. patents that have been granted by the three
+largest patent offices; the European Patent Office (EPO), the Japan
+Patent Office (JPO) and the United States Patent and Trademark Office (USPTO)
+[@oecdOECDTriadicPatent2022].
+This measure proxies the *output* of the innovation process over both environmental
+and non environmental patents. Finally, we consider $EnvPatShare_{it} \in [0;1]$
+which measures the share of environmental patents over total patents by country
+[@oecdPatentsEnvironmentTechnologies2022].
+
+On the RHS, $\text{EPS}_{i,\ t-k}$ is a proxy for national environmental policy
+stringency over the time period between 1990 and 2015 for OECD countries
+[@bottaMeasuringEnvironmentalPolicy2014].
+$\text{Strength}_{i,\ t-k}^{M}$ and $\text{Transitivity}_{i,\ t-k}^{M}$ are indices
+characterizing the position of a country in the international environmental governance 
+network. We compute these indices by using
+different *backbone extraction* methods $M$ to ensure the robustness of our
+results. Furthermore, following @rubashkinaEnvironmentalRegulationCompetitiveness2015 
+and @martinez-zarzosoDoesEnvironmentalPolicy2019, we make the hypothesis of a
+lagged effect of policy signals on innovation and productivity outcomes. Following
+both papers, we consider a lag structure of one and five years respectively.
+$X_{it}$ is a vector of control variables including GDP per capita
+measures from the World Bank and import/export intensity measures to account
+for the economic integration of a given country in the global trade network^[Note:
+All monetary variables have been standardized to 2015 USD 
+PPP.][@worldbankWorldDevelopmentIndicators2022].
+Finally, we add both country $\alpha_i$ and time fixed effects $\delta_t$ to
+capture the unobserved country and time level heterogeneity.
+
+When moving on to the analysis of the *Strong Porter Hypothesis*, we define
+a similar panel model where our dependent variable is the growth of
+total factor productivity $\Delta TFP_{it}$. This echoes the model run by
+@albrizioEnvironmentalPoliciesProductivity2017 who find a positive effect
+between the tightening of the EPS of a country and the growth of total factor 
+productivity^[Unlike @albrizioEnvironmentalPoliciesProductivity2017,
+we consider the level of the EPS index to remain consistent with the
+@martinez-zarzosoDoesEnvironmentalPolicy2019 and the other estimations.].
 
 $$
-y_{it} = \beta_1 \text{EPS}_{i,\ t-k} + \beta_2 \text{Strength}_{i,\ t-k}^{M} +
+\Delta TFP_{it} = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \beta_2 \text{Strength}_{i,\ t-k}^{M} +
 \beta_3 \text{Transitivity}_{i,\ t-k}^{M} + \beta_4 X_{it} + \alpha_i + \delta_t + u_{it}
 $$
 
-Where $\text{EPS}_{i,\ t-k}$ is a proxy for national environmental policy
-stringency over the time period between 1990 and 2015 for OECD countries.
-$\text{Strength}_{it}^{M}$ and $\text{Transitivity}_{it}^{M}$ are indexes characterizing
-the international policy network on the environment we compute by using
-different *backbone extraction* methods $M$ to ensure the robustness of our
-results. $X_{it}$ is a vector of control variables including GDP per capita
-measures from the World Bank and import/export intensity measures to account
-for the economic integration in the global trade network. Finally, we add
-both country $\alpha_i$ and 
-
 We will begin by defining the construction of the  $\text{Strength}_{it}$ and the
-$\text{Transitivity}_{it}$ measures of international governance before turning
-to the $\text{EPS}_{it}$ indicator and the various dependent variables of
-innovation and productivity we use to test the different versions of Porter's
-Hypothesis.
+$\text{Transitivity}_{it}$ measures of international governance before examining in
+more detail the $\text{EPS}_{it}$ indicator and the various other dependent
+variables of innovation and productivity we succinctly described above.
 
-## Constructing international environmental cooperation centrality measures:
+## Constructing International Environmental Cooperation Centrality Measures:
 
 We leverage the ECOLEX dataset to construct country level measures of
 embeddedness in the international environmental cooperation network
@@ -584,22 +626,34 @@ readRDS(paste0(clean_data_path, "Panel.rds")) %>%
 ### Innovation Measures:
 
 We measure innovation, the first of our dependent variables, in two main ways. 
-First, we consider the Business Expenditures on R&D (BERD) to capture the input 
+First, we consider the Business Expenditures on R&D (BERD) to capture the *input* 
 side of the innovation process by using data from the OECD 
 [@oecdMainScienceTechnology2022]. We complement the insight from this analysis
 by using Triadic Patent Family (TFP) counts and Environmental Patent (EnvPat) 
-counts to proxy *the outcome* of the research process
+counts to proxy the *outcome* of the research process
 [@oecdOECDTriadicPatent2022; @oecdPatentsEnvironmentTechnologies2022].
 Both insights are complementary as Business Expenditures on R&D 
 give a good approximation of the importance placed on the R&D process by firms 
 while Triadic Family Patent counts and the country-level share of environmental
-patents allows us to examine the effect of environmental policy on *outcomes*
-of inventive activity @poppEnvironmentalPolicyInnovation2019. In conclusion,
-these innovation proxies will allow us to assess the *Weak Porter Hypothesis*.
+patents allows us to examine the effect of environmental policy on the *outcomes*
+of inventive activity @poppEnvironmentalPolicyInnovation2019. A few caveats must be
+borne in mind when using patent counts as a proxy of innovative activity.
+First, as @martinez-zarzosoDoesEnvironmentalPolicy2019 point out using single
+country patent counts may lead to issues such as double counting of patents that
+are registered in multiple patent offices to gain worldwide protection. A related
+issue is that when using single patent counts is that one might capture
+low value innovations. We remedy both issues by considering the count of
+patent families as described by @martinezInsightDifferentTypes2010 rather than
+individual level patent counts. Finally, as pointed out by 
+@poppEnvironmentalPolicyInnovation2019 and
+@martinez-zarzosoDoesEnvironmentalPolicy2019 national legislation and accountancy
+criteria of patents can bias the results. We will account for this heterogeneity
+by including country fixed effects in all our estimations.
+Overall, the combination of these innovation proxies will allow us to assess the *Weak Porter Hypothesis*. Let us now visualize the intertemporal evolution of all
+three innovation proxies.
 
-#### Business Expenditures in R&D:
-
-We see an overall upward trend in the logged BERD indicating an increase
+Beginning with our business expenditure on R&D data (BERD), we identify a clear
+upward trend in the logged BERD indicating an increase
 of the level of expenditures on R&D across all countries. In addition,
 we note a considerable country-level heterogeneity with the top 3 countries
 being the United States, Japan and Germany.
@@ -614,9 +668,7 @@ readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   iheiddown::theme_iheid()
 ```
 
-#### Triadic Family Patent Counts:
-
-Triadic Family Patent counts show a similar pattern with respect to the country
+Triadic family patent counts show a similar pattern with respect to the country
 level heterogeneity. The top three countries are once again Japan, the United
 States and Germany. Note that while some countries, such as Japan and the US
 saw a marked increase in the yearly patent counts, most countries' counts
@@ -631,8 +683,6 @@ readRDS(paste0(clean_data_path, "Panel.rds")) %>%
                                    y = "Triadic Patent Count") +
                      iheiddown::theme_iheid()
 ```
-
-#### Environmental Patent Counts:
 
 Taking into account the share of *environmental* patents with respect to
 total patents allows us to refine our analysis by matching environmental
@@ -653,11 +703,9 @@ readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   iheiddown::theme_iheid()
 ```
 
-### Total Factor Productivity:
-
 The *Strong Porter Hypothesis* we laid out in the previous chapter links
 environmental policy stringency and productivity or profits. We test this
-hypothesis by regressing total factor productivity on the dependent domestic
+hypothesis by regressing total factor productivity on the independent domestic
 and international policy variables. To that effect, we will use the
 Total Factor Productivity index developed by the Vienna Institute
 for International Economic Studies [@stehrerWiiwGrowthProductivity2022].
@@ -670,7 +718,7 @@ $$
 \Delta \ln Y=\Delta \ln T F P 0+\bar{s}_{C} \Delta \ln K+\bar{s}_{L} \Delta \ln H
 $$
 
-Two features are sailient from the graph below. First and foremost, we observe
+Two features are salient from the graph below. First and foremost, we observe
 a form of growth rate convergence among OECD countries over the considered time
 period around $0\%$ to $2.5\%$ . A second prominent feature is the impact of
 the 2008 financial crisis which hit Greece particularly hard.
@@ -685,7 +733,6 @@ readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   ggplot2::xlim(1995, 2015) +
   iheiddown::theme_iheid()
 ```
-
 
 ## Correlations:
 

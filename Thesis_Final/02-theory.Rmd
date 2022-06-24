@@ -409,4 +409,5 @@ paper is therefore to investigate whether or not the relative
 position^[In a topological sense.] of a country
 in the global environmental governance network affects the different versions
 of the Porter Hypothesis. Now that the theoretical motivation of our study is
-set, let us outline our empirical strategy in the methodology section.
+set, let us outline our empirical strategy and data sources
+in the section that follows.

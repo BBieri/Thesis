@@ -14,7 +14,12 @@ output: iheiddown::chapter_pdf
 \setcounter{chapter}{0}
 # Introduction {#intro}
 
+Some random fact about why my paper is important given environmental context today
 
+Porter hypothesis is still contested and has neglected the incresed rate 
+of international environmental cooperation
+
+Present main findings
 
 In section 2, we review the existing literature on Porter's Hypothesis and
 the effect of policy certainty on innovation, and the emerging literature

@@ -30,7 +30,7 @@ clean_data_path <- paste0(project_path, "/data/CleanData/")
 # Methodology and Data {#methodsdata}
 
 This section will outline the computation of a novel set of centrality measures
-which will be used in the subsequent analysis to proxy the relative importance
+which will be used in the subsequent analysis to proxy the relative centrality
 of countries within the international environmental governance complex and
 account for the increasing importance of international policy to tackle
 environmental challenges. In what follows, we will describe the construction
@@ -54,69 +54,81 @@ its various coefficients.
 ## The Empirical Models:
 
 To analyse our unbalanced panel of OECD countries over the period of 1990 to
-2015, we define the following regressions to investigate the *Weak Porter Hypothesis*.
+2015, we define the following regressions to investigate the
+*Weak Porter Hypothesis* (WPH).
 
 ```[=latex]
-\begin{align}
-ln(BERD_{it}) = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) +
-\beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
-\\
-ln(TPF_{it}) = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) +
-\beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
-\\
-EnvPatShare_{it} = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) +
-\beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
-\end{align}
+\begin{multline}
+ln(BERD_{it}) = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \\ 
+    \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) + \beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \\ 
+    \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
+\end{multline}
+\begin{multline}
+ln(TPF_{it}) = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \\
+                \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) + \beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) +
+                \\ \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
+\end{multline}
+\begin{multline}
+EnvPatShare_{it} = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \\
+            \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) + \beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \\
+            \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
+\end{multline}
 ```
 
 Where our three dependent variables are $BERD_{it}$, the business expenditures
 on R&D[@oecdMainScienceTechnology2022].
-This measures the *input* into the R&D process. $TPF_{it}$ is the count
+This measures the *input* of the R&D process. $TPF_{it}$ is the count
 of triadic family patents i.e. patents that have been granted by the three
-largest patent offices; the European Patent Office (EPO), the Japan
+largest patent offices worldwide; the European Patent Office (EPO), the Japan
 Patent Office (JPO) and the United States Patent and Trademark Office (USPTO)
 [@oecdOECDTriadicPatent2022].
 This measure proxies the *output* of the innovation process over both environmental
-and non environmental patents. Finally, we consider $EnvPatShare_{it} \in [0;1]$
+and non-environmental patents. Finally, we consider $EnvPatShare_{it} \in [0;1]$
 which measures the share of environmental patents over total patents by country
-[@oecdPatentsEnvironmentTechnologies2022].
+[@oecdPatentsEnvironmentTechnologies2022]. This last measure does not test the
+*WPH* *per se* but allows us to test whether environmental innovation is
+relatively more influenced by changes in domestic environmental
+policy stringency and/or our international policy measures or not.
 
 On the RHS, $\text{EPS}_{i,\ t-k}$ is a proxy for national environmental policy
 stringency over the time period between 1990 and 2015 for OECD countries
 [@bottaMeasuringEnvironmentalPolicy2014].
 $\text{Strength}_{i,\ t-k}^{M}$ and $\text{Transitivity}_{i,\ t-k}^{M}$ are indices
-characterizing the position of a country in the international environmental governance 
+characterizing the position of a country in the international environmental governance
 network. We compute these indices by using
 different *backbone extraction* methods $M$ to ensure the robustness of our
-results. Furthermore, following @rubashkinaEnvironmentalRegulationCompetitiveness2015 
+results which will be described below. Furthermore, following
+@rubashkinaEnvironmentalRegulationCompetitiveness2015
 and @martinez-zarzosoDoesEnvironmentalPolicy2019, we make the hypothesis of a
-lagged effect of policy signals on innovation and productivity outcomes. Following
-both papers, we consider a lag structure of one and five years respectively.
+lagged effect of policy signals on innovation and productivity outcomes and
+consider a lag structure $k$ of one and five years respectively.
 $X_{it}$ is a vector of control variables including GDP per capita
-measures from the World Bank and import/export intensity measures to account
-for the economic integration of a given country in the global trade network^[Note:
-All monetary variables have been standardized to 2015 USD 
-PPP.][@worldbankWorldDevelopmentIndicators2022].
+as well as import and export intensity measures from the World Bank to account
+for the economic integration of a given country in the global trade network
+and its relative competitiveness^[Note: All monetary variables have been
+standardized to 2015 USD  PPP.][@worldbankWorldDevelopmentIndicators2022].
 Finally, we add both country $\alpha_i$ and time fixed effects $\delta_t$ to
-capture the unobserved country and time level heterogeneity.
+capture the unobserved country and time level heterogeneity in all specifications.
 
 When moving on to the analysis of the *Strong Porter Hypothesis*, we define
 a similar panel model where our dependent variable is the growth of
 total factor productivity $\Delta TFP_{it}$. This echoes the model run by
-@albrizioEnvironmentalPoliciesProductivity2017 who find a positive effect
-between the tightening of the EPS of a country and the growth of total factor 
-productivity^[Unlike @albrizioEnvironmentalPoliciesProductivity2017,
+@albrizioEnvironmentalPoliciesProductivity2017a who find a positive effect
+between the tightening of the EPS of a country and the growth of total factor
+productivity^[Unlike @albrizioEnvironmentalPoliciesProductivity2017a,
 we consider the level of the EPS index to remain consistent with the
-@martinez-zarzosoDoesEnvironmentalPolicy2019 and the other estimations.].
+@martinez-zarzosoDoesEnvironmentalPolicy2019 and the other estimations
+and not its change.].
 
 $$
 \Delta TFP_{it} = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \beta_2 \text{Strength}_{i,\ t-k}^{M} +
 \beta_3 \text{Transitivity}_{i,\ t-k}^{M} + \beta_4 X_{it} + \alpha_i + \delta_t + u_{it}
 $$
 
-We will begin by defining the construction of the  $\text{Strength}_{it}$ and the
+Now that we laid out an overview of the variables that we will consider in our
+empirical mode, we continue by defining the construction of the  $\text{Strength}_{it}$ and the
 $\text{Transitivity}_{it}$ measures of international governance before examining in
-more detail the $\text{EPS}_{it}$ indicator and the various other dependent
+more detail the $\text{EPS}_{it}$ indicator as well as the various other dependent
 variables of innovation and productivity we succinctly described above.
 
 ## Constructing International Environmental Cooperation Centrality Measures:
@@ -194,11 +206,11 @@ that the network grew denser as agreements were signed, ratified and entered
 into force over time. To explore the intertemporal evolution of
 the structure of the network, we will divide this network and construct
 yearly snapshots of the membership graph whose incidence matrix we define as
-$I_{C \times A}^t$ which is one of the two standard methods used in social network
+$I_{C \times A}^t$ which is the most commonly used method in social network
 analysis to account for the intertemporal evolution of a network
 [@everettDualprojectionApproachTwomode2013].
 
-```{r ECOLEX_bipartite_network, echo=FALSE, fig.pos = 'h'}
+```{r ECOLEX_bipartite_network, echo=FALSE, fig.pos = 'h', fig.cap = "Bipartite Membership Network Snapshots"}
 ECOLEX_mems_net1 <- ECOLEX_mems %>%
   dplyr::mutate(Year = as.numeric(format(ECOLEX_mems$Force, format = "%Y"))) %>%
   dplyr::filter(Year <= 1978) %>%
@@ -233,9 +245,10 @@ gridExtra::grid.arrange(plot1, plot2, ncol = 2)
 
 ### To a Monopartite Cooperation Network:
 
-While we could further analyze this
+While we could further analyze this bipartite
 network directly, we will transform it into a more easily interpretable
-one mode network by using a projection and retaining only significant edges
+one mode cooperation network. We do so by using a projection and retaining only
+statistically significant edges
 through a backbone extraction algorithm. We will thus broadly follow
 @carattiniWhatDoesNetwork2021 while ensuring that our results are not contingent
 on the backbone extraction algorithm since the theoretical underpinnings of
@@ -243,18 +256,18 @@ the latter are still somewhat unclear in empirical social network analysis
 [@nealComparingAlternativesFixed2021].
 
 We begin by creating a naive projection of the membership network. To perform
-this naive projection we multiply the yearly incidence matrix $I_{c \times a}^t$
+this naive projection, we multiply the yearly incidence matrix $I_{c \times a}^t$
 defined above by its transposed $I_{A \times C}^t$ as follows:
 
 $$
 I_{C \times A}^t I_{A \times C}^t = Adj_{C\times C}^t
 $$
 Where $Adj_{c\times c}^t$ is the adjacency matrix of the projected cooperation network in
-which $Adj_{ij}^t$ is the number of observed co-signed agreements between the two countries
+which $p_{ij}^t$ is the number of observed co-signed agreements between two countries
 that entered into force in the interval $[1948; t]$. These weights capture
 the intensity of the environmental cooperation between two countries much like
-@newmanScientificCollaborationNetworks2001 captured collaboration within a
-bipartite network of scientific collaboration. Concurrently,
+@newmanScientificCollaborationNetworks2001 captured the intensity of
+scientific collaboration within a bipartite network of scientists. Concurrently,
 it implies that bilateral treaties, ceteris paribus, carry a greater weight
 in the cooperation network than multilateral treaties. This is consistent with
 the heterogeneous role both play within the environmental governance network.
@@ -262,15 +275,16 @@ As highlighted by @hollwayMultilevelEmbeddednessCase2016, bilateral treaties
 are akin to contracts between two parties while multilateral treaties serve
 "normative [...] law-making tools". While both types may act as policy stringency
 signals, bilateral treaties carry more weight through their specific contractual nature
-hence developing a greater policy stringency signal for firms. 
+hence developing a greater policy stringency signal for firms making them more
+relevant in our study.
 
 We cannot, however, directly analyze this cooperation network as the resulting
 *naive* monopartite network, depicted in the first panel of
-\@ref(fig:ECOLEX_monopartite), still suffers from two issues. First, nodes
+\@ref(fig:ComparingBackbones), still suffers from two issues. First, nodes
 with larger degrees in the original bipartite membership network
 (e.g. agreements with a larger number signatories or
-countries having signed a larger number of agreements) will bear stronger
-edges in the projected network. In other words,
+countries having signed a larger number of agreements) will intrinsically yield
+stronger edges in the projected network. In other words,
 if *country A* and *country B* are bound by the same 5 agreements and have
 each signed 5 agreements in total, they are conceptually "closer" than
 *country C* and *country D* who share the membership in 10 agreements but
@@ -294,7 +308,9 @@ We will use the following three distinct backbone extraction methods to ensure
 that our results are not the product of the choice of a particular extraction
 method alone. This is especially crucial since we do not have a "ground truth"
 or a counterfactual monoparite cooperation network to compare the corrected
-projection to. All three considered algorithms follow the same process in that they
+projection to. We therefore depart from @carattiniWhatDoesNetwork2021 who
+consider only a single backbone extraction method.
+All three considered algorithms follow the same process in that they
 impose a constraint $M$ on the original bipartite
 network and reshuffle the values of the incidence matrix $I_{C \times A}$.^[We
 broadly follow the notation used in @nealComparingAlternativesFixed2021
@@ -305,7 +321,7 @@ In other words, we consider the set of all possible permutations of the original
 incidence matrix $I_{c \times a}^t$ containing the same countries and treaties
 and satisfying the constraint $M$. We call this set $\mathcal{I}^M$
 which is consists of the individual permutated matrices $I^*$. The algorithm
-then constructs the one-mode projection of $I^*$ as follows: $P^* = I^*\times [I^*]^T$
+then constructs the one-mode projection of $I^*$ as follows: $P^* = I^*\times [I^*]^T$.
 Recall that when performing the naive projection, we defined $p_{ij}$ as the observed
 number of co-signed treaties between country $i$ and country $j$.
 To decide whether an edge between $i$ and $j$ should be included in the
@@ -342,21 +358,24 @@ thereby solves both issues of the naive projection described above.
 Now that we have a general understanding of the process
 of a backbone extraction algorithm, we turn to the following three subsections
 which will focus on the differences between the
-different algorithms that lie in the nature of the constraint they
+backbone algorithms which lie in the nature of the constraint they
 impose on the simulated networks. We will thus consider in turn the
-Fixed Row Model, the Fixed Degree Sequence Model, and the Stochastic Degree
-Sequence Model.
+Fixed Row Model (FRM), the Fixed Degree Sequence Model (FDSM), and the
+Stochastic Degree Sequence Model (SDSM).
 
 #### Fixed Degree Sequence Model:
 
 The Fixed Degree Sequence Model (FDSM) is a microcanonical backbone extraction
 method in that the constraint that it imposes on the set of possible permutations
 $\mathcal{I}^{FDSM}$ is satisfied *exactly*.^[This stands in opposition to
-canonical extraction algorithm that impose the constraint only *on average*.]
+canonical extraction algorithm that impose the constraint only *on average*
+over all simulated networks. This is done to speed up computation when dealing
+with very large networks.]
 More specifically, the FDSM algorithm sets the degrees of each agent and
 each artifact to be equal to the degree sequences of the observed network.
 In our context, it implies that the row and column sums of the simulated $I_{ik}^*$
-are to be equal to those of the observed network $I_{ik}$ under the FDSM algorithm. 
+are to be equal to those of the observed bipartite network $I_{ik}$ under the
+FDSM algorithm. 
 
 $$
   I_{ik}^* = 
@@ -375,30 +394,29 @@ $$
 
 As @nealComparingAlternativesFixed2021 point out, the main advantage of this
 method is that it is able to alleviate the two issues plaguing our *naive projection* outlined
-above by controlling for the vector of degrees. Intuitively,
-we retain the cooperative edges that occur more often than expected by the
-null model in the observed projection.^[@vasquesfilhoTransitivityDegreeAssortativity2020,
-degree sequences of the bipartite
-network are chiefly responsive for the structure of its monopartite projection.]
+above by controlling for the vector of degrees. As
+@vasquesfilhoTransitivityDegreeAssortativity2020 point out, degree sequences
+of bipartite networks are chiefly responsive for the structure of its
+monopartite projection.
 The main disadvantage of such an algorithm is that it is ill suited for large
 bipartite networks due the computational complexity of the algorithm
 [@nealComparingAlternativesFixed2021]. A set of alternative models has been developed
 to alleviate this computational issue, among which are the Fixed Row Model
-and the Stochastic Degree Sequence Model which we define below.
+and the Stochastic Degree Sequence Model which we define below^[We were fortunately
+still able to estimate the backbone via this method within a day.].
 
 #### Fixed Row Model:
 
 Like the FDSM, the Fixed Row Model (FRM) is also a microcanonical algorithm.
 However, the main difference is that it imposes the degree sequence constraint
-on the row sums of the incidence matrix only.^[E.g.
+on the row sums of the incidence matrix only ^[E.g.
 $$
 \forall_{i \in \{1,...,C\}} \sum_{k = 1}^{A} i_{ik} = \forall_{i \in \{1,...,C\}} \sum_{k = 1}^{A} 
 i_{ik}^*
 $$
-]
-^[The FRM model is also sometimes referred to as the hypergeometric
-model [@tumminelloStatisticallyValidatedNetworks2011].]
-That is, the degree of every *agent*/country is strictly controlled for, which
+]^[The FRM model is also sometimes referred to as the hypergeometric
+model [@tumminelloStatisticallyValidatedNetworks2011].].
+That is, the degree of every agent/country is strictly controlled for, which
 implies that in all simulated networks, a country will be bound by the same
 number of agreements than in the observed network. However, an agreement
 is free to have a different number of total signatories. This leads us to the
@@ -411,31 +429,39 @@ of countries, we constrain the latter's degree only.
 which is the canonical version of the FRM algorithm, to their membership network
 [@saraccoInferringMonopartiteProjections2017].
 This implies that the restriction imposed on the degree sequence of countries
-is only satisfied *on average* over all simulations.
-Since our membership network is small enough to
-be corrected by applying the more computationally intensive FRM algorithm, we
-follow the latter as it carries more information about the structure of the
-original bipartite network than the BiPCM algorithm
-[@saraccoInferringMonopartiteProjections2017].
+is only satisfied *on average* over all simulations. Since our membership
+network is small enough to be corrected by applying the more computationally
+intensive FRM algorithm, we follow the latter as it carries more information
+about the structure of the original bipartite network than the BiPCM algorithm
+[@saraccoInferringMonopartiteProjections2017]. Furthermore, as we see in
+\@ref(fig:ComparingBackbones), the FRM is already too weakly constrained and
+does not solve the two issues of the naive projection. We therefore argue that
+the BiPCM algorithm would be ill suited for our purpose. We now move to Stochastic
+Degree Sequence Model, the last backbone extraction algorithm we considered.
 
 #### Stochastic Degree Sequence Model:
 
 The Stochastic Degree Sequence Model (SDSM) is a canonical algorithm that
 imposes a constraint on both the degree sequence of countries and on the
 degree sequence of agreements like the FDSM extraction method. However,
-the set of simulated networks satisfy this constraint only *on average*.
-In our case, this implies that the average number of member countries
+the set of simulated networks satisfy this constraint only on the *average*
+of all simulated networks. This makes it very similar to the FDSM algorithm.
+In other words, this implies that the average number of member countries
 in a given international agreement $k$ in the set of simulated networks is equal
-to the number of countries in the observed membership network. Conversely,
+to the number of member countries in the observed membership network. Conversely,
 it also implies that the average number of agreements signed by a given country
-$i$ in the set of simulated networks is equal to the average number of agreements
+$i$ in the set of simulated networks is equal to the number of agreements
 signed by country $i$ in the observed network. Several methods exist to
 simulate networks satisfying this constraint which are compared in terms of
 accuracy and computational speed in @nealComparingAlternativesFixed2021.
 The authors show that the Bipartite Configuration Model (BICM) is both the
 fastest and most accurate method to generate simulated network satisfying
-the average condition [@saraccoInferringMonopartiteProjections2017]. We thus
-leverage it as our third and last backbone extraction model.
+the average condition [@saraccoInferringMonopartiteProjections2017]. Finally,
+we note that given our bipartite network characteristics and the computational
+complexity of the FDSM algorithm,
+@nealComparingAlternativesFixed2021 and @nealBackbonePackageExtract2022
+recommend the use of this algorithm over other solutions. We thus leverage it
+as our third and last backbone extraction model.
 
 #### Comparing the Projections:
 
@@ -443,7 +469,7 @@ Before moving on to the definition of the various centrality measures we
 will use to measure the level of international embeddedness of countries
 within the network of international environmental agreements, we will compare
 the resulting corrected projections. We namely see that the correction
-of performed by the FROW backbone extraction process retains about 90 percent of the
+performed by the FROW backbone extraction process retains about 90 percent of the
 edges of the naive projection which leads to an overly dense network. We
 will therefore not consider it in the further analysis as it does not solve
 the two issues which we try to correct. This is consistent with Carattini et al.
@@ -453,10 +479,13 @@ On the other hand, both the
 SDSM and the FDSM retain on average about 15 percent of the most significant
 edges present in the naive projection. This ensures that we capture the true
 cooperative network and not a statistical artifact caused by the two issues
-we are trying to correct for. We will therefore compute the centrality scores
-on the basis of the latter two corrected networks.
+we are trying to correct for. Furthermore, as we mentioned above,
+@nealComparingAlternativesFixed2021 recommend the use of the SDSM extraction
+process given the bipartite membership network it was provided.
+We will therefore compute the centrality scores on the basis of the latter two
+corrected networks.
 
-```{r ComparingBackbones}
+```{r ComparingBackbones, fig.cap="Comparing Backbone Extraction Methods"}
 # Load different networks 2015
 Naive <- tidygraph::as_tbl_graph(readRDS(paste0(onemodenetpath, 
                                                 "Onemode_Network_Naive_2010.rds")))
@@ -510,12 +539,14 @@ gridExtra::grid.arrange(Naive_plot, FROW_plot,
 
 Now that we constructed and corrected the monopartite cooperation networks,
 we can characterize the topological position of a given country within the
-network and construct proxies for the *embeddedness* of a country in the
-international environmental governance complex. While there exist a multitude
-of centrality indices to characterize the position of a country
-and no unifying theoretical framework for defining it, we will
+network. Thus, we construct proxies for the *embeddedness* of a country in the
+international environmental governance complex which we hypothesize affect in
+direct and indirect ways the rates of innovation and/or its competitiveness.
+While there exist a multitude of centrality indices to characterize the
+position of a country and no unifying theoretical framework for defining it, we will
 consider the commonly used strength centrality measure and the
-eigenvector centrality measure which we will theoretically justify in turn.
+transitivity or triadic closure measure which we will theoretically describe
+in turn.
 
 #### Strength Centrality:
 
@@ -526,6 +557,7 @@ weights as follows:
 $$
 s_{i}=\sum_{j=1}^{N} a_{i j} w_{i j}
 $$
+
 Strength centrality echoes the proxy @jahnPoliticsEnvironmentalPerformance2016
 used to measure embeddedness in the
 international governance complex in that it captures the sum of
@@ -535,22 +567,26 @@ will be more embedded in the international environmental agreement network.
 As stated in the previous chapter, we expect that this increased embeddedness
 leads to an increase in environmental innovation through both direct effects
 of the international policy framework and the indirect effects of a greater
-policy certainty. While we cannot distinguish both channels in this study,
-we expect that the node strength captures a relatively greater share of 
+policy certainty. While we cannot formally distinguish both channels,
+it is reasonable to expect that the strength of a node captures a relatively greater share of 
 the direct effects of the increased embeddedness on innovation as
-it measures the quantity of agreement a country is bound by. The opposite
-can be said of the eigenvector centrality measure we define below.
+it measures the quantity of agreement a country is bound by. This measure can thus
+be interpreted as a measure for *international environmental stringency* and
+interpreted as a proxy for the *direct effects* of environmental governance on
+innovation and competitiveness.
+We will now extend our analysis by defining a proxy capturing the indirect effects
+of embeddedness within an international environmental collaboration network.
 
 #### Transitivity:
 
 The weighted clustering coefficient extends the notion of embeddedness by
 computing the weighted proportion of triangles over connected triples
 that are centered on a given node [@barratArchitectureComplexWeighted2004].
-On the illustration below, we see that
+On the illustration below \@ref(fig:transitivitygraph), we see that
 the figure on the right is an open triple from the point of view of the orange
 node but not a triangle as opposed to the figure on the right. If we abstract
-from the weights, it is easy to see that the clustering coefficient,
-also known as transitivity, of the orange node on the left figure is
+from the weights, it is easy to see that the transitivity coefficient
+also known as triadic closure, of the orange node on the left figure is
 equal to 1 while the transitivity of the orange node on the right hand side figure
 is 0.
 
@@ -570,13 +606,13 @@ $$
 In our international cooperation network, we can interpret this coefficient
 as the local empirical reflection of closure which is a characteristic of
 a network where agents have a low level of information asymmetry with regards
-of the actions undertaken by each node over time [@colemanSocialCapitalCreation1988].
+of the actions undertaken by each other node over time [@colemanSocialCapitalCreation1988].
 This facilitated monitoring favors the application of sanctions if an agent defects
 as well as the emergence of a virtuous cycle of trust and further cooperation
 [@burtNetworkStructureSocial2000].
-This virtuous cycle echoes both arguments in sociology by
+This virtuous cycle echoes the sociological argument by
 @granovetterEconomicActionSocial1985 who posits that the cost of breaking a
-friends trust and therefore the friendship is greater when both agents have a
+friend's trust and therefore the friendship is greater when both agents have a
 friend in common since the betrayal may also affect one's relationship with the
 latter. This argument has been made concurrently in the field of economics and
 especially within the game theoretical analysis of repeated games
@@ -586,7 +622,13 @@ The main insight in our case of international cooperation is therefore
 that countries with a higher transitivity index will have a higher cost of
 defecting. This in turn leads to a higher level of trust within the network,
 and crucially in our case, a higher level of economic policy certainty which
-we hypothesize is favorable to the process of green innovation.
+we hypothesize is favorable to the process of innovation and competitiveness.
+This measure therefore proxies the *indirect effects* of international embeddedness
+on our dependent variables.
+
+Now that we have defined the computation of a novel set of measures characterising
+international cooperation, let us turn our attention to other, more standard
+variables that we include in our empirical analysis.
 
 ## Other variables:
 
@@ -595,8 +637,7 @@ we hypothesize is favorable to the process of green innovation.
 The Environmental Policy Stringency Index (EPS) is an index created by the OECD
 which measures the stringency of environmental policy at the country level
 during the period of 1990 to 2015 [@bottaMeasuringEnvironmentalPolicy2014].
-As pointed out in the literature on environmental policy and innovation by
-@poppEnvironmentalPolicyInnovation2019, the  
+As pointed out by @poppEnvironmentalPolicyInnovation2019, the
 index is often used as an empirical proxy to measure environmental policy in
 the literature including in studies examining Porter's Hypothesis
 [@galeottiMeasuringEnvironmentalPolicy2020;
@@ -607,12 +648,12 @@ The basis of the EPS index are individual indices of policy stringency such
 as emission taxes, trading schemes, environmental standards, and governmental
 R&D subsidies. These individual policy categories are then given a ranking
 on a Lickert scale between 0 and 6 before being aggregated into market and
-non-market based policies. These two subsets are then once again equally
+non-market based policies. These two subsets are then once again
 aggregated into the composite EPS index with equal weights which provides us
-with a reliable country level measure of aggregate domestic environmental policy.
+with a reliable country-level measure of aggregate domestic environmental policy.
 Overall, one can discern a positive trend in the stringency level over the
 considered period for every country indicating the implementation of more
-stringent environmental policies.
+stringent domestic environmental policies.
 
 ```{r EPSdesc, echo=FALSE, fig.cap="Environmental Policy Stringency 1990-2015", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
@@ -623,7 +664,7 @@ readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   iheiddown::theme_iheid()
 ```
 
-### Innovation Measures:
+### Innovation and Productivity Measures:
 
 We measure innovation, the first of our dependent variables, in two main ways. 
 First, we consider the Business Expenditures on R&D (BERD) to capture the *input* 
@@ -636,16 +677,18 @@ Both insights are complementary as Business Expenditures on R&D
 give a good approximation of the importance placed on the R&D process by firms 
 while Triadic Family Patent counts and the country-level share of environmental
 patents allows us to examine the effect of environmental policy on the *outcomes*
-of inventive activity @poppEnvironmentalPolicyInnovation2019. A few caveats must be
+of inventive activity [@poppEnvironmentalPolicyInnovation2019]. However, a few caveats must be
 borne in mind when using patent counts as a proxy of innovative activity.
 First, as @martinez-zarzosoDoesEnvironmentalPolicy2019 point out using single
 country patent counts may lead to issues such as double counting of patents that
 are registered in multiple patent offices to gain worldwide protection. A related
 issue is that when using single patent counts is that one might capture
 low value innovations. We remedy both issues by considering the count of
-patent families as described by @martinezInsightDifferentTypes2010 rather than
-individual level patent counts. Finally, as pointed out by 
-@poppEnvironmentalPolicyInnovation2019 and
+*patent families* as described by @martinezInsightDifferentTypes2010 rather than
+individual patent office patent counts^[Triadic patent families are groups of
+similar patents that have been registered with the three main patent offices in
+the world: the USPTO, the Japanese Patent Office and the European Patent Office].
+Finally, as pointed out by @poppEnvironmentalPolicyInnovation2019 and
 @martinez-zarzosoDoesEnvironmentalPolicy2019 national legislation and accountancy
 criteria of patents can bias the results. We will account for this heterogeneity
 by including country fixed effects in all our estimations.
@@ -658,7 +701,7 @@ of the level of expenditures on R&D across all countries. In addition,
 we note a considerable country-level heterogeneity with the top 3 countries
 being the United States, Japan and Germany.
 
-```{r BERDdesc, echo=FALSE, fig.cap="Business Expenditures in R\\&D 1990-2015", warning=FALSE, message=FALSE}
+```{r BERDdesc, echo=FALSE, fig.cap="Business Expenditures in R\\&D 1990-2015", fig.pos="h", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   ggplot2::ggplot(aes(x = Year, y = log(berd))) +
   ggplot2::geom_line(aes(color = Country), size = 0.6) +
@@ -674,7 +717,7 @@ States and Germany. Note that while some countries, such as Japan and the US
 saw a marked increase in the yearly patent counts, most countries' counts
 remained relatively constant over time.
 
-```{r TPFdesc, echo=FALSE, fig.cap="Triadic Patent Counts 1990-2015", warning=FALSE, message=FALSE}
+```{r TPFdesc, echo=FALSE, fig.cap="Triadic Patent Counts 1990-2015", fig.pos="h", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
                      ggplot2::ggplot(aes(x = Year, y = triadic_patent)) +
                      ggplot2::geom_line(aes(color = Country), size = 0.6) +
@@ -687,13 +730,10 @@ readRDS(paste0(clean_data_path, "Panel.rds")) %>%
 Taking into account the share of *environmental* patents with respect to
 total patents allows us to refine our analysis by matching environmental
 policy to environmental patents. This link is key since environmental innovative
-activity should arguably be more strongly affected by environmental policy
-than other technologies. Using such an alternative estimation allows us
-to somewhat shield us from p-hacking claims as they are laid out by
-@brunsFlexibilitySelectionPatent2020 in the case of solar energy policies and 
-patents.
+activity should intuitively be more strongly affected by environmental policy
+than other technologies.
 
-```{r EnvPatdesc, echo=FALSE, fig.cap="Environmental Patent Share 1990-2015", warning=FALSE, message=FALSE}
+```{r EnvPatdesc, echo=FALSE, fig.cap="Environmental Patent Share 1990-2015", fig.pos="h", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   ggplot2::ggplot(aes(x = Year, y = EnvPatShare)) +
   ggplot2::geom_line(aes(color = Country)) +
@@ -720,10 +760,14 @@ $$
 
 Two features are salient from the graph below. First and foremost, we observe
 a form of growth rate convergence among OECD countries over the considered time
-period around $0\%$ to $2.5\%$ . A second prominent feature is the impact of
-the 2008 financial crisis which hit Greece particularly hard.
+period around $0\%$ to $2.5\%$ where high-income countries tend to have a
+lower TFP growth rate than middle income countries^[Relative to OECD countries.].
+A second prominent feature is the impact of the 2008 financial crisis which hit
+all countries' TFP growth hard. Although still more measured in the following
+years, the TFP growth rate recovered rapidly. Finally, note that due to data availability
+we estimate this model from 1996 onward only.
 
-```{r TFP0desc, echo=FALSE, fig.cap="Total Factor Productivity 1990-2015", warning=FALSE, message=FALSE}
+```{r TFP0desc, echo=FALSE, fig.cap="Total Factor Productivity 1996-2015", warning=FALSE, message=FALSE}
 readRDS(paste0(clean_data_path, "Panel.rds")) %>%
   ggplot2::ggplot(aes(x = Year, y = TFP0)) +
   ggplot2::geom_line(aes(color = Country), size = 0.6) +
@@ -746,12 +790,14 @@ across all specifications. We namely see that the business expenditure variable
 on R&D is positively correlated with all policy variables, both domestic and
 international as well as across lags and FDSM/SDSM specifications. Concurringly,
 the other innovation outcome proxies, Triadic Family Patent counts and the share
-of environmental patents, are also positively correlated with all policy measures.
-This evidence therefore seems to confirm the *Weak Porter Hypothesis*. On the other
-hand we see that the growth rate of total factor productivity (*TFP0*) seems to be
-weakly negatively correlated to our policy measures which indicates that
+of environmental patents, are also positively correlated with all policy measures
+although less strongly.
+This evidence therefore yields the first hint for the confirmation of the
+*Weak Porter Hypothesis*. On the other hand we see that the growth rate of total factor   
+productivity (*TFP0*) seems to be
+weakly negatively correlated to our policy measures which seemingly hints at the fact that
 the *Strong Porter Hypothesis* may not be verified in our case. Let us now
-move to the estimation of the empirical model defined in the beginning of this
+move on to the estimation of the empirical model defined in the beginning of this
 section in the next chapter to further investigate these correlations.
 
 ```{r correlations, echo=FALSE, fig.cap="Correlations"}

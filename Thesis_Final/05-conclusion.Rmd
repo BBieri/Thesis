@@ -10,4 +10,10 @@ output: iheiddown::chapter_pdf
 \setcounter{chapter}{4}
 # Conclusion {#conclusion}
 
+Main theoretical interpretation of our results
 
+Main policy implications of our results
+
+Main issues faced
+
+Further avenues of research

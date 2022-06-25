@@ -158,42 +158,44 @@ resulting centrality indices. Let us now turn to the analysis of the models
 including the five year lagged policy variables.
 
 ```{=latex}
-\begingroup
+\begin{table}[h!]
 \centering
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular}{lccc|ccc}
    \toprule
        & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
-    & R\&D & Patents & Environmental Patents ($\%$) & R\&D & Patents & Environmental Patents ($\%$)\\
+    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
                           & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
-                          &  OLS          & OLS           & QMLE                   & OLS           & OLS           & QMLE\\  
+                          &  OLS          & OLS           & Fractional Logit & OLS           & OLS           & Fractional Logit\\  
    \midrule 
    ln EPS (t-1)           & 0.009         & 0.02          & -0.12$^{**}$           & -0.02         & -0.01         & -0.13$^{*}$\\   
                           & (0.06)        & (0.10)        & (0.05)                 & (0.06)        & (0.11)        & (0.06)\\   
    ln Strength (t-1)      & -0.01         & 0.09          & -0.17$^{***}$          & 0.10          & 0.15$^{*}$    & -0.10$^{*}$\\   
                           & (0.10)        & (0.09)        & (0.04)                 & (0.07)        & (0.08)        & (0.05)\\   
    ln Transitivity (t-1)  & -0.08         & 0.43          & -0.41$^{**}$           & 0.32          & 0.40$^{**}$   & -0.12\\   
-                          & (0.21)        & (0.35)        & (0.17)                 & (0.20)        & (0.18)        & (0.14)\\    
-   ln GDP/cap.            & 0.65$^{*}$    & 2.0$^{***}$   & 0.05                   & 0.43          & 2.1$^{***}$   & 0.09\\   
+                          & (0.21)        & (0.35)        & (0.17)                 & (0.20)        & (0.18)        & (0.14)\\   
+   ln GDP/cap.         & 0.65$^{*}$    & 2.0$^{***}$   & 0.05                   & 0.43          & 2.1$^{***}$   & 0.09\\   
                           & (0.32)        & (0.34)        & (0.21)                 & (0.35)        & (0.36)        & (0.22)\\   
-   ln ExportIntensity     & -0.03         & 0.66$^{***}$  & -0.10                  & 0.003         & 0.69$^{***}$  & -0.28$^{*}$\\   
+   ln ExportIntensity   & -0.03         & 0.66$^{***}$  & -0.10                  & 0.003         & 0.69$^{***}$  & -0.28$^{*}$\\   
                           & (0.14)        & (0.16)        & (0.13)                 & (0.17)        & (0.17)        & (0.14)\\   
-   ln ImportIntensity     & 0.38$^{*}$    & -0.84$^{***}$ & -0.23                  & 0.25          & -1.1$^{***}$  & -0.09\\   
+   ln ImportIntensity   & 0.38$^{*}$    & -0.84$^{***}$ & -0.23                  & 0.25          & -1.1$^{***}$  & -0.09\\   
                           & (0.20)        & (0.27)        & (0.18)                 & (0.24)        & (0.32)        & (0.21)\\   
     \\
    Observations           & 551           & 550           & 550                    & 466           & 466           & 466\\  
-   Within R$^2$           & 0.0692        & 0.2285        &  -                     & 0.0640        & 0.2740        & - \\  
-   F-test                 & 204.4         & 207.8         &  -                     & 203.1         & 240.9         & - \\  
+   Within R$^2$           & 0.0692        & 0.2285        &                        & 0.0640        & 0.2740        & \\  
+   F-test                 & 204.4         & 207.8         &                        & 203.1         & 240.9         & \\  
     \\
    Year fixed effects     & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
    Country fixed effects  & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
    \bottomrule
 \end{tabular}
-\end{adjustbox}
+ \end{adjustbox}
 \par \raggedright 
-\footnotesize{Newey West corrected standard errors in parentheses. * significant 10\%, ** significant 5\%, *** significant 1\%.
-Within $R^2$ and overall F-Test are not availiable for the QMLE estimation due to software limitations.}
-\par\endgroup
+\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\par
+\caption{Weak Porter Hypothesis; One Year Lag}
+\label{tab:WPHlag1}
+\end{table}
 ```
 
 ### Five Year Lag:
@@ -201,7 +203,8 @@ Within $R^2$ and overall F-Test are not availiable for the QMLE estimation due t
 Much like in our analysis of the one year lag results presented in the previous
 subsection, we subset our analysis in two parts. We first consider the
 models describing the *WPH* before turning our attention to the complementary
-environmental patent share regressions.
+environmental patent share regressions. All regressions have been estimated
+with Ordinary Least Squares and include country and time fixed effects.
 
 Contrary to the results of the previous section with one year lags, we observe
 a positive and highly significant effect of our domestic environmental policy stringency
@@ -281,15 +284,15 @@ backbone extraction specifications. Let us now move on to the analysis of the
 *Strong Porter Hypothesis*.
 
 ```{=latex}
-\begingroup
+\begin{table}[h!]
 \centering
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular}{lccc|ccc}
    \toprule
        & \multicolumn{3}{c}{FDSM} & \multicolumn{3}{c}{SDSM} \\ 
-    & R\&D & Patents & Environmental Patents ($\%$) & R\&D & Patents & Environmental Patents ($\%$)\\
+    & R\&D & Patents & Environmental Patents & R\&D & Patents & Environmental Patents\\
                           & (1)           & (2)           & (3)                    & (4)           & (5)           & (6)\\  
-                          &  OLS          & OLS           & QMLE                  & OLS           & OLS           & QMLE\\  
+                          &  OLS          & OLS           & Fractional Logit       & OLS           & OLS           & Fractional Logit\\  
 \midrule 
    ln EPS (t-5)          & 0.17$^{***}$  & -0.11         & $2.3\times 10^{-5}$    & 0.18$^{***}$  & -0.15$^{**}$  & 0.05\\   
                          & (0.06)        & (0.07)        & (0.06)                 & (0.06)        & (0.07)        & (0.06)\\   
@@ -297,16 +300,16 @@ backbone extraction specifications. Let us now move on to the analysis of the
                          & (0.07)        & (0.07)        & (0.03)                 & (0.05)        & (0.06)        & (0.04)\\   
    ln Transitivity (t-5) & 0.37          & 0.04          & -0.35                  & 0.28$^{*}$    & 0.61$^{***}$  & -0.18\\   
                          & (0.24)        & (0.28)        & (0.29)                 & (0.14)        & (0.17)        & (0.12)\\   
-   log(GDPCapita)        & 0.41          & 2.3$^{***}$   & -0.03                  & 0.24          & 2.1$^{***}$   & 0.30\\   
+   ln GDP per cap        & 0.41          & 2.3$^{***}$   & -0.03                  & 0.24          & 2.1$^{***}$   & 0.30\\   
                          & (0.35)        & (0.34)        & (0.20)                 & (0.36)        & (0.36)        & (0.20)\\   
-   log(ExportIntensity)  & 0.19          & 0.70$^{***}$  & -0.12                  & 0.25          & 0.74$^{***}$  & -0.40$^{**}$\\   
+   ln ExportIntensity  & 0.19          & 0.70$^{***}$  & -0.12                  & 0.25          & 0.74$^{***}$  & -0.40$^{**}$\\   
                          & (0.16)        & (0.18)        & (0.15)                 & (0.17)        & (0.23)        & (0.19)\\   
-   log(ImportIntensity)  & 0.29          & -1.1$^{***}$  & -0.33$^{*}$            & 0.18          & -1.0$^{***}$  & -0.29\\   
+   ln ImportIntensity  & 0.29          & -1.1$^{***}$  & -0.33$^{*}$            & 0.18          & -1.0$^{***}$  & -0.29\\   
                          & (0.24)        & (0.26)        & (0.18)                 & (0.27)        & (0.28)        & (0.20)\\   
     \\
    Observations          & 513           & 512           & 510                    & 422           & 421           & 419\\  
-   Within R$^2$          & 0.0985        & 0.2580        &  -                     & 0.0999        & 0.2858        & - \\  
-   F-test                & 220.1         & 226.3         &  -                     & 236.9         & 242.2         & - \\  
+   Within R$^2$          & 0.0985        & 0.2580        &                        & 0.0999        & 0.2858        & \\  
+   F-test                & 220.1         & 226.3         &                        & 236.9         & 242.2         & \\  
     \\
    Year fixed effects    & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\   
    Country fixed effects & $\checkmark$  & $\checkmark$  & $\checkmark$           & $\checkmark$  & $\checkmark$  & $\checkmark$\\    
@@ -314,9 +317,11 @@ backbone extraction specifications. Let us now move on to the analysis of the
 \end{tabular}
 \end{adjustbox}
 \par \raggedright 
-\footnotesize{Newey West corrected standard errors in parentheses. * significant 10\%, ** significant 5\%, *** significant 1\%.
-Within $R^2$ is not availiable for the QMLE estimation due to software limitations.}
-\par\endgroup
+\small{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\par
+\caption{Weak Porter Hypothesis; Five Year Lag}
+\label{tab:WPHlag5}
+\end{table}
 ```
 
 ## Strong Porter Hypothesis:
@@ -344,12 +349,12 @@ which reflects its sensitivity to business cycles
 fixed effects to account for these.].
 
 ```{=latex}
-\begingroup
+\begin{table}[h!]
 \centering
 \begin{adjustbox}{width=0.7\textwidth, height = 0.2\textheight}
 \begin{tabular}{lcc|cc}
    \toprule
-    & \multicolumn{4}{c}{TFP growth}\\
+    & \multicolumn{4}{c}{TFP0}\\
    Lag & \multicolumn{2}{c}{lag = 1} & \multicolumn{2}{c}{lag = 5} \\ 
    Model                 & FDSM          & SDSM          & FDSM          & SDSM \\   
                          & (1)           & (2)           & (3)           & (4)\\  
@@ -360,7 +365,7 @@ fixed effects to account for these.].
                          & (0.74)        & (1.1)         & (0.42)        & (0.29)\\   
    ln Transitivity       & -3.0          & -0.46         & -0.83         & -1.7\\ 
                          & (2.7)         & (2.2)         & (0.78)        & (1.1)\\ 
-   ln GDP per cap.       & -5.8$^{**}$   & -6.2$^{***}$  & -2.9$^{*}$    & -3.3$^{**}$\\   
+   ln GDP per cap        & -5.8$^{**}$   & -6.2$^{***}$  & -2.9$^{*}$    & -3.3$^{**}$\\   
                          & (2.2)         & (1.9)         & (1.5)         & (1.3)\\   
    ln ExportIntensity    & -2.8          & -3.5          & -1.7          & -1.6\\   
                          & (2.3)         & (2.1)         & (1.6)         & (1.5)\\   
@@ -377,8 +382,11 @@ fixed effects to account for these.].
 \end{tabular}
 \end{adjustbox}
 \par \raggedright
-\footnotesize{Newey West corrected standard errors in parentheses. * significant 10\%, ** significant 5\%, *** significant 1\%.}
-\par\endgroup
+\footnotesize{Newey West corrected standard errors. * significant 10\%, ** significant 5\%, *** significant 1\%.}
+\par
+\caption{Strong Porter Hypothesis}
+\label{tab:StrongPH}
+\end{table}
 ```
 
 ## Robustness Checks:
@@ -400,7 +408,7 @@ extraction model selection process due to the fact that agreements do not
 posses agency over how many countries join them. Therefore, it did not make
 theoretical sense to constrain their degree sequence.].
 
-More standard econometric checks were performed as well.
+Additionally standard econometric checks were performed as well.
 Multicolinearity of our regressors was assessed by computing the VIF of
 each model. Non-spherical errors and autocorrelation were dealt with by using
 Newey-West corrected errors. Additionally, one might argue for the presence
@@ -411,9 +419,9 @@ be true.]. Studies with lagged policy variables such as
 @martinez-zarzosoDoesEnvironmentalPolicy2019 and ours assuage these fears by
 pointing out that future firms cannot influence past environmental stringency
 states whether domestic or international.
-
 Finally, we reestimated the models analyzing the
 *WPH* to ensure that our results were not solely driven by outlier countries.
 The US, Japan and Germany are the main drivers of global innovation and have both
 the largest levels of business expenditures on R&D as well as the largest
-patent counts^[Results are presented in the appendix.].
+patent counts^[Results are presented in the appendix.]. The results are virtually
+identical than under the full sample.

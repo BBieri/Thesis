@@ -3,7 +3,7 @@
 ## Metadata       ##
 ####################
 doctitle: |
-  The Impact of Global Environmental Governance on Firm-level Innovation;
+  The Impact of Global Environmental Governance on Innovation;
   Revisiting the Porter Hypothesis at the International Level.
 firstnames: Bernhard
 lastnames: Bieri

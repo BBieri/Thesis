@@ -271,8 +271,7 @@ setFixest_etable(style.df = my_style,
 # Step 2: Correlations
 correlations <- all_vars %>%
   dplyr::select(
-    BERD_log, TFP0,
-    EnvPatShare, EnvPatShare,
+    BERD_log, Triadic_Patents_log, TFP0, EnvPatShare,
     EPS_log_lag1, EPS_log_lag5,
     Transitivity_FDSM_log_lag1, Transitivity_FDSM_log_lag5,
     Transitivity_SDSM_log_lag1, Transitivity_SDSM_log_lag5,

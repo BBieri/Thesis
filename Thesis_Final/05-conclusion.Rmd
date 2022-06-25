@@ -10,10 +10,19 @@ output: iheiddown::chapter_pdf
 \setcounter{chapter}{4}
 # Conclusion {#conclusion}
 
-Main theoretical interpretation of our results
+Main theoretical interpretation of our results --> choosing backbone extraction method
+needs to be empirically founded and if not possible to distinguiosh use robustness checks
+to determine if results are contingent.
 
 Main policy implications of our results
+  WPH seems satisfied
+  Importance of transitivity, e.g. a stable and predictable political environment
+  to foster innovation
+  SPH not verified and needs more empirical estimations
 
 Main issues faced
+
+Refining the modelling of the network extraction method
+Refining the
 
 Further avenues of research

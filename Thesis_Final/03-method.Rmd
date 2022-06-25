@@ -199,7 +199,7 @@ that $i_{ik}^t \in \{0,1\}$.
 
 We can also visualize the bipartite/bimodal membership network directly and
 distinguish agreements from countries.
-The network is depicted in \@ref(fig:ECOLEX_bipartite_network)
+The network is depicted in \@ref(fig:ECOLEXbipartitenetwork)
 represents the membership network with all agreements that entered into force
 respectively during the period of 1948 and 1978 and 1948 and 2018. This shows
 that the network grew denser as agreements were signed, ratified and entered
@@ -210,7 +210,7 @@ $I_{C \times A}^t$ which is the most commonly used method in social network
 analysis to account for the intertemporal evolution of a network
 [@everettDualprojectionApproachTwomode2013].
 
-```{r ECOLEX_bipartite_network, echo=FALSE, fig.pos = 'h', fig.cap = "Bipartite Membership Network Snapshots"}
+```{r ECOLEXbipartitenetwork, echo=FALSE, fig.pos = 'h', fig.cap = "Bipartite Membership Network Snapshots"}
 ECOLEX_mems_net1 <- ECOLEX_mems %>%
   dplyr::mutate(Year = as.numeric(format(ECOLEX_mems$Force, format = "%Y"))) %>%
   dplyr::filter(Year <= 1978) %>%
@@ -414,7 +414,7 @@ $$
 \forall_{i \in \{1,...,C\}} \sum_{k = 1}^{A} i_{ik} = \forall_{i \in \{1,...,C\}} \sum_{k = 1}^{A} 
 i_{ik}^*
 $$
-]^[The FRM model is also sometimes referred to as the hypergeometric
+] ^[The FRM model is also sometimes referred to as the hypergeometric
 model [@tumminelloStatisticallyValidatedNetworks2011].].
 That is, the degree of every agent/country is strictly controlled for, which
 implies that in all simulated networks, a country will be bound by the same

@@ -20,6 +20,10 @@ When executing the scripts, you might need to install/load particular
 versions of the loaded packages. These are indicated in comments next to
 the corresponding `library()` call in the respective file.
 
+Finally, note that due to dataset size, we were not able to upload the
+datasets used to compute patent counts. These are available [on
+request](mailto:bernhard.bieri@graduateinstitute.ch).
+
 -   Quick links:
     -   Final PDF: [click here]()
     -   Centrality computation: [click

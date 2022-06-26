@@ -1,8 +1,17 @@
-This *RMarkdown* template is for writing a Graduate Institute thesis. 
-
-This template's sample content include illustrations of how to write a thesis in *RMarkdown*, 
-and largely follows the structure from [this R Markdown workshop](https://ulyngs.github.io/rmarkdown-workshop-2019/).
-
-Congratulations for taking a step further into the lands of open, reproducible science 
-by writing your thesis using a tool that allows you to transparently include tables and dynamically generated plots directly from the underlying data. 
-Hip hooray!
+This paper investigates the link between environmental policy stringency,
+innovation and firm competitiveness which is commonly known as the Porter Hypothesis in
+OECD countries between 1990 and 2015.
+Unlike previous studies, we consider the evolution of international
+environmental policy and extend the traditional domestic policy analysis by using a
+network analysis approach to understand international environmental
+cooperation patterns over time. To understand the relationship between international
+cooperation and innovation or firm competitiveness, we define two country-level
+measures of embeddedness in the international governance network; strenght and
+transitivity.
+We find that lagged cooperative intensity as proxied by the strength of a country in the network
+does not have a significant effect on innovation or competitiveness. We however
+find that domestic environmental policy stringency has a positive effect on
+innovation as proxied by R&D expenditures but not on patent counts. Finally,
+we find that social capital proxied by transitivity, which is conducive to a
+stable international policy environment positively affects innovation
+but not competitiveness.

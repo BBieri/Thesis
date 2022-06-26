@@ -14,13 +14,49 @@ output: iheiddown::chapter_pdf
 \setcounter{chapter}{0}
 # Introduction {#intro}
 
-Some random fact about why my paper is important given environmental context today
+Innovation is a key topic in the discussion surrounding environmental policy and
+the impact of the latter on the former has been the topic of a large body of
+research over the past few decades. For instance, this link becomes apparent when we consider
+the transition from a carbon-intensive energy production equilibrium to a
+decarbonized one which will be required by the middle of the century to
+achieve the ambitious environmental performance goals and attain net-zero
+emissions by 2050 in line with the objectives of the Paris Agreement
+[@europeanunionLongtermLowGreenhouse2020]. The political environment is
+therefore central to firm-level decisions on resource allocation, strategic
+planning of innovation activities and *in fine* economic performance.
 
-Porter hypothesis is still contested and has neglected the incresed rate 
-of international environmental cooperation
+We investigate this link by extending what is known as the *Porter Hypothesis*
+in the environmental economics literature [@porterNewConceptionEnvironmentCompetitiveness1995].
+To empirically assess its validity, @jaffeEnvironmentalRegulationInnovation1997
+divided it into three distinct hypotheses: the *Weak Porter Hypothesis* (WPH),
+the *Strong Porter Hypothesis* (SPH), and the *Narrow Porter Hypothesis*.
+The weak version contends that increased environmental policy stringency stimulates
+firm-level innovation. The strong version goes one step further and argues that
+firm performance is enhanced by international environmental policy stringency.
+Finally, the narrow version posits that more flexible, market-based policies
+are more apt at spurring innovation and firm competitiveness.
 
-Present main findings
+While empirical studies examining these hypotheses considered domestic policy stringency as
+the main independent variable, we argue that one needs to account for the rise in international
+environmental policymaking that occurred over the past half century
+and has likely had an increasingly important influence on firm-level
+innovation processes [@carattiniWhatDoesNetwork2021].
+In this paper, we therefore extend the standard model testing the Porter Hypothesis
+by constructing novel measures characterizing the evolution of international
+environmental cooperation. We thus conceptualize international cooperation as
+a bipartite membership network where countries are connected via their membership status
+in a given International Environmental Agreement (IEA). We then construct a
+yearly one-mode cooperation network and compute country level measures
+describing the position of countries in the network. We therefore define strength
+as the intensity of a country's involvement in the environmental governance
+network as well as transitivity which proxies the level of social capital or
+international policy certainty of a country in the network. We therefore add
+these international policy covariates to the standard models testing the Porter
+Hypothesis and estimate them using an unbalanced panel of OECD countries over
+the period between 1990 and 2015
+[@martinez-zarzosoDoesEnvironmentalPolicy2019a; @rubashkinaEnvironmentalRegulationCompetitiveness2015].
 
+The rest of this thesis is organized as follows.
 In section 2, we review the existing literature on Porter's Hypothesis and
 the effect of policy certainty on innovation, and the emerging literature
 on the network analysis of the global environmental governance complex. In

@@ -30,8 +30,9 @@ various robustness checks.
 ## Weak Porter Hypothesis:
 
 Recall that the *WPH* links environmental policy stringency and innovation
-inputs and outcomes. We operationalized the former with BERD and triadic patent
-counts. We complemented the analysis by looking at the share of environmental
+inputs and outcomes. We operationalized the latter with business expenditures on R&D
+(BERD) and triadic patent counts respectively. We complemented the analysis by
+looking at the share of environmental
 patents with respect to total patents test the link between environmental policy and
 environmental innovation. We estimate the first two
 regressions with OLS while including fixed effects to account of unobserved
@@ -42,21 +43,23 @@ Hence, although our dependent variable is right tailed, we do not experience
 a "pure" zero inflation and transforming the data by log-linearizing it is
 sufficient.]. The third regression which uses the share of environmental patents
 as a dependent variable is estimated by using a fractional logit approach (QMLE)
-[@papkeEconometricMethodsFractional1996].
+[@papkeEconometricMethodsFractional1996]. Let us now describe the results
+for our one year lagged policy variables and our five year lagged policy
+variables in turn.
 
 ### One Year Lag:
 
 Let us analyse the models including a one year lag of our policy variables
 by looking first at the first, second, fourth and fifth models which are
 testing the *WPH* for one year lagged policy variables. We will then examine
-the somewhat surprising results we observe with our environmental patent share
-models. These results are described in table \@ref(tab:WPHlag1).
+the somewhat surprising complementary results we observe in our environmental
+patent share models. These results are described in table \@ref(tab:WPHlag1).
 
 A one year lag is a relatively short period of time for policy stringency
 to take effect and translate into innovative outcomes. It is therefore
 unsurprising if we do not observe significant effects of domestic policy
 stringency (EPS) on R&D investments and on patent counts in either one of the
-specifications. Let us begin by analyizing the innovation output models e.g.
+specifications. Let us begin by analyzing the innovation output models e.g.
 the patent count models. $Strength_{i,\ t-1}$, our first international policy variable,
 which measures the number of international agreements a country has signed at
 $t-1$ after undergoing the backbone extraction process $M \in \{FDSM; SDSM\}$
@@ -99,7 +102,7 @@ cannot be interpreted as the previous double log models due to their
 non-linear nature. The average marginal effects in model 3 (FDSM) are:
 `EPS_FDSM_log_lag1`: $-0.01012$,  `Strength_SDSM_log_lag1`: $-0.01491$, 
 `Transitivity_SDSM_log_lag1` $-0.03541$ respectively. For model 5 (SDSM), they
-amount to: `EPS_SDSM_log_lag1`: $ -0.0114$, `Strength_SDSM_log_lag1`: $-0.008402$,
+amount to: `EPS_SDSM_log_lag1`: $-0.0114$, `Strength_SDSM_log_lag1`: $-0.008402$,
 `Transitivity_SDSM_log_lag1`: $-0.01083$. These marginal effects can be interpreted
 as the average marginal change of a $1\%$ change in the policy variable on the
 share of environmental patents over total patents in a given country in a given
@@ -367,18 +370,20 @@ which reflects its sensitivity to business cycles
 [@vanbeverenTotalFactorProductivity2012]. We estimated all models with time
 fixed effects to account for these.]. We are therefore not able to confirm the
 *Strong Porter Hypothesis* as further research with these old level indicators
-is therefore required to better understand these results.
+is therefore required to better understand these results^[We were unsuccessful
+in replicating the results of @martinez-zarzosoDoesEnvironmentalPolicy2019
+due to data availiability constraints of their version of the TFP index.].
 
 The second observation one can derive from these results is that the international
-policy variables are not significant or consistently estimated across lags. We
-cannot make any inferential claim on the nature of the relationship between
+policy variables are not significant or consistently estimated across lags. Therefore,
+we cannot make any inferential claim on the nature of the relationship between
 the embeddedness of a country in the international environmental cooperation network
 and total factor productivity measures.
 
 ```{=latex}
 \begin{table}[h!]
 \centering
-\begin{adjustbox}{width=0.7\textwidth, height = 0.2\textheight}
+\begin{adjustbox}{width=0.5\textwidth}
 \begin{tabular}{lcc|cc}
    \toprule
     & \multicolumn{4}{c}{TFP0}\\

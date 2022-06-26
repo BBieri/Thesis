@@ -57,7 +57,7 @@ To analyse our unbalanced panel of OECD countries over the period of 1990 to
 2015, we define the following regressions to investigate the
 *Weak Porter Hypothesis* (WPH).
 
-```[=latex]
+
 \begin{multline}
 ln(BERD_{it}) = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \\ 
     \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) + \beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \\ 
@@ -73,7 +73,7 @@ EnvPatShare_{it} = \beta_1 ln(\text{EPS}_{i,\ t-k}) + \\
             \beta_2 ln(\text{Strength}_{i,\ t-k}^{M}) + \beta_3 ln(\text{Transitivity}_{i,\ t-k}^{M}) + \\
             \beta_4 ln(X_{it}) + \alpha_i + \delta_t + u_{it}
 \end{multline}
-```
+
 
 Where our three dependent variables are $BERD_{it}$, the business expenditures
 on R&D[@oecdMainScienceTechnology2022].

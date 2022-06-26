@@ -4,8 +4,10 @@
 # Thesis
 
 This repository contains the replication code to replicate the thesis
-“THESIS TITLE” by Bernhard Bieri in fulfillment of the Master in
-International Economics of the Geneva Graduate Institute.
+titled “The Impact of Global Environmental Governance on Innovation;
+Revisiting the Porter Hypothesis at the International Level” by Bernhard
+Bieri in fulfillment of the Master in International Economics of the
+Geneva Graduate Institute.
 
 ## How to replicate this thesis:
 
@@ -16,7 +18,14 @@ run would be the `0_Setup.R` file followed by the files in the
 
 When executing the scripts, you might need to install/load particular
 versions of the loaded packages. These are indicated in comments next to
-the corresponding `library()` call in the corresponding file.
+the corresponding `library()` call in the respective file.
+
+-   Quick links:
+    -   Final PDF: [click here]()
+    -   Centrality computation: [click
+        here](https://github.com/BBieri/Thesis/blob/main/R/1_DataPreparation/2_YearlyCentrailty.R)
+    -   Econometric analysis: [click
+        here](https://github.com/BBieri/Thesis/blob/main/R/2_Analysis/0_PanelAnalysis.R)
 
 ## Got any questions?
 

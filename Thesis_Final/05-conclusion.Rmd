@@ -68,4 +68,9 @@ of the cooperation network. Since we might not have detected effects if we only
 reported a single backbone extraction method, we recommend that future research
 consider multiple theoretically founded extraction methods.
 
-Our contribution is there
+We therefore conclude on the empirical side that a combination of stringent
+domestic environmental policy alongside a stable position within the
+international governance network is conducive to innovation. On the methodological
+side, we highlighted the importance of the careful choice of backbone extraction
+methods which need to be grounded in theory to ensure that inferential claims
+are robust to this choice.

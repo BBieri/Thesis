@@ -4,7 +4,7 @@
 \markboth{Appendix}{Appendix}
 ```
 
-Additional resources as well as all code files to replicate the present
+Additional resources, as well as all code, files to replicate the present
 work can be found on its
 [GitHub repository](https://github.com/BBieri/Thesis). The repository
 is currently private but feel free to reach out via
@@ -22,7 +22,7 @@ please also feel free to reach out via
 
 Below are the robustness checks for the two linear models testing the Weak
 Porter Hypothesis. These models have been reestimated following the exclusion
-of the United States, Japan and Germany which are three outlier countries
+of the United States, Japan, and Germany which are three outlier countries
 in terms of innovation. We observe that results are robust to their exclusion.
 
 ```{=latex}
@@ -60,7 +60,7 @@ in terms of innovation. We observe that results are robust to their exclusion.
 \par \raggedright 
 \footnotesize{All models are estimated using Ordinary Least Squares. Newey-West corrected standard errors in parentheses. * significant 10\%, ** significant 5\%, *** significant 1\%.}
 \par
-\caption{Weak Porter Hypothesis without United States, Japan, and Germany}
+\caption{Weak Porter Hypothesis without United States, Japan, and Germany (1 year lag)}
 \label{tab:RobChecklag1}
 \end{table}
 ```
@@ -100,7 +100,7 @@ in terms of innovation. We observe that results are robust to their exclusion.
 \par \raggedright 
 \footnotesize{All models are estimated using Ordinary Least Squares. Newey-West corrected standard errors in parentheses. * significant 10\%, ** significant 5\%, *** significant 1\%.}
 \par
-\caption{Weak Porter Hypothesis without United States, Japan, and Germany}
+\caption{Weak Porter Hypothesis without United States, Japan, and Germany (5 year lag)}
 \label{tab:RobChecklag5}
 \end{table}
 ```

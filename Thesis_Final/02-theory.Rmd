@@ -15,7 +15,7 @@ the literature on environmental policy. First and foremost, we
 characterize what is known in the literature as the *Porter Hypothesis* and
 distinguish the different versions that have been devised over the years.
 We will thus strive to understand the impact of increased environmental regulations
-on both innovative activity of firms and on overall firm performance.
+on both the innovative activity of firms and on overall firm performance.
 The next strand of the literature relates to the concept of *policy certainty*
 which highlights the importance of maintaining a stable and predictable
 policy environment to decrease the risk inherent to innovative activity.
@@ -27,17 +27,17 @@ previous work conceptualizing it as a cooperative network.
 
 Over three decades ago, the Porter Hypothesis (PH) challenged the conventional
 Panglossian economic thinking that enhanced environmental regulation would
-lead to a decrease in economic performance of firms due to the increased
-constraints imposed on the firm [@michael1991america]. The main intuition behind the
-Panglossian doxa is that if it were profitable for firms to follow a more
+lead to a decrease in the economic performance of firms due to the increased
+constraints imposed on the firm [@michael1991america]. The central intuition behind the
+Panglossian Doxa is that if it were profitable for firms to follow a more
 sustainable production path, they would do so in the absence of regulations.
-On the basis of case studies, Porter however argues that well designed,
-market-based, pollution preventing policies would lead firms to create products
-that are more resource efficient and thus competitive on the international
+However, based on case studies, Porter argues that well-designed,
+market-based, pollution-preventing policies would lead firms to create more
+resource-efficient products and thus be competitive in the international
 market. An example of the latter could be the implementation of more stringent
 fuel consumption standards for cars. Porter thus advances that this
-increase in environmental stringency, would force domestic automobile
-companies to make more fuel efficient cars which in turn would increase
+increase in environmental stringency would force domestic automobile
+companies to make more fuel-efficient cars which in turn would increase
 the competitiveness of domestic cars in the world market [@michael1991america].
 
 Porter and Van der Linde later formalize his initial criticism in
@@ -53,39 +53,40 @@ investments to address the environment will be valuable". Fourth,
 they advance that outside pressure, which includes the regulatory framework
 firms have to comply with, is able to overcome organizational inertia and
 spur innovation. The fifth reason put forward by the authors is that
-"regulation levels the transitional playing field" in the sense that regulation
+"regulation levels the transitional playing field" because regulation
 ensures that companies do not gain an unfair advantage until new and improved
-technologies are proven. The sixth and final argument pertains to an important
-nuance between the effect of regulation on innovation and competitiveness of
+technologies are proven. The sixth and final argument pertains to an essential
+nuance between the effect of regulation on innovation and the competitiveness of
 firms in that compliance costs arising from environmental regulations might not
 always be offset by the benefits brought by subsequent product innovations.
-Crucially, Porter and Van der Linde contend that most benefits occurring from
+Crucially, Porter and Van der Linde contend that most benefits from
 increased innovation will arise in the medium to the long term due to the
-required time span for the innovation to bear fruits. Hence, the existence of
-a lag between the implementation of an environmental regulation and a signal
+required time span for the innovation to bear fruit. Hence, the existence of
+a lag between the implementation of environmental regulation and a signal
 on innovation or economic performance metrics of firms is to be
 expected^[A lag structure will therefore be taken into account in our
 empirical estimations.].
 
-Due to its unorthodox nature, the Porter Hypothesis generated a strong debate
-among economists during the late 1990's and the early 2000's
+Due to its unorthodox nature, the Porter Hypothesis generated an intense debate
+among economists during the late 1990s and the early 2000s
 [@jaffeEnvironmentalRegulationCompetitiveness1995].
-@ambecPorterHypothesis202013 provide a clear overview of the various arguments
-proponents used to defend the *PH*. They define a first set of studies which
-underlines the fact that firms are driven by individuals who might not
+@ambecPorterHypothesis202013 provide a clear overview of the arguments
+proponents used to defend the *PH*. They define a first set of studies that
+underline the fact that firms are driven by individuals who might not
 satisfy the assumptions of rationality required for firms to be deemed
 profit-maximizers. Indeed, managerial risk-aversion, resistance to change
 [@aghionCorporateGovernanceCompetition1997], and
 a combination of lacking information and the cognitive capabilities to
-process the latter [@gabel2001firm] may cause a mismatch between the utility
-maximizing behaviors of the management and the firm as a whole. Akin to this
+process the latter [@gabel2001firm] may cause a mismatch between the utility-maximizing
+behaviors of the management and the firm as a whole. Akin to this
 principal-agent issue, @ambecTheoreticalFoundationPorter2002 argue that managers
 may exhibit rent-seeking behavior by retaining private information on
-the true costs of technological innovations that would improve productivity
+the actual costs of technological innovations that would improve productivity
 and the environmental performance of the firm. This essentially
-follows the organizational inertia and learning effects argument put forward by @porterNewConceptionEnvironmentCompetitiveness1995 that we outlined above.
+follows the organizational inertia and learning effects argument put forward
+by @porterNewConceptionEnvironmentCompetitiveness1995 that we outlined above.
 
-A second strand of the theoretical literature explore the role of market
+A second strand of the theoretical literature explores the role of market
 failures beyond the pure environmental externalities generated by pollution
 and how increased environmental regulations could overcome them.
 Examples of this strand include situations where firms are first movers
@@ -95,13 +96,13 @@ regulation [@simpsonTaxingVariableCost1996]. Another common market failure
 that could lead to the coexistence of the *PH* alongside profit-maximizing firms
 are information asymmetries between households and firms.
 The main idea here is that by setting industry standards or labels, firms
-are able to credibly communicate the environmental benefits of their products
+can credibly communicate the environmental benefits of their products
 and overcome the asymmetry [@ambecSurvolFondementsTheoriques2007].
 Finally, the non-exclusive nature of R&D may lead to spillovers from the
 innovating firm to other firms in the industry. This may lead the economy
 to be in a bad equilibrium *ex-ante* where firms invest too little in environmental
 technologies. If this is indeed the case, then regulations can level the playing
-field among firms and lead to a move to a higher, more R&D intensive
+field among firms and lead to a move to a higher, more R&D-intensive
 equilibrium [@mohrTechnicalChangeExternal2002].
 
 On the empirical front, much has been written to reinforce the initially very
@@ -109,19 +110,19 @@ theoretical debate surrounding the Porter Hypothesis.
 To facilitate its analysis, @jaffeEnvironmentalRegulationInnovation1997
 divided the original hypothesis into three distinct ones. What is known as
 the "Strong Porter Hypothesis" (*SPH*) links environmental regulation to firm
-competitiveness. The "Weak Porter Hypothesis" (*WPH*) links environmental
+competitiveness. The "Weak Porter Hypothesis" (*WPH*) relates environmental
 regulation to innovation, and the "Narrow Porter Hypothesis" argues that
 flexible market-based regulations are more effective in generating innovation
-than stricter command-and-control policies. Since we will focus on the former two
+than stricter command-and-control policies. Since we will focus on the former
 two hypotheses, we will not elaborate further on the Narrow hypothesis in this
 literature review.
 
 The empirical literature analyzing the weak version of the Porter Hypothesis
 usually operationalizes innovation as R&D expenditures or through
-(aggregate or sector specific) patent counts. When instead considering the
-strong version of the *PH* studies usually rely on firm profits or total factor
+(aggregate or sector-specific) patent counts. When instead considering the
+strong version of the *PH*, studies typically rely on firm profits or total factor
 productivity.
-On the right hand side, environmental policy stringency, was initially proxied
+On the right-hand side, environmental policy stringency was initially proxied
 by pollution abatement costs [@jaffeEnvironmentalRegulationInnovation1997] or
 energy prices [@newellInducedInnovationHypothesis1999] before being more
 holistically estimated via the use of indicators such as the Environmental
@@ -133,9 +134,10 @@ the Porter Hypothesis and an outline of the different measures used.] [@eurostat
 As we will outline more in detail in section 3 of the paper, we will take
 the modern approach and use the EPS index to proxy for environmental regulation
 stringency at the domestic level and patent counts and business R&D
-expenditures to proxy inventive activity of firms.
-The weak version of the Porter Hypothesis is found to be the most consistently
-verified hypothesis among the three as outlined in the meta-analysis by @cohenImpactEnvironmentalRegulation2018. The authors of the meta-analysis
+expenditures to proxy for the inventive activity of firms.
+The weak version of the Porter Hypothesis is the most consistently
+verified hypothesis among the three, as outlined in the meta-analysis by
+@cohenImpactEnvironmentalRegulation2018. The authors of the meta-analysis
 namely highlight the following points:
 
 - Early studies tend to find a negative relationship between environmental
@@ -154,13 +156,13 @@ analysis when empirically testing it.].
 - Studies incorporating a temporal lag between the change in regulation
 stringency and inventive or profitability outcomes are more likely to
 find a positive relationship. This echoes once again the original formulation
-of the Porter Hypothesis which states that while regulation may hurt short
-term competitiveness and productivity, the medium to long term effects would be
+of the Porter Hypothesis, which states that while regulation may hurt short-term
+competitiveness and productivity, the medium to long-term effects would be
 positive.
 
-These findings will guide us in the elaboration of a panel model
-that will be outlined in more detail in section 3. Before that, let us now turn our
-attention to the second strand of literature guiding our empirical strategy
+These findings will guide us in the elaboration of the panel model
+that will be outlined in more detail in section 3. Before that, let us now focus on
+the second strand of literature guiding our empirical strategy
 and examine the impact of policy (un-)certainty on innovation.
 
 ## The Role of Policy Certainty on the Innovative Behavior of Firms
@@ -168,7 +170,7 @@ and examine the impact of policy (un-)certainty on innovation.
 While the empirical literature on the impact of policy certainty on innovation
 is more recent and less abundant than the one on the Porter Hypothesis,
 a number of papers have investigated it.
-The literature of the impact of policy certainty on innovative
+The literature on the impact of policy certainty on innovative
 activity was derived from the one that links policy uncertainty and investments
 in tangible assets. Early theoretical contributions outline that non-reversible
 investments are often delayed or scrapped if firms experience regulatory
@@ -180,10 +182,10 @@ On the empirical front, @alesinaIncomeDistributionPolitical1996 were the first
 to investigate this link with a cross-section analysis of over 70 countries.
 More specifically, they find that more unequal countries are more likely to
 be politically unstable that subsequent political instability has an adverse
-effect on investments in tangible assets. Additional empirical evidence
+impact on investments in tangible assets. Additional empirical evidence
 highlighting the negative effect of policy uncertainty was provided by
 @bloomUncertaintyInvestmentDynamics2007 who extend the analysis to a panel model,
-@julioPoliticalUncertaintyCorporate2012 who highlight a negative impact of being
+@julioPoliticalUncertaintyCorporate2012 who identify the negative impact of being
 in an election year on firm investments, and
 @gulenPolicyUncertaintyCorporate2016 who leverage the Economic Policy
 Uncertainty index developed by @bakerMeasuringEconomicPolicy2016 to
@@ -192,12 +194,12 @@ describe a similar effect within a panel analysis.
 However, note that the negative effect between policy uncertainty and tangible asset
 investments need not hold for intangible investments in R&D
 since the latter are different and are namely characterized by
-a long-term horizon and a fat tailed risk
+a long-term horizon and a fat-tailed risk
 distribution^[This characteristic is a product of the trial-and-error
 nature of the R&D process where only a small subset of research
-endeavors are successful and profitable.]. Nevertheless, a growing game
-theoretical literature assessing international environmental governance argues
-that short-term agreements are less conducive to 
+endeavors are successful and profitable.]. Nevertheless, a growing game-theoretical
+literature assessing international environmental governance argues
+that short-term agreements are less conducive to
 investments in green R&D than long-term agreements due to the comparatively
 higher hold-up phenomenon when renegotiations are frequent
 [@harstadDynamicsClimateAgreements2016]. This phenomenon is mainly explained by
@@ -209,22 +211,22 @@ reductions during the negotiations.
 first to investigate the effect of policy uncertainty on innovation outcomes (i.e.
 patent quantities and citations) empirically. They extend the theoretical
 model proposed by @edmansBlockholderTradingMarket2009 on managerial myopia
-by adding economic uncertainty, a measure of policy state, and a measure of
+by adding economic uncertainty, a measure of policy state, and an estimate of
 policy uncertainty. Using this theoretical framework, they test whether
-the pure effect of country level policy orientation, as proxied by the Database
+the pure effect of country-level policy orientation, as proxied by the Database
 of Political Institutions, and policy uncertainty, as proxied by
 the occurrence of election events, have an impact on firm-level innovation
 [@keefer2012database]. They are able to show that innovation
 is more affected by policy uncertainty than by policy itself. This leads
-to the conclusion that a politically stable environment is beneficial to
+to the conclusion that a politically stable environment benefits
 R&D investments and confirms the findings of the aforementioned
 game theoretical literature
 [@beccherleRegionalInitiativesCost2011; @harstadDynamicsClimateAgreements2016].
 
-These studies are looking at the aggregate level effect between policy
-certainty and innovation and do not analyse environmental innovation specifically.
-More recently however, newspaper indices on both climate policy uncertainty
-[@gavriilidisMeasuringClimatePolicy2021] and on
+These studies look at the aggregate effect between policy
+certainty and innovation and do not analyze environmental innovation specifically.
+More recently, however, newspaper indices on climate policy uncertainty
+[@gavriilidisMeasuringClimatePolicy2021] and
 climate policy salience became available [@noailly2021heard].
 These indexes are both built by programmatically analyzing US newspaper
 articles over a given period to detect the co-occurrence of a given set of
@@ -232,130 +234,128 @@ words^[Both follow the methodology outlined in the Economic Policy
 Uncertainty index developed by @bakerMeasuringEconomicPolicy2016 and apply
 different keywords to the programmatic analysis of US newspapers.].
 @gavriilidisMeasuringClimatePolicy2021 used his index to show that
-increased policy uncertainty lead to a reduction of CO2 emissions.
-He further argues that, this might be due to either a decrease in energy
+increased policy uncertainty leads to a reduction of CO2 emissions.
+He further argues that this might be due to either a decrease in energy
 consumption and a reduction in non-essential transport or an increase in
-the demand for renewable energy consumption and an associated increase in
+the demand for renewable energy consumption and an associated rise in
 climate-friendly innovations.
-On the other hand @noailly2021heard were able to leverage their policy salience
+On the other hand, @noailly2021heard were able to leverage their policy salience
 index to identify a positive link between policy salience and the probability
 of cleantech startups receiving venture capital funding.
-While these indices are able to inform research on the link between
+While these indices can inform research on the link between
 environmental policy uncertainty/salience and innovative inputs and outcomes
-for the US, they cannot yet be used within a panel framework. Furthermore,
-these indices are symptomatic in that they capture perceptions of an aggregate
-policy environment. As both papers outline the aggregate sentiment as proxied
+for the US. We cannot yet use them within a panel framework across multiple countries. Furthermore,
+these indices are symptomatic as they capture perceptions of an aggregate
+policy environment. As both papers outline the aggregate sentiment proxied
 by newspaper articles, they do not consider the root causes of this uncertainty
 or salience.
 
-This underlines the importance of considering the potential variables which 
+These studies underline the importance of considering the potential variables which
 influence domestic environmental policy certainty and may reinforce innovative activity.
-This leads us to our hypothesis that international commitments, in the form of the 
-the participation in international environmental agreements, may reinforce
+Thus they lead us to our hypothesis that international commitments, in the form of
+participation in international environmental agreements, may strengthen
 the credibility of domestic environmental policy and thus increase the effect
 of domestic environmental policy stringency on innovation. We will refer to this
 credibility effect as the *indirect effect* of international environmental governance on
 environmental innovation. The complementary *direct effects* of international
-environmental policy have been outlined in comparative studies within the 
+environmental policy have been outlined in comparative studies within the
 international relations and political science literatures and will be analyzed in
-more detail in the next subsection. 
+more detail in the following subsection.
 
 ## Assessing the Formation and the Effectiveness of International Environmental Governance
 
 While the literature on global environmental governance
-does not specifically address the link between the participation rate of a 
+does not explicitly address the link between the participation rate of a
 country in the international governance complex and the rate of innovation
 of its firms, it offers insights in two main ways. First, an important strand
-investigates the drivers motivating countries in participating in
-international environmental agreements. A second complementary strand  
+investigates the drivers motivating countries to participate in
+international environmental agreements. A second complementary strand
 explores the effect of international proximity and cooperation on
 environmental performance^[Environmental performance is different from economic
-performance as it relates to targets such as polution abatement efforts.]. We
-will analyse each strand in turn and focus on deriving potential *direct effects* between the 
+performance as it relates to targets such as pollution abatement efforts.]. In turn, we
+will analyze each strand and focus on deriving potential *direct effects* between the
 embeddedness of a country in the international environmental governance network
-and the innovation process to motivate our theoretical approach presented in 
+and the innovation process to motivate our theoretical approach presented in
 the next chapter.
 
-The first strand of this literature leverages game
-theoretical or social network analysis methodologies
+The first strand of this literature leverages game-theoretical or
+social network analysis methodologies
 to understand the formation of cooperative ties in the environmental governance
-network. The latter methodologies are of a particular relevance in our case
-since they acknowledge the interdependence of the cooperative tie formation 
-process.
-The initial methodological lens through which international environmental
-cooperation has been assessed is game theory. The main unit of analysis in early
-papers was often a single agreement such as the Montreal Protocol 
+network. The latter methods are particularly relevant in our case
+since they acknowledge the interdependence of the cooperative tie formation
+process. Early papers' main unit of analysis was often a single agreement such as the Montreal Protocol
 [@barrettSelfEnforcingInternationalEnvironmental1994]. More recent theoretical
-advances in the literature consider the participation in IEAs as a static or a 
-dynamic game with repeated interactions between countries 
+advances in the literature consider the participation in IEAs as a static or a
+dynamic game with repeated interactions between countries
 [beccherleRegionalInitiativesCost2011; harstadDynamicsClimateAgreements2016;
 @battagliniParticipationDurationEnvironmental2016]^[The majority of the
-empirical evidence within the game theoretic literature comes from experimental
-economics. See e.g. @tavoniInequalityCommunicationAvoidance2011 and 
+empirical evidence within the game-theoretic literature comes from experimental
+economics. See, e.g., @tavoniInequalityCommunicationAvoidance2011 and
 @barrettClimateNegotiationsScientific2012].
-The main conclusion of this strand that is of a particular interest to us is
-that long term agreements create a more certain policy environment and help
-reduce the uncertainty that surrounds investment in green R&D.
-However, although dynamic in nature,
-the aim of these models is to devise the characteristics of an effective
+The main conclusion of this strand that is of particular interest to us is
+that long-term agreements create a more certain policy environment and help
+reduce the uncertainty that surrounding investment in green R&D.
+However, although dynamic,
+these models aim to devise the characteristics of an effective
 prototypical international environmental agreement. In other words, it does
-not consider the emergence of a *international environmental governance network*.
+not consider the emergence of an *international environmental governance network*.
 This underlines the necessity of adopting a polycentric approach in
 the analysis of the *network* of environmental governance where agents interact
 at different levels in a dynamic context [@ostromPolycentricApproachCoping2009;
 @jordanGoverningClimateChange2018]. Social network analysis
 methods have thus been employed to understand the drivers of international
-cooperation within such a framework. The main benefits of using
-such an approach to analyse the emergence of cooperative ties is that these
+cooperation within such a framework. The main reason behind the use of
+such an approach to analyzing the emergence of cooperative ties is that these
 depend on both the *characteristics* of the agents that form them and the
 *structure* of the network they exist in. @kinneNetworkDynamicsEvolution2013a
-underlined that states are more likely to form bilateral cooperation ties if
+underlined that states are more likely to develop bilateral cooperation ties if
 they share agreements with third parties^[This confirms
-the triadic closure phenomenon highlighted by Granovetter 
+the triadic closure phenomenon highlighted by Granovetter
 @granovetterStrengthWeakTies1973].], if they sign more agreements overall, and
 if they exhibit similar characteristics with their bilateral partners. While
 Kinne examines a unimodal network of bilateral agreements between the end of the
 Second World War and 1980 due to data availability,
-@hollwayMultilevelEmbeddednessCase2016 further his analysis by examining the
-bipartite structure of network and highlight the importance of multilateral
-agreements in the process of triadic closure.
+@hollwayMultilevelEmbeddednessCase2016 further his analysis by studying the
+bipartite structure of the global fisheries network and highlight the importance
+of multilateral environmental agreements by showing that sharing membership
+in a multilateral agreement is conducive of bilateral triadic closure.
 While this first strand of the literature on the formation of environmental
-cooperation does highlight a direct link on the rates of innovation of countries,
-it is useful to understand the relevance of social network analysis
-as a mean to study the concurrent effects of the position of an agent in a network
-and their characteristics as opposed to the previously discussed game theoretical
-approach. Moving forward, we will therefore see the environmental governance
+cooperation does not highlight a direct link between embeddedness and the rates of innovation of countries,
+it is helpful to understand the relevance of social network analysis
+as a means to study the concurrent effects of the position of an agent in a network
+and their characteristics as opposed to the previously discussed game-theoretical
+approach. Moving forward, we will conceptualize the environmental governance
 complex as a network and highlight the effects of the topological attributes of
-individual countries on innovative inputs and outcomes over time.
+individual countries on innovative inputs and outcomes as well as firm-level competitiveness over time.
 
 The second strand of the literature on environmental governance
 grew from the fact that domestic
 policy is affected by *both* domestic and international factors
 [@dreznerAllPoliticsGlobal2008; @haysGlobalizationNewPolitics2009; @jahnPoliticsEnvironmentalPerformance2016].
 As such, it investigates the *effects* of
-international environmental cooperation on country level variables such as
+international environmental cooperation on country-level variables such as
 environmental performance and innovation. This specific strand is surprisingly
-understudied and most evidence presented below is either theoretical or
-qualitative. To our knowledge, the only attempt to investigate the link
-between the intensity of participation in the environmental governance complex 
-quantitatively was provided by @jahnPoliticsEnvironmentalPerformance2016 and
+understudied, and most evidence presented below is either theoretical or
+qualitative. To our knowledge, the only attempt to quantitatively investigate the link
+between the intensity of participation in the environmental governance complex
+was provided by @jahnPoliticsEnvironmentalPerformance2016 and
 is discussed below, after underlining a number of qualitative stylized facts
 on environmental cooperation.
 
-The Stern Review provides initial theoretical and qualitative insights into the
-ways increased international cooperation may facilitate eco-innovation
-(@sternEconomicsClimateChange2007, chapters 16 & 24). The main lens the review
+The Stern Review provides initial theoretical and qualitative insights into how
+increased international cooperation may facilitate eco-innovation
+(@sternEconomicsClimateChange2007, chapters 16 & 24). The primary lens the Review
 considers the link between international cooperation and innovation is one of portfolio
-management where cooperation is motivated by knowledge sharing^[To
-namely overcome the developed/developing divide and ensure a fair
+management, where cooperation is motivated by knowledge sharing^[Namely
+to overcome the developed/developing divide and ensure a fair
 transition for developing countries where climate targets are met but not at
 the expense of the growth of developing countries.], efficiency gains
-through the coordination of R&D portfolios and finally the pooling of
-risks which are a key characteristic of the innovation process. In addition
+through the coordination of R&D portfolios, and finally the pooling of
+risks which are a crucial characteristic of the innovation process. In addition
 to this portfolio approach, the Review underlines the importance of setting
-international environmental standards which may reinforce domestic 
+international environmental standards which may reinforce domestic
 environmental regulation (@sternEconomicsClimateChange2007, chapter 24.6).
-In other words, Stern argues that international co-ordination on performance
+In other words, Stern argues that international coordination on performance
 standards leads to larger markets being affected than if countries were to
 act in isolation which may lead the market to tip from one equilibrium to
 another due to a combination of network feedback effects, economies of
@@ -363,48 +363,48 @@ scale or technological lock-in effects
 ^[See @barrettIncreasingParticipationCompliance2003 for a discussion].
 
 @jahnPoliticsEnvironmentalPerformance2016 complements these qualitative insights with
-an analysis of the effect of supra-national factors such as the
+an analysis of the positive effect of supra-national factors such as the
 membership in international organizations, the membership in international environmental
-treaties as well as more general effects such as globalization on multiple
-indices of environmental
+treaties, as well as more general effects such as globalization on multiple
+indices of the environmental
 performance of OECD countries he constructed^[Other comparative analyses
-complement his findings: see e.g. @holzingerEnvironmentalPolicyConvergence2008
+complement his findings: see, e.g., @holzingerEnvironmentalPolicyConvergence2008
 and @bauer2014conceptual.].
 While Jahn's dependent variable is environmental performance, his central
-argument on the relevance of the *combination* of both national an
+argument on the relevance of the *combination* of national and
 international policy factors is nevertheless valuable
 in the context of this study as it highlights the rise of international
 environmental policymaking. The rising importance of international environmental
 cooperation has further been highlighted by @carattiniWhatDoesNetwork2021
-who illustrate it by using a network analysis approach to analyse the ECOLEX
-dataset[@unepiucnfaoECOLEXGatewayEnvironmental2022]. The aim of their paper
-is to derive a set of stylized facts on the intertemporal evolution of
+who illustrate it using a network analysis approach to analyze the ECOLEX
+dataset[@unepiucnfaoECOLEXGatewayEnvironmental2022]. Their paper aims
+to derive a set of stylized facts on the intertemporal evolution of
 the network of international agreements by constructing a "cooperation network"
 between states^[Section 3 provides the reader with more detail about the
 construction of such a cooperation network.] After constructing this cooperation
-network, Carattini et. al describe the evolution of the position of states within
+network, Carattini et al. describe the evolution of the position of states within
 it. They narrow down their observations to the following four stylized
 facts:
 
-1. "Meaningful environmental cooperation emerged in the late 1970's."
-1. "Environmental cooperation has become closer, denser and more cohesive."
-1. "The environmental cooperation network, while global has a noticeable European
+1. "Meaningful environmental cooperation emerged in the late 1970s."
+1. "Environmental cooperation has become closer, denser, and more cohesive."
+1. "The environmental cooperation network, while global, has a noticeable European
 imprint."
-1. International environmental cooperation started with fisheries agreements
+1. International environmental cooperation started with fisheries agreements,
 but the contemporary focus has shifted towards the management of waste and
 hazardous substances.
 
 These stylized facts empirically confirm observations from the theoretical
 literature on international environmental agreements that highlight their
-growing importance [@jordanGoverningClimateChange2018; @ostromPolycentricApproachCoping2009]. 
+growing importance [@jordanGoverningClimateChange2018; @ostromPolycentricApproachCoping2009].
 
 In conjunction with the literature on policy certainty shown in the previous subsection,
 the increased importance of international environmental politics leads us
 to draw a model that investigates the concurrent effects of national and international
-environmental policies on the innovative behavior of firms. The aim of our
-paper is therefore to investigate whether or not the relative
+environmental policies on the innovative behavior of firms. Therefore, our paper aims
+to examine whether or not the relative
 position^[In a topological sense.] of a country
 in the global environmental governance network affects the different versions
 of the Porter Hypothesis. Now that the theoretical motivation of our study is
 set, let us outline our empirical strategy and data sources
-in the section that follows.
+in the following section.

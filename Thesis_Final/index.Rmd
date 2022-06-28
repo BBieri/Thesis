@@ -7,7 +7,7 @@ doctitle: |
   Revisiting the Porter Hypothesis at the International Level.
 firstnames: Bernhard
 lastnames: Bieri
-thesisno: 12345
+# thesisno: 12345
 phd: false # Or: false for Masters
 department: Master of International Economics
 degreedate: September 2022

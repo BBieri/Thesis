@@ -55,7 +55,7 @@ international policy certainty of a country in the network. We thus add
 these international policy covariates to the standard models testing the Porter
 Hypothesis and estimate them using an unbalanced panel of OECD countries over
 the period between 1990 and 2015
-[@martinez-zarzosoDoesEnvironmentalPolicy2019a; @rubashkinaEnvironmentalRegulationCompetitiveness2015].
+[@martinez-zarzosoDoesEnvironmentalPolicy2019; @rubashkinaEnvironmentalRegulationCompetitiveness2015].
 
 The rest of this thesis is organized as follows.
 In section 2, we review the existing literature on Porter's Hypothesis,

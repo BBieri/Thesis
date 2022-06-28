@@ -11,66 +11,67 @@ output: iheiddown::chapter_pdf
 # Conclusion {#conclusion}
 
 We conclude by highlighting the main contributions of the present work to the
-describing the intertemporal evolution of the international environmental
-collaboration network and in particular its impact as a policy signal encouraging
+description of the intertemporal evolution of the international environmental
+collaboration network and, in particular, its impact as a policy signal encouraging
 innovation.
 We were able to consistently identify a positive impact of
 social capital proxied by transitivity on our measures of innovation. This
-effect is larger than the pure effect of domestic policy stringency which
-underlines the importance of a stable environmental governance environment
-to reduce the political risk emanating from changing policies. It also shows
-that global environmental cooperation can take on such a risk reducing role
-by being tightly knit which would in turn favor future cooperation
-due to the building of trust among actors in the network.
-This stands in contrast to the results we obtained for strength centrality which
+effect is larger than the pure effect of domestic policy stringency, which
+underlines the importance of a stable international environmental governance environment
+to reduce the risk emanating from changing policies. It also shows
+that global environmental cooperation can take on such a risk-reducing role
+by being tightly knit, which would, in turn, favor future cooperation
+due to the building of trust among actors in the network, which may lead to a
+positive feedback loop.
+This contrasts with the results we obtained for strength centrality, which
 provided less consistent point estimates across lag and backbone specifications
 and are smaller overall than transitivity.
 Although less consistent, the fact that indirect effects of international
 environmental governance supplant direct effects resonates with
-@bhattacharyaWhatAffectsInnovation2017 who find that it is policy uncertainty that
-affects innovation rather than policy itself. Finally, we nuance this last point
+@bhattacharyaWhatAffectsInnovation2017 who find that domestic policy uncertainty
+affects innovation rather than the domestic policy itself. Finally, we nuance this last point
 as we were able to confirm the weak version of the Porter Hypothesis in the
-R&D expenditures model within the five year lag but not in the one year lag
-specification which is consistent with the results of
+R&D expenditures model within the five-year lag but not in the one-year lag
+specification, which is consistent with the results of
 @martinez-zarzosoDoesEnvironmentalPolicy2019, @rubashkinaEnvironmentalRegulationCompetitiveness2015, and
-@jaffeEnvironmentalRegulationCompetitiveness1995. We therefore conclude that
+@jaffeEnvironmentalRegulationCompetitiveness1995. We, therefore, conclude that
 a mix of stringent domestic policy associated with a stable, tightly knit position
 within the international environmental cooperation network is likely conducive
 to innovative activity.
 
-Two main empirical puzzles remain that will need to be addressed in future
+Two main empirical puzzles remain that must be addressed in future
 research endeavors. First, we find that environmental innovation is less
 affected by environmental policy stringency in the short term than total innovation.
-This difference disappears in the 5 year lag specification. This goes against our
+This difference disappears in the five-year lag specification. This goes against our
 initial hypothesis that there would be a relatively stronger effect on environmental
 innovation. A sectoral level analysis linking research funding and innovation outputs
-would allow us to perform more precise estimations. We would furthermore be able to
+to specific international policy would allow us to perform more precise estimations. Furthermore, we would be able to
 leverage the full richness of the Ecolex dataset used in this study by disaggregating
-international environmental agreements in specific sectors and match them with
+international environmental agreements in specific sectors and matching them with
 the corresponding economic sector [@unepiucnfaoECOLEXGatewayEnvironmental2022].
-The second puzzle that remains to be addressed are the unusually high coefficient estimations
-for our environmental policy stringency proxy as well as inconsistencies in the
+The second puzzle that remains to be addressed is the unusually high coefficient estimations
+for our environmental policy stringency proxy, as well as inconsistencies in the
 point estimates of the international policy variables across specifications
-in the model testing the strong version of the Porter Hypothesis. We therefore
-cannot confidently confirm the latter and further research to improve
-the econometric modelling is required.
+in the model testing the strong version of the Porter Hypothesis. Hence, we
+cannot confidently confirm the latter, and further research to improve
+the econometric modeling is required.
 
 Concurrently to these empirical findings, our study furthers the theoretical
-understanding of the implications behind the choice of backbone extraction methods to correct
+understanding of the implications behind the choice of a backbone extraction method to correct
 the weighted projections of bipartite networks. These choices are often key to
-correct inference and when a choice between two algorithms cannot be theoretically
-justified, both should be taken into account to ensure robust inference.
+correct inference, and when a choice between two algorithms cannot be theoretically
+justified, both should be considered to ensure robust inference.
 In our case, the main difference between the two algorithms that were retained on
-theoretical grounds are that that the confidence intervals of our coefficient estimates
+theoretical grounds is that the confidence intervals of our coefficient estimates
 tend to be larger in the model imposing harsher constraints on the set of
-simulated networks since it retained less edges in the corrected projection
+simulated networks since it retained fewer edges in the corrected projection
 of the cooperation network. Since we might not have detected effects if we only
 reported a single backbone extraction method, we recommend that future research
 consider multiple theoretically founded extraction methods.
 
-We therefore conclude on the empirical side that a combination of stringent
-domestic environmental policy alongside a stable position within the
-international governance network is conducive to innovation. On the methodological
+Therefore, we conclude on the empirical side that a combination of stringent
+domestic environmental policy and a position with a high level of social capital within the international
+environmental governance network are conducive to innovation. On the methodological
 side, we highlighted the importance of the careful choice of backbone extraction
 methods which need to be grounded in theory to ensure that inferential claims
 are robust to this choice.

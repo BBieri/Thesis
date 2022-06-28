@@ -161,7 +161,7 @@ competitiveness and productivity, the medium to long-term effects would be
 positive.
 
 These findings will guide us in the elaboration of the panel model
-that will be outlined in more detail in section 3. Before that, let us now focus on
+that will be outlined in more detail in section 3. Before that, let us focus on
 the second strand of literature guiding our empirical strategy
 and examine the impact of policy (un-)certainty on innovation.
 
@@ -287,7 +287,7 @@ process. Early papers' main unit of analysis was often a single agreement such a
 [@barrettSelfEnforcingInternationalEnvironmental1994]. More recent theoretical
 advances in the literature consider the participation in IEAs as a static or a
 dynamic game with repeated interactions between countries
-[beccherleRegionalInitiativesCost2011; harstadDynamicsClimateAgreements2016;
+[@beccherleRegionalInitiativesCost2011; @harstadDynamicsClimateAgreements2016;
 @battagliniParticipationDurationEnvironmental2016]^[The majority of the
 empirical evidence within the game-theoretic literature comes from experimental
 economics. See, e.g., @tavoniInequalityCommunicationAvoidance2011 and

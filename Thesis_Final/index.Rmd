@@ -85,5 +85,5 @@ extrafont::loadfonts(quiet = T)
 
 ```{r, include=FALSE}
 # Load all packages used in the project to be added at the bibliography
-knitr::write_bib(c(.packages(), "bookdown"), "bib/packages.bib")
+#knitr::write_bib(c(.packages(), "bookdown"), "bib/packages.bib")
 ```

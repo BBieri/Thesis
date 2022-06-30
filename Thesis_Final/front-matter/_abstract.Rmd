@@ -11,9 +11,9 @@ transitivity.
 We find that domestic environmental policy stringency has a positive effect on
 innovation as proxied by R&D expenditures but not on patent counts. Furthermore,
 we find that social capital proxied by transitivity, which is conducive to a
-stable international policy environment positively affects innovation
+stable international policy environment, positively affects innovation
 but not competitiveness. Finally, the impact of the cooperative intensity,
-proxied by strength is not consistent across specifications and is consistently
-smaller than the transitivity estimates. We thus find that the combination
-of stricter environmental policy measures and a stable international governance
-environment is conducive to innovation.
+proxied by strength, is consistently smaller than the transitivity estimates.
+We thus find that the combination of stricter domestic environmental policy measures
+combined with a stable international governance environment is conducive to 
+innovation.

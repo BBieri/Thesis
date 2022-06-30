@@ -309,10 +309,9 @@ such an approach to analyzing the emergence of cooperative ties is that these
 depend on both the *characteristics* of the agents that form them and the
 *structure* of the network they exist in. @kinneNetworkDynamicsEvolution2013a
 underlined that states are more likely to develop bilateral cooperation ties if
-they share agreements with third parties^[This confirms
-the triadic closure phenomenon highlighted by Granovetter
-@granovetterStrengthWeakTies1973].], if they sign more agreements overall, and
-if they exhibit similar characteristics with their bilateral partners. While
+they share agreements with third parties, if they sign more agreements overall, and
+if they exhibit similar characteristics with their bilateral partners^[This confirms
+the triadic closure phenomenon highlighted by @granovetterStrengthWeakTies1973.]. While
 Kinne examines a unimodal network of bilateral agreements between the end of the
 Second World War and 1980 due to data availability,
 @hollwayMultilevelEmbeddednessCase2016 further his analysis by studying the
@@ -381,7 +380,7 @@ dataset[@unepiucnfaoECOLEXGatewayEnvironmental2022]. Their paper aims
 to derive a set of stylized facts on the intertemporal evolution of
 the network of international agreements by constructing a "cooperation network"
 between states^[Section 3 provides the reader with more detail about the
-construction of such a cooperation network.] After constructing this cooperation
+construction of such a cooperation network.]. After constructing this cooperation
 network, Carattini et al. describe the evolution of the position of states within
 it. They narrow down their observations to the following four stylized
 facts:

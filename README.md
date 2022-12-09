@@ -25,7 +25,7 @@ datasets used to compute patent counts. These are available [on
 request](mailto:bernhard.bieri@graduateinstitute.ch).
 
 -   Quick links:
-    -   Final PDF: [click here]()
+    -   Final PDF: [click here](https://github.com/BBieri/Thesis/blob/main/Thesis_Final/versions/The%20Impact%20of%20Global%20Environmental%20Governance%20on%20Innovation%3B%20Revisiting%20the%20Porter%20Hypothesis%20at%20the%20International%20Level.pdf)
     -   Centrality computation: [click
         here](https://github.com/BBieri/Thesis/blob/main/R/1_DataPreparation/2_YearlyCentrailty.R)
     -   Econometric analysis: [click
